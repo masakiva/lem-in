@@ -1,0 +1,23 @@
+# binary stuff
+*.o
+objects
+*.a
+*.out
+a.out*
+lem-in
+
+# macos garbage
+.DS_Store
+
+# vscode
+.vscode
+
+# vim
+*.swp
+*.vim
+
+# ctags
+tags
+
+# debug
+.gdb_history
