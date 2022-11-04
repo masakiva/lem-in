@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/04 16:41:35 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/04 18:28:27 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,27 @@
 
 #define		ARRY_END	-42
 
-typedef	struct	s_sovle_room
+typedef struct	s_board
+{
+	int		*board;
+}
+
+typedef	struct	s_solve_room
 {
 	int		id;
 	int		x;
 	int		y;
 	int		*links;
-	int		links_num;
+	int		links_size;
 }				t_solve_room;
 
 typedef struct	s_solve
 {
+	t_room			**map_room_ary;
 	t_solve_room	*rooms;
-	int				rooms_num;
-	int				all_links_num;
+	int				rooms_size;
+	int				all_links_size;
+	int				ant_size;
 
 }				t_solve;
 
