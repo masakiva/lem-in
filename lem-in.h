@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 12:15:09 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/04 12:30:01 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 # define LEM_IN_H
 
 # include "libft.h"
+
+typedef struct	s_room
+{
+	int		id;
+	int		x;
+	int		y;
+}				t_room;
+
+typedef struct	s_link
+{
+	int		room1;
+	int		room2;
+}				t_link;
 
 typedef struct	s_map
 {
@@ -26,11 +39,10 @@ typedef struct	s_map
 enum	e_err_code
 {
 	GNL_ERR,
-	PARSING_ERR,
+	INPUT_ERR,
+	MALLOC_ERR,
 };
 
-
-# define BUF_SIZE	4096
 
 enum	e_state
 {
@@ -39,13 +51,12 @@ enum	e_state
 	HASH,
 	DOUBLE_HASH,
 	END,
-	NB_STATES
+	NB_STATES,
 };
 
 typedef struct	s_state_machine
 {
-	char			buf[BUF_SIZE];
-	size_t			len;
+	t_map*			map;
 	enum e_state	state;
 	uint8_t			pad[4];
 }				t_state_machine;

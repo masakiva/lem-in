@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 12:12:15 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:40:18 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ char*	character(t_state_machine* machine, char* line)
 	else if (*line == '\0')
 		machine->state = END;
 	else
-		printf("parsing err %d\n", PARSING_ERR);
+	{
+		printf("input err %d\n", INPUT_ERR);
+		machine->state = END;
+	}
 	return (line);
 }
 
@@ -67,14 +70,46 @@ int		islink(char* line)
 	return (FALSE);
 }
 
-void	parse_link(char* line)
+int		parse_number(char** str)
 {
-	(void)line;
+	int		nb;
+
+	while (ft_isspace(**str))
+		(*str)++;
+	nb = 0;
+	while (ft_isdigit(**str))
+	{
+		nb += nb * 10 + **str - '0';
+		(*str)++;
+	}
+
+	return (nb);
 }
 
-void	parse_room(char* line)
+void	parse_room(char* line, t_map* map)
+{
+	t_room*		new_room;
+	t_list*		new_link;
+	
+	new_room = malloc(sizeof(t_room));
+	if (new_room == NULL)
+		printf("malloc err %d\n", MALLOC_ERR);
+	new_room->id = parse_number(&line);
+	new_room->x = parse_number(&line);
+	new_room->y = parse_number(&line);
+
+	new_link = ft_lstnew(new_room);
+	if (new_link == NULL)
+		printf("malloc err %d\n", MALLOC_ERR);
+	ft_lstadd_back(&map->rooms, new_link);
+
+	printf("ROOM no %d, x = %d, y = %d\n", new_room->id, new_room->x, new_room->y);
+}
+
+void	parse_link(char* line, t_map* map)
 {
 	(void)line;
+	(void)map;
 }
 
 char*	digit(t_state_machine* machine, char* line)
@@ -82,15 +117,15 @@ char*	digit(t_state_machine* machine, char* line)
 	if (isroom(line))
 	{
 		printf("ROOM\n");
-		parse_room(line);
+		parse_room(line, machine->map);
 	}
 	else if (islink(line))
 	{
 		printf("LINK\n");
-		parse_link(line);
+		parse_link(line, machine->map);
 	}
 	else
-		printf("parsing err %d\n", PARSING_ERR);
+		printf("input err %d\n", INPUT_ERR);
 	machine->state = END;
 	return (line);
 }
@@ -112,29 +147,32 @@ char*	double_hash(t_state_machine* machine, char* line)
 {
 	printf("double hash\n");
 	if (ft_strcmp(line, "start") == 0)
+	{
 		printf("START\n");
+	}
 	else if (ft_strcmp(line, "end") == 0)
 		printf("END\n");
 	else
-		printf("parsing err %d\n", PARSING_ERR);
+		printf("input err %d\n", INPUT_ERR);
 	machine->state = END;
 	return (line);
 }
 
-void	extract_line_infos(char* line)
+void	extract_line_infos(char* line, t_map* map)
 {
 	static t_parse	process[NB_STATES - 1] = {character, digit, hash,
 		double_hash};
 	t_state_machine	machine;
 
 	ft_bzero(&machine, sizeof(t_state_machine));
+	machine.map = map;
 	while (machine.state != END)
 	{
 		line = process[machine.state](&machine, line);
 	}
 }
 
-int		parse_line(void)
+int		parse_line(t_map* map)
 {
 	char*	line;
 	int		ret;
@@ -144,7 +182,7 @@ int		parse_line(void)
 		printf("gnl err %d\n", GNL_ERR);
 	else
 	{
-		extract_line_infos(line);
+		extract_line_infos(line, map);
 		printf("line = %s\n", line);
 		free(line);
 	}
@@ -155,11 +193,12 @@ int		parse_line(void)
 int		main(void)
 {
 	int		ret;
+	t_map	map;
 
 	ret = 1;
-	while(ret == 1)
+	while (ret == 1)
 	{
-		ret = parse_line();
+		ret = parse_line(&map);
 	}
 
 	return (EXIT_SUCCESS);
