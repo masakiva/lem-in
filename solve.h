@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/04 18:29:28 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/04 19:42:45 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct	s_board
 {
 	int		*board;
-}
+}				t_board;
 
 typedef	struct	s_solve_room
 {

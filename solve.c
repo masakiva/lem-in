@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/04 18:29:30 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/04 19:44:01 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	show_all_data(t_solve *s)
 	while (i < s->rooms_size)
 	{
 		printf("id: %d", s->rooms[i].id);
-		printf(" name: %d", s->map_room_ary[i]->id);
+		printf(" name: %s", s->map_room_ary[i]->name);
 		printf("\n");
 		i++;
 	}
