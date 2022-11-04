@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 11:48:55 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/04 12:15:09 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,18 @@
 
 # include "libft.h"
 
+typedef struct	s_map
+{
+	t_list	*rooms;
+	t_list	*links;
+	int		start;
+	int		end;
+}				t_map;
+
 enum	e_err_code
 {
 	GNL_ERR,
+	PARSING_ERR,
 };
 
 

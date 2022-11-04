@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 11:57:54 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/04 12:12:15 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,30 @@ char*	character(t_state_machine* machine, char* line)
 	if (*line == '#')
 	{
 		machine->state = HASH;
-		printf("hash\n");
 		line++;
 	}
-	if (ft_isdigit(*line))
+	else if (ft_isdigit(*line))
 		machine->state = DIGIT;
-	if (*line == '\0')
+	else if (*line == '\0')
 		machine->state = END;
+	else
+		printf("parsing err %d\n", PARSING_ERR);
 	return (line);
 }
 
-int		iscoord(char* line)
+int		isroom(char* line)
 {
-	while (ft_isdigit(*line))
+	while (ft_isdigit(*line)) // room number
 		line++;
 	if (*line == ' ')
 	{
 		line++;
-		while (ft_isdigit(*line))
+		while (ft_isdigit(*line)) // x coord
 			line++;
 		if (*line == ' ')
 		{
 			line++;
-			while (ft_isdigit(*line))
+			while (ft_isdigit(*line)) // y coord
 				line++;
 			if (*line == '\0')
 				return (TRUE);
@@ -53,12 +54,12 @@ int		iscoord(char* line)
 
 int		islink(char* line)
 {
-	while (ft_isdigit(*line))
+	while (ft_isdigit(*line)) // first room
 		line++;
 	if (*line == '-')
 	{
 		line++;
-		while (ft_isdigit(*line))
+		while (ft_isdigit(*line)) // second room
 			line++;
 		if (*line == '\0')
 			return (TRUE);
@@ -66,24 +67,40 @@ int		islink(char* line)
 	return (FALSE);
 }
 
+void	parse_link(char* line)
+{
+	(void)line;
+}
+
+void	parse_room(char* line)
+{
+	(void)line;
+}
+
 char*	digit(t_state_machine* machine, char* line)
 {
-	if (iscoord(line))
+	if (isroom(line))
+	{
 		printf("ROOM\n");
+		parse_room(line);
+	}
 	else if (islink(line))
+	{
 		printf("LINK\n");
+		parse_link(line);
+	}
 	else
-		printf("err\n");
+		printf("parsing err %d\n", PARSING_ERR);
 	machine->state = END;
 	return (line);
 }
 
 char*	hash(t_state_machine* machine, char* line)
 {
+	printf("hash\n");
 	if (*line == '#')
 	{
 		machine->state = DOUBLE_HASH;
-		printf("double hash\n");
 		line++;
 	}
 	else // it's a comment
@@ -93,12 +110,13 @@ char*	hash(t_state_machine* machine, char* line)
 
 char*	double_hash(t_state_machine* machine, char* line)
 {
+	printf("double hash\n");
 	if (ft_strcmp(line, "start") == 0)
 		printf("START\n");
 	else if (ft_strcmp(line, "end") == 0)
 		printf("END\n");
 	else
-		printf("err\n");
+		printf("parsing err %d\n", PARSING_ERR);
 	machine->state = END;
 	return (line);
 }
