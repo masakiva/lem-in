@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 11:28:41 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:48:55 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ enum	e_err_code
 
 enum	e_state
 {
-	SPACE,
-	LETTER,
+	CHARACTER,
+	DIGIT,
 	HASH,
+	DOUBLE_HASH,
 	END,
 	NB_STATES
 };
@@ -40,6 +41,6 @@ typedef struct	s_state_machine
 	uint8_t			pad[4];
 }				t_state_machine;
 
-typedef void	(*t_parse)(t_state_machine *, char *);
+typedef char*	(*t_parse)(t_state_machine *, char *);
 
 #endif // LEM_IN_H

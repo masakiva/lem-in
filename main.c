@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 11:28:16 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:57:54 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,104 @@
 #include <unistd.h>
 #include <stdio.h>
 
-void	space(t_state_machine* machine, char* line)
+char*	character(t_state_machine* machine, char* line)
 {
 	if (*line == '#')
 	{
 		machine->state = HASH;
 		printf("hash\n");
+		line++;
 	}
+	if (ft_isdigit(*line))
+		machine->state = DIGIT;
 	if (*line == '\0')
 		machine->state = END;
+	return (line);
 }
 
-void	letter(t_state_machine* machine, char* line)
+int		iscoord(char* line)
 {
-	(void)machine;
-	(void)line;
+	while (ft_isdigit(*line))
+		line++;
+	if (*line == ' ')
+	{
+		line++;
+		while (ft_isdigit(*line))
+			line++;
+		if (*line == ' ')
+		{
+			line++;
+			while (ft_isdigit(*line))
+				line++;
+			if (*line == '\0')
+				return (TRUE);
+		}
+	}
+	return (FALSE);
 }
 
-void	hash(t_state_machine* machine, char* line)
+int		islink(char* line)
 {
-	machine->state = SPACE;
-	(void)line;
+	while (ft_isdigit(*line))
+		line++;
+	if (*line == '-')
+	{
+		line++;
+		while (ft_isdigit(*line))
+			line++;
+		if (*line == '\0')
+			return (TRUE);
+	}
+	return (FALSE);
+}
+
+char*	digit(t_state_machine* machine, char* line)
+{
+	if (iscoord(line))
+		printf("ROOM\n");
+	else if (islink(line))
+		printf("LINK\n");
+	else
+		printf("err\n");
+	machine->state = END;
+	return (line);
+}
+
+char*	hash(t_state_machine* machine, char* line)
+{
+	if (*line == '#')
+	{
+		machine->state = DOUBLE_HASH;
+		printf("double hash\n");
+		line++;
+	}
+	else // it's a comment
+		machine->state = END;
+	return (line);
+}
+
+char*	double_hash(t_state_machine* machine, char* line)
+{
+	if (ft_strcmp(line, "start") == 0)
+		printf("START\n");
+	else if (ft_strcmp(line, "end") == 0)
+		printf("END\n");
+	else
+		printf("err\n");
+	machine->state = END;
+	return (line);
 }
 
 void	extract_line_infos(char* line)
 {
-	static t_parse	process[NB_STATES - 1] = {space, letter, hash};
+	static t_parse	process[NB_STATES - 1] = {character, digit, hash,
+		double_hash};
 	t_state_machine	machine;
 
 	ft_bzero(&machine, sizeof(t_state_machine));
 	while (machine.state != END)
 	{
-		process[machine.state](&machine, line);
-		line++;
+		line = process[machine.state](&machine, line);
 	}
 }
 
