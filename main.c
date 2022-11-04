@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 17:29:12 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:46:11 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,6 @@ int		islink(char* line)
 	return (FALSE);
 }
 
-char*	parse_roomname(char** str)
-{
-	size_t	name_len;
-	char*	name;
-
-	name_len = 0;
-	while ((*str)[name_len] != ' '
-			&& (*str)[name_len] != '-'
-			&& (*str)[name_len] != '\0')
-		name_len++;
-	name = ft_substr(*str, 0, name_len);
-	if (name == NULL)
-		printf("malloc err %d\n", MALLOC_ERR);
-	return (name);
-}
-
 int		parse_number(char** str)
 {
 	int		nb;
@@ -101,6 +85,23 @@ int		parse_number(char** str)
 	return (nb);
 }
 
+char*	parse_roomname(char** str)
+{
+	size_t	name_len;
+	char*	name;
+
+	name_len = 0;
+	while ((*str)[name_len] != ' '
+			&& (*str)[name_len] != '-'
+			&& (*str)[name_len] != '\0')
+		name_len++;
+	name = ft_substr(*str, 0, name_len);
+	if (name == NULL)
+		return (NULL);
+	*str += name_len;
+	return (name);
+}
+
 void	parse_room(char* line, t_map* map)
 {
 	t_room*		new_room;
@@ -110,6 +111,8 @@ void	parse_room(char* line, t_map* map)
 	if (new_room == NULL)
 		printf("malloc err %d\n", MALLOC_ERR);
 	new_room->name = parse_roomname(&line);
+	if (new_room->name == NULL)
+		printf("malloc err %d\n", MALLOC_ERR);
 	new_room->x = parse_number(&line);
 	new_room->y = parse_number(&line);
 
@@ -130,7 +133,13 @@ void	parse_link(char* line, t_map* map)
 	if (new_link == NULL)
 		printf("malloc err %d\n", MALLOC_ERR);
 	new_link->room1 = parse_roomname(&line);
-	new_link->room1 = parse_roomname(&line);
+	if (new_link->room1 == NULL)
+		printf("malloc err %d\n", MALLOC_ERR);
+	if (*line == '-')
+		line++;
+	new_link->room2 = parse_roomname(&line);
+	if (new_link->room2 == NULL)
+		printf("malloc err %d\n", MALLOC_ERR);
 
 	lst_elem = ft_lstnew(new_link);
 	if (lst_elem == NULL)
