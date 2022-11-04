@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/04 19:44:01 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/04 19:50:20 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,28 @@ void	create_rooms(t_solve *s, t_map *map)
 	}
 }
 
+void	set_link(t_solve *s, t_map *map)
+{
+	t_list	*link_ptr;
+
+	(void)s;
+
+	link_ptr = map->links;
+	while (link_ptr)
+	{
+		printf("link1:[%s] link2:[%s]\n",	((t_link*)link_ptr->content)->room1,
+											((t_link*)link_ptr->content)->room2);
+		link_ptr = link_ptr->next;
+	}
+}
+
 void	solve(t_map *map)
 {
 	t_solve	s;
 
 	parse_data(&s, map);
 	create_rooms(&s, map);
+	set_link(&s, map);
 
 	show_all_data(&s);
 }
