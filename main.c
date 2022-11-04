@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 14:50:13 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:51:25 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		parse_number(char** str)
 	nb = 0;
 	while (ft_isdigit(**str))
 	{
-		nb += nb * 10 + **str - '0';
+		nb = nb * 10 + **str - '0';
 		(*str)++;
 	}
 
