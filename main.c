@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 14:51:25 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/04 15:35:15 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include "solve.h"
 
 char*	character(t_state_machine* machine, char* line)
 {
@@ -214,5 +215,7 @@ int		main(void)
 		ret = parse_line(&map);
 	}
 
+	solve(&map);
+	
 	return (EXIT_SUCCESS);
 }
