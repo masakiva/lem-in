@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 19:39:37 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/04 20:17:19 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	parse_link(char* line, t_map* map)
 	lst_elem = ft_lstnew(new_link);
 	if (lst_elem == NULL)
 		printf("malloc err %d\n", MALLOC_ERR);
-	ft_lstadd_back(&map->rooms, lst_elem);
+	ft_lstadd_back(&map->links, lst_elem);
 
 	printf("LINK between rooms %s and %s\n", new_link->room1, new_link->room2);
 }

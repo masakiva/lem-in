@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/04 19:50:20 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/04 20:39:16 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,39 @@
 void	show_all_data(t_solve *s)
 {
 	int		i;
+	int		j;
 
 	i = 0;
 	printf("--- show t_solve ---\n");
 	while (i < s->rooms_size)
 	{
+		printf("room => ");
 		printf("id: %d", s->rooms[i].id);
 		printf(" name: %s", s->map_room_ary[i]->name);
+		j = 0;
+		printf(" link(id): ");
+		while (j < s->rooms[i].links_size)
+		{
+			printf("%d, ", s->rooms[i].links[j]);
+			j++;
+		}
 		printf("\n");
 		i++;
 	}
+}
+
+int		find_index_by_name(t_solve *s, char *room_name)
+{
+	int		i;
+
+	i = 0;
+	while (i < s->rooms_size)
+	{
+		if (ft_strcmp(s->map_room_ary[i]->name, room_name) == 0)
+			return i;
+		i++;
+	}
+	return i;
 }
 
 void	parse_data(t_solve *s, t_map *map)
@@ -63,6 +86,8 @@ void	create_rooms(t_solve *s, t_map *map)
 		new_room.id = i;
 		new_room.x = s->map_room_ary[i]->x;
 		new_room.y = s->map_room_ary[i]->y;
+		new_room.links = NULL;
+		new_room.links_size = 0;
 		s->rooms[i] = new_room;
 		i++;
 	}
@@ -71,14 +96,44 @@ void	create_rooms(t_solve *s, t_map *map)
 void	set_link(t_solve *s, t_map *map)
 {
 	t_list	*link_ptr;
+	int		room1;
+	int		room2;
+	int		i;
 
-	(void)s;
-
+	//get number of links in each room
 	link_ptr = map->links;
 	while (link_ptr)
 	{
-		printf("link1:[%s] link2:[%s]\n",	((t_link*)link_ptr->content)->room1,
-											((t_link*)link_ptr->content)->room2);
+		room1 = find_index_by_name(s, ((t_link*)link_ptr->content)->room1);
+		room2 = find_index_by_name(s, ((t_link*)link_ptr->content)->room2);
+		printf("link1: [%d] link2: [%d]\n", room1, room2);
+		s->rooms[room1].links_size++;
+		s->rooms[room2].links_size++;
+		link_ptr = link_ptr->next;
+	}
+
+	//malloc links 
+	i = 0;
+	while (i < s->rooms_size)
+	{
+		s->rooms[i].links = malloc(sizeof(int) * s->rooms[i].links_size);
+		s->rooms[i].links_size = 0;
+		i++;
+	}
+
+	//submit links 
+	link_ptr = map->links;
+	while (link_ptr)
+	{
+		//find link
+		room1 = find_index_by_name(s, ((t_link*)link_ptr->content)->room1);
+		room2 = find_index_by_name(s, ((t_link*)link_ptr->content)->room2);
+		//add link
+		s->rooms[room1].links[s->rooms[room1].links_size] = room2;
+		s->rooms[room2].links[s->rooms[room2].links_size] = room1;
+		//inc link_size
+		s->rooms[room1].links_size++;
+		s->rooms[room2].links_size++;
 		link_ptr = link_ptr->next;
 	}
 }
