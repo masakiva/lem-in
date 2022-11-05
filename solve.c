@@ -6,13 +6,14 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/04 20:53:37 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/05 14:28:38 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "solve.h"
 #include "libft.h"
+#include "ft_queue.h"
 #include <stdio.h>
 
 void	show_all_data(t_solve *s)
@@ -60,6 +61,8 @@ void	parse_data(t_solve *s, t_map *map)
 	
 	s->all_links_size = ft_lstsize(map->links);
 	printf("links num %d\n", s->all_links_size);
+
+	s->ant_size = 3;
 }
 
 void	create_rooms(t_solve *s, t_map *map)
@@ -147,4 +150,7 @@ void	solve(t_map *map)
 	set_link(&s, map);
 
 	show_all_data(&s);
+
+	//solve_move(&s, map);
+	
 }
