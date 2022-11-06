@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/06 18:52:46 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/06 21:03:23 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ typedef struct	s_ek_edge
 
 typedef struct	s_ek_node
 {
-	int		id;
-	int		*edges;
+	int				id;
+	t_ek_edge		*edges;
+	int				edges_size;
 }				t_ek_node;
 
 typedef struct	s_ek_graph
