@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/06 17:22:28 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/06 18:35:44 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "lem-in.h"
 # include <stdlib.h>
+# include <stdio.h>
 
 #define		ARRY_END	-42
 
@@ -55,13 +56,19 @@ typedef struct	s_ek_node
 	int		*edges;
 }				t_ek_node;
 
-typedef struct	s_ek_grapth
+typedef struct	s_ek_graph
 {
 	t_ek_node	*nodes;
+
+	int			nodes_size;
+	int			edges_size;
+	int			start_id;
+	int			goal_id;
 	//t_ek_edge	*edges;
-}				t_ek_grapth;
+}				t_ek_graph;
 
 void	solve(t_map *m);
 void	print_data(t_map *m);
+void	generate_graph(t_map *map, t_solve *s, t_ek_graph *g);
 
 #endif

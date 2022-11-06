@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/06 16:38:35 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/06 18:26:09 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,14 +143,13 @@ void	set_link(t_solve *s, t_map *map)
 
 void	solve(t_map *map)
 {
-	t_solve	s;
+	t_solve			s;
+	t_ek_graph		graph;
 
 	parse_data(&s, map);
 	create_rooms(&s, map);
 	set_link(&s, map);
-
 	show_all_data(&s);
 
-	//solve_move(&s, map);
-	
+	generate_graph(map, &s, &graph);
 }
