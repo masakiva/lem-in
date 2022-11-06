@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.h                                           :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 19:39:41 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/06 18:02:51 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#ifndef PARSE_H
+# define PARSE_H
 
 # include "libft.h"
 
@@ -64,4 +64,6 @@ typedef struct	s_state_machine
 
 typedef char*	(*t_parse)(t_state_machine *, char *);
 
-#endif // LEM_IN_H
+int		parse_line(t_map* map);
+
+#endif // PARSE_H
