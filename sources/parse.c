@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/06 18:03:05 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/06 18:42:56 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,21 @@ int		isroom(char* line)
 	if (*line == ' ')
 	{
 		line++;
-		while (ft_isdigit(*line)) // x coord
-			line++;
-		if (*line == ' ')
+		if (ft_isdigit(*line))
 		{
-			line++;
-			while (ft_isdigit(*line)) // y coord
+			while (ft_isdigit(*line)) // x coord
 				line++;
-			if (*line == '\0')
-				return (TRUE);
+			if (*line == ' ')
+			{
+				line++;
+				if (ft_isdigit(*line))
+				{
+					while (ft_isdigit(*line)) // y coord
+						line++;
+					if (*line == '\0')
+						return (TRUE);
+				}
+			}
 		}
 	}
 	return (FALSE);
@@ -178,9 +184,35 @@ char*	double_hash(t_state_machine* machine, char* line)
 {
 	printf("double hash\n");
 	if (ft_strcmp(line, "start") == 0)
-		printf("START\n");
+		machine->map->start_flag = TRUE;
 	else if (ft_strcmp(line, "end") == 0)
-		printf("END\n");
+		machine->map->end_flag = TRUE;
+	else
+		printf("input err %d\n", INPUT_ERR);
+	machine->state = END;
+	return (line);
+}
+
+char*	start_end_line(t_state_machine* machine, char* line)
+{
+	if (isroom(line))
+	{
+		parse_room(line, machine->map);
+		if (machine->map->start_flag == TRUE)
+		{
+			printf("STARTTTT\n");
+			machine->map->start =
+				((t_room *)ft_lstlast(machine->map->rooms)->content)->name;
+			machine->map->start_flag = FALSE;
+		}
+		if (machine->map->end_flag == TRUE)
+		{
+			printf("ENDDDD\n");
+			machine->map->end =
+				((t_room *)ft_lstlast(machine->map->rooms)->content)->name;
+			machine->map->end_flag = FALSE;
+		}
+	}
 	else
 		printf("input err %d\n", INPUT_ERR);
 	machine->state = END;
@@ -190,11 +222,13 @@ char*	double_hash(t_state_machine* machine, char* line)
 void	extract_line_infos(char* line, t_map* map)
 {
 	static t_parse	process[NB_STATES - 1] = {character, roomname, hash,
-		double_hash};
+		double_hash, start_end_line};
 	t_state_machine	machine;
 
 	ft_bzero(&machine, sizeof(t_state_machine));
 	machine.map = map;
+	if (map->start_flag == TRUE || map->end_flag == TRUE)
+		machine.state = START_END_LINE;
 	while (machine.state != END)
 	{
 		line = process[machine.state](&machine, line);
