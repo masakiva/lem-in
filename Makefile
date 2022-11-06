@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/05 14:27:15 by tkodai           ###   ########.fr        #
+#    Updated: 2022/11/06 16:08:53 by tkodai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ vpath %.c $(SRCS_PATH)
 HDRS		+= lem-in.h
 HDRS		+= solve.h
 HDRS		+= ft_queue.h
+HDRS		+= ft_vector_int.h
 
 vpath %.h $(HDRS_PATH)
 

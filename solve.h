@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/04 20:29:42 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/06 17:22:28 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,25 @@ typedef struct	s_solve
 	int				ant_size;
 
 }				t_solve;
+
+typedef struct	s_ek_edge
+{
+	int		rev;
+	int		to;
+	int		cap;
+}				t_ek_edge;
+
+typedef struct	s_ek_node
+{
+	int		id;
+	int		*edges;
+}				t_ek_node;
+
+typedef struct	s_ek_grapth
+{
+	t_ek_node	*nodes;
+	//t_ek_edge	*edges;
+}				t_ek_grapth;
 
 void	solve(t_map *m);
 void	print_data(t_map *m);
