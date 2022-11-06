@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/06 18:03:53 by mvidal-a         ###   ########.fr        #
+#    Updated: 2022/11/06 18:55:02 by mvidal-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ OBJS_PATH	+= ./objects/
 #-----------------------------------------------#
 SRCS		+= main.c
 SRCS		+= parse.c
+SRCS		+= parse_states.c
+SRCS		+= parse_utils.c
 SRCS		+= solve.c
 
 vpath %.c $(SRCS_PATH)
