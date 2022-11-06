@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/06 16:08:53 by tkodai           ###   ########.fr        #
+#    Updated: 2022/11/06 18:27:25 by tkodai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ OBJS_PATH	+= ./objects/
 #-----------------------------------------------#
 SRCS		+= main.c
 SRCS		+= solve.c
+SRCS		+= generate_graph.c
 
 vpath %.c $(SRCS_PATH)
 
