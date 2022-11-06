@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/04 17:46:11 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/04 20:17:19 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include "solve.h"
 
 char*	character(t_state_machine* machine, char* line)
 {
@@ -144,7 +145,7 @@ void	parse_link(char* line, t_map* map)
 	lst_elem = ft_lstnew(new_link);
 	if (lst_elem == NULL)
 		printf("malloc err %d\n", MALLOC_ERR);
-	ft_lstadd_back(&map->rooms, lst_elem);
+	ft_lstadd_back(&map->links, lst_elem);
 
 	printf("LINK between rooms %s and %s\n", new_link->room1, new_link->room2);
 }
@@ -229,5 +230,7 @@ int		main(void)
 		ret = parse_line(&map);
 	}
 
+	solve(&map);
+	
 	return (EXIT_SUCCESS);
 }
