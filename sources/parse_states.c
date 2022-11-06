@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:46:30 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/06 20:29:53 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/06 20:38:56 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,42 +32,6 @@ char*	character(t_state_machine* machine, char* line)
 	return (line);
 }
 
-t_bool	find_dup_roomname(t_list* rooms, char* name_to_compare)
-{
-	t_room*		cur_room;
-
-	while (rooms != NULL)
-	{
-		cur_room = (t_room *)rooms->content;
-		if (cur_room->name != name_to_compare
-				&& ft_strcmp(cur_room->name, name_to_compare) == 0)
-			return (TRUE);
-		rooms = rooms->next;
-	}
-	return (FALSE);
-}
-
-t_bool	find_dup_link(t_list* links, t_link* link_to_compare)
-{
-	t_link*		cur_link;
-
-	while (links != NULL)
-	{
-		cur_link = (t_link *)links->content;
-		if (cur_link != link_to_compare)
-		{
-			if (ft_strcmp(cur_link->room1, link_to_compare->room1) == 0
-					&& ft_strcmp(cur_link->room2, link_to_compare->room2) == 0)
-				return (TRUE);
-			else if (ft_strcmp(cur_link->room1, link_to_compare->room2) == 0
-					&& ft_strcmp(cur_link->room2, link_to_compare->room1) == 0)
-				return (TRUE);
-		}
-		links = links->next;
-	}
-	return (FALSE);
-}
-
 char*	roomname(t_state_machine* machine, char* line)
 {
 	if (isroom(line))
@@ -76,13 +40,16 @@ char*	roomname(t_state_machine* machine, char* line)
 		if (find_dup_roomname(machine->map->rooms,
 					((t_room *)ft_lstlast(machine->map->rooms)->content)->name))
 			printf("input err duplicate room name%d\n", INPUT_ERR);
+		if (find_dup_roomcoord(machine->map->rooms,
+					(t_room *)ft_lstlast(machine->map->rooms)->content))
+			printf("input err duplicate room coordinates%d\n", INPUT_ERR);
 	}
 	else if (islink(line))
 	{
 		parse_link(line, machine->map);
 		if (find_dup_link(machine->map->links,
 					(t_link *)ft_lstlast(machine->map->links)->content))
-			printf("input err duplicate room name%d\n", INPUT_ERR);
+			printf("input err duplicate link%d\n", INPUT_ERR);
 	}
 	else
 		printf("input err unknown syntax%d\n", INPUT_ERR);
