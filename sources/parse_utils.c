@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 12:03:58 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:14:46 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	parse_link(char* line, t_map* map)
 	if (new_link->room2 == NULL)
 		error_exit(MALLOC_ERR);
 	if (ft_strcmp(new_link->room1, new_link->room2) == 0)
-		printf("input err link with same room names%d\n", INPUT_ERR);
+		error_exit(LINK_SAME_ROOMNAMES);
 
 	lst_elem = ft_lstnew(new_link);
 	if (lst_elem == NULL)
