@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/06 21:03:23 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/07 14:53:02 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ typedef struct	s_ek_graph
 void	solve(t_map *m);
 void	print_data(t_map *m);
 void	generate_graph(t_map *map, t_solve *s, t_ek_graph *g);
+void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *g);
 
 #endif
