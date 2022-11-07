@@ -39,6 +39,7 @@ void	generate_node(t_solve *s, t_ek_graph *graph)
 		if (graph->nodes[i].edges == NULL)
 		{
 			printf("generate_node Malloc failed\n");
+			exit(0);
 		}
 		graph->nodes[i].edges_size = 0;
 		i++;

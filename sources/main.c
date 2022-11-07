@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:46:12 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 12:15:00 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:38:23 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -61,7 +61,7 @@ int		main(void)
 
 	check_input(&map);
 
-	//solve(&map);
+	solve(&map);
 	
 	return (EXIT_SUCCESS);
 }
