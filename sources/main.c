@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:46:12 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 12:05:00 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:15:00 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -43,7 +43,7 @@ void	check_input(t_map* map)
 			rooms = rooms->next;
 		}
 		if (!room1_found || !room2_found)
-			printf("input err link with unknown room name %d\n", INPUT_ERR);
+			error_exit(UNKNOWN_LINK);
 		links = links->next;
 	}
 }
