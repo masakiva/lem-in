@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:46:30 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 11:50:37 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:05:34 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,26 @@ char*	character(t_state_machine* machine, char* line)
 		machine->state = ROOMNAME;
 	return (line);
 }
+
 char*	roomname(t_state_machine* machine, char* line)
 {
 	if (isroom(line))
+	{
 		parse_room(line, machine->map);
+		if (find_dup_roomname(machine->map->rooms,
+					((t_room *)ft_lstlast(machine->map->rooms)->content)->name))
+			printf("input err duplicate room name%d\n", INPUT_ERR);
+		if (find_dup_roomcoord(machine->map->rooms,
+					(t_room *)ft_lstlast(machine->map->rooms)->content))
+			printf("input err duplicate room coordinates%d\n", INPUT_ERR);
+	}
 	else if (islink(line))
+	{
 		parse_link(line, machine->map);
+		if (find_dup_link(machine->map->links,
+					(t_link *)ft_lstlast(machine->map->links)->content))
+			printf("input err duplicate link%d\n", INPUT_ERR);
+	}
 	else
 		error_exit(UNKNOWN_SYNTAX);
 	machine->state = END;
