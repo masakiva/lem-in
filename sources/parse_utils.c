@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 11:57:13 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:03:58 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ void	parse_link(char* line, t_map* map)
 	new_link->room2 = parse_roomname(&line);
 	if (new_link->room2 == NULL)
 		error_exit(MALLOC_ERR);
+	if (ft_strcmp(new_link->room1, new_link->room2) == 0)
+		printf("input err link with same room names%d\n", INPUT_ERR);
 
 	lst_elem = ft_lstnew(new_link);
 	if (lst_elem == NULL)
@@ -135,3 +137,54 @@ void	parse_link(char* line, t_map* map)
 	printf("LINK between rooms %s and %s\n", new_link->room1, new_link->room2);
 }
 
+t_bool	find_dup_roomname(t_list* rooms, char* name_to_compare)
+{
+	t_room*		cur_room;
+
+	while (rooms != NULL)
+	{
+		cur_room = (t_room *)rooms->content;
+		if (cur_room->name != name_to_compare
+				&& ft_strcmp(cur_room->name, name_to_compare) == 0)
+			return (TRUE);
+		rooms = rooms->next;
+	}
+	return (FALSE);
+}
+
+t_bool	find_dup_roomcoord(t_list* rooms, t_room* room_to_compare)
+{
+	t_room*		cur_room;
+
+	while (rooms != NULL)
+	{
+		cur_room = (t_room *)rooms->content;
+		if (cur_room != room_to_compare
+				&& cur_room->x == room_to_compare->x
+				&& cur_room->y == room_to_compare->y)
+			return (TRUE);
+		rooms = rooms->next;
+	}
+	return (FALSE);
+}
+
+t_bool	find_dup_link(t_list* links, t_link* link_to_compare)
+{
+	t_link*		cur_link;
+
+	while (links != NULL)
+	{
+		cur_link = (t_link *)links->content;
+		if (cur_link != link_to_compare)
+		{
+			if (ft_strcmp(cur_link->room1, link_to_compare->room1) == 0
+					&& ft_strcmp(cur_link->room2, link_to_compare->room2) == 0)
+				return (TRUE);
+			else if (ft_strcmp(cur_link->room1, link_to_compare->room2) == 0
+					&& ft_strcmp(cur_link->room2, link_to_compare->room1) == 0)
+				return (TRUE);
+		}
+		links = links->next;
+	}
+	return (FALSE);
+}

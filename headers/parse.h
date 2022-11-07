@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 11:29:59 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:05:41 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,8 @@ int		isroom(char* line);
 int		islink(char* line);
 void	parse_room(char* line, t_map* map);
 void	parse_link(char* line, t_map* map);
+t_bool	find_dup_roomname(t_list* rooms, char* name_to_compare);
+t_bool	find_dup_roomcoord(t_list* rooms, t_room* room_to_compare);
+t_bool	find_dup_link(t_list* links, t_link* link_to_compare);
 
 #endif // PARSE_H
