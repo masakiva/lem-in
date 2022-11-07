@@ -19,6 +19,11 @@ void	show_graph(t_ek_graph *graph)
 		{
 			printf("%d (%d) ", graph->nodes[i].edges[j].to, graph->nodes[i].edges[j].cap);
 		}
+		if (graph->start_output_id == graph->nodes[i].id)
+			printf(" <= start");
+		if (graph->end_input_id == graph->nodes[i].id)
+			printf(" <= end");
+
 
 		printf("\n");
 		i++;
@@ -105,6 +110,14 @@ void	generate_node(t_solve *s, t_ek_graph *graph)
 	}
 }
 
+void	set_start_node(t_solve *s, t_ek_graph *graph)
+{
+	graph->start_input_id = s->start_id * 2;
+	graph->start_output_id = s->start_id * 2 + 1;
+	graph->end_input_id = s->end_id * 2;
+	graph->end_output_id = s->end_id * 2 + 1;
+}
+
 void	generate_graph(t_map *map, t_solve *s, t_ek_graph *graph)
 {
 	printf("----- generate graph -----\n");
@@ -123,5 +136,6 @@ void	generate_graph(t_map *map, t_solve *s, t_ek_graph *graph)
 	//malloc
 	graph->nodes = malloc(sizeof(t_ek_node) * graph->nodes_size);
 	generate_node(s, graph);
+	set_start_node(s, graph);
 	show_graph(graph);
 }
