@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/07 14:53:02 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/07 15:09:05 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct	s_solve
 	int				rooms_size;
 	int				all_links_size;
 	int				ant_size;
+	int				start_id;
+	int				end_id;
 
 }				t_solve;
 
@@ -59,11 +61,16 @@ typedef struct	s_ek_node
 typedef struct	s_ek_graph
 {
 	t_ek_node	*nodes;
+	
+	int			*used;
 
 	int			nodes_size;
 	int			edges_size;
-	int			start_id;
-	int			goal_id;
+	int			start_input_id;
+	int			start_output_id;
+	int			end_input_id;
+	int			end_output_id;
+
 	//t_ek_edge	*edges;
 }				t_ek_graph;
 
