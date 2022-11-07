@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:46:30 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/06 20:38:56 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:13:31 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char*	character(t_state_machine* machine, char* line)
 		machine->state = END;
 	else if (*line == 'L')
 	{
-		printf("input err room name cannot begin with a L%d\n", INPUT_ERR);
+		error_exit(BEGIN_WITH_L);
 		machine->state = END;
 	}
 	else
@@ -39,27 +39,26 @@ char*	roomname(t_state_machine* machine, char* line)
 		parse_room(line, machine->map);
 		if (find_dup_roomname(machine->map->rooms,
 					((t_room *)ft_lstlast(machine->map->rooms)->content)->name))
-			printf("input err duplicate room name%d\n", INPUT_ERR);
+			error_exit(DUP_ROOMNAME);
 		if (find_dup_roomcoord(machine->map->rooms,
 					(t_room *)ft_lstlast(machine->map->rooms)->content))
-			printf("input err duplicate room coordinates%d\n", INPUT_ERR);
+			error_exit(DUP_ROOMCOORD);
 	}
 	else if (islink(line))
 	{
 		parse_link(line, machine->map);
 		if (find_dup_link(machine->map->links,
 					(t_link *)ft_lstlast(machine->map->links)->content))
-			printf("input err duplicate link%d\n", INPUT_ERR);
+			error_exit(DUP_LINK);
 	}
 	else
-		printf("input err unknown syntax%d\n", INPUT_ERR);
+		error_exit(UNKNOWN_SYNTAX);
 	machine->state = END;
 	return (line);
 }
 
 char*	hash(t_state_machine* machine, char* line)
 {
-	printf("hash\n");
 	if (*line == '#')
 	{
 		machine->state = DOUBLE_HASH;
@@ -72,13 +71,12 @@ char*	hash(t_state_machine* machine, char* line)
 
 char*	double_hash(t_state_machine* machine, char* line)
 {
-	printf("double hash\n");
 	if (ft_strcmp(line, "start") == 0)
 		machine->map->start_flag = TRUE;
 	else if (ft_strcmp(line, "end") == 0)
 		machine->map->end_flag = TRUE;
 	else
-		printf("input err unknown syntax after ##%d\n", INPUT_ERR);
+		error_exit(UNKNOWN_SYNTAX_HASH);
 	machine->state = END;
 	return (line);
 }
@@ -104,7 +102,7 @@ char*	start_end_line(t_state_machine* machine, char* line)
 		}
 	}
 	else
-		printf("input err ##start or ##end must be followed by room definition %d\n", INPUT_ERR);
+		error_exit(START_END_ROOM_DEF);
 	machine->state = END;
 	return (line);
 }
