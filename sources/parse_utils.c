@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/06 20:41:10 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:14:46 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static char*	parse_roomname(char** str)
 		name_len++;
 	name = ft_substr(*str, 0, name_len);
 	if (name == NULL)
-		return (NULL);
+		error_exit(MALLOC_ERR);
 	*str += name_len;
 	return (name);
 }
@@ -95,16 +95,16 @@ void	parse_room(char* line, t_map* map)
 	
 	new_room = malloc(sizeof(t_room));
 	if (new_room == NULL)
-		printf("malloc err %d\n", MALLOC_ERR);
+		error_exit(MALLOC_ERR);
 	new_room->name = parse_roomname(&line);
 	if (new_room->name == NULL)
-		printf("malloc err %d\n", MALLOC_ERR);
+		error_exit(MALLOC_ERR);
 	new_room->x = parse_number(&line);
 	new_room->y = parse_number(&line);
 
 	lst_elem = ft_lstnew(new_room);
 	if (lst_elem == NULL)
-		printf("malloc err %d\n", MALLOC_ERR);
+		error_exit(MALLOC_ERR);
 	ft_lstadd_back(&map->rooms, lst_elem);
 
 	printf("ROOM name %s, x = %d, y = %d\n", new_room->name, new_room->x, new_room->y);
@@ -117,21 +117,21 @@ void	parse_link(char* line, t_map* map)
 	
 	new_link = malloc(sizeof(t_link));
 	if (new_link == NULL)
-		printf("malloc err %d\n", MALLOC_ERR);
+		error_exit(MALLOC_ERR);
 	new_link->room1 = parse_roomname(&line);
 	if (new_link->room1 == NULL)
-		printf("malloc err %d\n", MALLOC_ERR);
+		error_exit(MALLOC_ERR);
 	if (*line == '-')
 		line++;
 	new_link->room2 = parse_roomname(&line);
 	if (new_link->room2 == NULL)
-		printf("malloc err %d\n", MALLOC_ERR);
+		error_exit(MALLOC_ERR);
 	if (ft_strcmp(new_link->room1, new_link->room2) == 0)
-		printf("input err link with same room names%d\n", INPUT_ERR);
+		error_exit(LINK_SAME_ROOMNAMES);
 
 	lst_elem = ft_lstnew(new_link);
 	if (lst_elem == NULL)
-		printf("malloc err %d\n", MALLOC_ERR);
+		error_exit(MALLOC_ERR);
 	ft_lstadd_back(&map->links, lst_elem);
 
 	printf("LINK between rooms %s and %s\n", new_link->room1, new_link->room2);

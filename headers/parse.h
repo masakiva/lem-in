@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/06 20:40:38 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:05:41 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PARSE_H
 
 # include "libft.h"
+# include "error.h"
 
 typedef t_byte	t_bool;
 
@@ -40,14 +41,6 @@ typedef struct	s_map
 	t_bool	end_flag;
 	t_byte	pad[6];
 }				t_map;
-
-enum	e_err_code
-{
-	GNL_ERR,
-	INPUT_ERR,
-	MALLOC_ERR,
-};
-
 
 enum	e_state
 {

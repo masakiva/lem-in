@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/06 18:55:02 by mvidal-a         ###   ########.fr        #
+#    Updated: 2022/11/07 11:21:15 by mvidal-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ OBJS_PATH	+= ./objects/
 ################## SOURCES ######################
 #-----------------------------------------------#
 SRCS		+= main.c
+SRCS		+= error.c
 SRCS		+= parse.c
 SRCS		+= parse_states.c
 SRCS		+= parse_utils.c
@@ -42,6 +43,7 @@ vpath %.c $(SRCS_PATH)
 #-----------------------------------------------#
 ################## HEADERS ######################
 #-----------------------------------------------#
+HDRS		+= error.h
 HDRS		+= parse.h
 HDRS		+= solve.h
 HDRS		+= ft_queue.h
@@ -105,6 +107,10 @@ $(OBJS_PATH):
 
 $(LIBFT_PATH)$(LIBFT_NAME):
 					$(MAKE) -C $(LIBFT_PATH) bonus custom
+
+lib:
+					$(MAKE) -C $(LIBFT_PATH) bonus custom
+					$(MAKE) $(NAME)
 
 clean:
 					$(MAKE) -C $(LIBFT_PATH) fclean
