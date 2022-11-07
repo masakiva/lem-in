@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:46:30 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/06 18:51:35 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:50:37 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char*	character(t_state_machine* machine, char* line)
 		machine->state = END;
 	else if (*line == 'L')
 	{
-		printf("input err %d\n", INPUT_ERR);
+		error_exit(BEGIN_WITH_L);
 		machine->state = END;
 	}
 	else
@@ -38,7 +38,7 @@ char*	roomname(t_state_machine* machine, char* line)
 	else if (islink(line))
 		parse_link(line, machine->map);
 	else
-		printf("input err %d\n", INPUT_ERR);
+		error_exit(UNKNOWN_SYNTAX);
 	machine->state = END;
 	return (line);
 }
@@ -64,7 +64,7 @@ char*	double_hash(t_state_machine* machine, char* line)
 	else if (ft_strcmp(line, "end") == 0)
 		machine->map->end_flag = TRUE;
 	else
-		printf("input err %d\n", INPUT_ERR);
+		error_exit(UNKNOWN_SYNTAX_HASH);
 	machine->state = END;
 	return (line);
 }
@@ -90,7 +90,7 @@ char*	start_end_line(t_state_machine* machine, char* line)
 		}
 	}
 	else
-		printf("input err %d\n", INPUT_ERR);
+		error_exit(START_END_ROOM_DEF);
 	machine->state = END;
 	return (line);
 }

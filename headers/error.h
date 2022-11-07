@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 17:46:12 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 11:16:38 by mvidal-a         ###   ########.fr       */
+/*   Created: 2022/11/07 10:25:16 by mvidal-a          #+#    #+#             */
+/*   Updated: 2022/11/07 11:50:42 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
- 
-#include "parse.h"
-#include "solve.h"
 
-int		main(void)
+#ifndef ERROR_H
+# define ERROR_H
+
+#include "libft.h"
+
+enum		e_errcode
 {
-	int		ret;
-	t_map	map;
+	MALLOC_ERR,
+	WRITE_ERR,
+	GNL_ERR,
+	BEGIN_WITH_L,
+	UNKNOWN_SYNTAX,
+	UNKNOWN_SYNTAX_HASH,
+	START_END_ROOM_DEF,
+};
 
-	ret = 1;
-	while (ret == 1)
-	{
-		ret = parse_line(&map);
-	}
+int		error_exit(enum e_errcode errcode);
 
-	solve(&map);
-	
-	return (EXIT_SUCCESS);
-}
+#endif // ERROR_H

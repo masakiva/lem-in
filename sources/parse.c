@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/06 18:49:08 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:45:08 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,8 @@ int		parse_line(t_map* map)
 
 	ret = get_next_line(STDIN_FILENO, &line);
 	if (ret == ERROR)
-		printf("gnl err %d\n", GNL_ERR);
-	else
-	{
-		extract_line_infos(line, map);
-		free(line);
-	}
-
+		error_exit(GNL_ERR);
+	extract_line_infos(line, map);
+	free(line);
 	return (ret);
 }
