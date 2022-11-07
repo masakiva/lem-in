@@ -18,109 +18,25 @@ typedef struct	s_queue
 	int			size;
 }				t_queue;
 
-t_q_node	*ft_q_node_new(void *content)
-{
-	t_q_node	*ret;
+t_q_node	*ft_q_node_new(void *content);
 
-	ret = malloc(sizeof(t_q_node));
-	if (ret != NULL)
-	{
-		ret->next = NULL;
-		ret->prev = NULL;
-		ret->content = content;
-	}
-	return ret;
-}
+void	ft_q_node_add_last(t_q_node *tail, t_q_node *node);
 
-void	ft_q_node_add_last(t_q_node *tail, t_q_node *node)
-{
-	while (tail->next)
-	{
-		tail = tail->next;
-	}
-	tail->next = node;
-	node->prev = tail;
-}
+void	queue_constructor(t_queue *q);
 
-void	queue_constructor(t_queue *q)
-{
-	q->head = NULL;
-	q->tail = NULL;
-	q->size = 0;
-}
+void	queue_destructor(t_queue *q);
 
-void	queue_destructor(t_queue *q)
-{
-	t_q_node *tmp;
-	t_q_node *del;
+int		queue_empty(t_queue *q);
 
-	tmp = q->head;
-	while (tmp)
-	{
-		del = tmp;
-		tmp = tmp->next;
-		free(del);
-	}
-	q->head = NULL;
-	q->tail = NULL;
-	q->size = 0;
-}
+int		queue_size(t_queue *q);
 
-int		queue_empty(t_queue *q)
-{
-	if (q->size == 0)
-		return 1;
-	return 0;
-}
+void	*queue_front(t_queue *q);
 
-int		queue_size(t_queue *q)
-{
-	return (q->size);
-}
+void	*queue_back(t_queue *q);
 
-void	*queue_front(t_queue *q)
-{
-	return (q->head->content);
-}
+void	queue_push(t_queue *q, void *content);
 
-void	*queue_back(t_queue *q)
-{
-	return (q->tail->content);
-}
-
-void	queue_push(t_queue *q, void *content)
-{
-	t_q_node	*tmp;
-
-	if (q->head == NULL)
-	{
-		q->head = ft_q_node_new(content);
-		q->tail = q->head;
-		if (q->tail != NULL)
-			q->size++;
-		return ;
-	}
-	tmp = ft_q_node_new(content);
-	if (tmp == NULL)
-		return ;
-	ft_q_node_add_last(q->tail, tmp);
-	q->tail = tmp;
-	q->size++;
-}
-
-void	queue_pop(t_queue *q)
-{
-	t_q_node	*tmp;
-
-	if (q->head == NULL)
-		return ;
-	tmp = q->head;	
-	q->head = tmp->next;
-	q->size--;
-	if (q->size == 0)
-		q->tail = NULL;
-	free(tmp);
-}
+void	queue_pop(t_queue *q);
 
 #endif
 
