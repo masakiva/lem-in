@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/07 14:53:24 by tkodai           ###   ########.fr        #
+#    Updated: 2022/11/07 18:27:26 by tkodai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS		+= parse_utils.c
 SRCS		+= solve.c
 SRCS		+= generate_graph.c
 SRCS		+= find_max_flow.c
+SRCS		+= ft_queue.c
 
 vpath %.c $(SRCS_PATH)
 

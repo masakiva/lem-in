@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/07 15:09:05 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:36:42 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_ek_edge
 {
 	int		rev;
 	int		to;
+	int		from;
 	int		cap;
 }				t_ek_edge;
 
