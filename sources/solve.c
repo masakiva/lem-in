@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/06 18:52:02 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/07 12:29:46 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	create_rooms(t_solve *s, t_map *map)
 
 	// t_map->t_room ary
 	s->map_room_ary = malloc(sizeof(t_room *) * (s->rooms_size + 1));
+	if (s->map_room_ary == NULL)
+		error_exit(MALLOC_ERR);
 	i = 0;
 	room_ptr = map->rooms;
 	while (i < s->rooms_size)
@@ -83,6 +85,8 @@ void	create_rooms(t_solve *s, t_map *map)
 	}
 	// t_solve_room ary
 	s->rooms = malloc(sizeof(t_solve_room) * (s->rooms_size));
+	if (s->rooms == NULL)
+		error_exit(MALLOC_ERR);
 	i = 0;
 	while (i < s->rooms_size)
 	{
@@ -120,6 +124,8 @@ void	set_link(t_solve *s, t_map *map)
 	while (i < s->rooms_size)
 	{
 		s->rooms[i].links = malloc(sizeof(int) * s->rooms[i].links_size);
+		if (s->rooms[i].links == NULL)
+			error_exit(MALLOC_ERR);
 		s->rooms[i].links_size = 0;
 		i++;
 	}
