@@ -89,9 +89,10 @@ int		flow_bfs(int from, int end, t_ek_graph *graph)
 }
 
 //再帰的に帰るならmallocして詰めて帰る。
-void	follow_root_recurse(int current_id, int end_id, t_ek_graph *graph, t_solve *s)
+void	follow_root_recurse(int current_id, int start_id, int end_id, t_ek_graph *graph, t_solve *s)
 {
 	int i = 0;
+
 
 	if (current_id == end_id)
 	{
@@ -108,9 +109,13 @@ void	follow_root_recurse(int current_id, int end_id, t_ek_graph *graph, t_solve 
 		flag = 1;
 		if (graph->nodes[current_id].edges[i].cap == 0 && graph->nodes[current_id].edges[i].is_rev == 0)
 		{
+			if (current_id == start_id)
+				printf("[ ---- start ---- ]\n");
+
+
 			printf("> %d\n", current_id);
 			printf("> real name [%s]\n", s->rooms[current_id / 2].name_ptr);
-			follow_root_recurse(graph->nodes[current_id].edges[i].to, end_id, graph, s);
+			follow_root_recurse(graph->nodes[current_id].edges[i].to, start_id, end_id, graph, s);
 		}
 		i++;
 	}
@@ -120,8 +125,7 @@ void	follow_root(t_map *map, t_solve *s, t_ek_graph *graph)
 {
 	(void)map;
 	
-	printf("[ ---- start ---- ]\n");
-	follow_root_recurse(graph->start_output_id, graph->end_input_id, graph, s);
+	follow_root_recurse(graph->start_output_id, graph->start_output_id, graph->end_input_id, graph, s);
 }
 
 void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
