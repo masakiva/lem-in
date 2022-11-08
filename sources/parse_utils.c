@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 10:04:56 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:24:36 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void	parse_room(char* line, t_map* map)
 				(t_room *)ft_lstlast(map->rooms)->content))
 		error_exit(DUP_ROOMCOORD);
 
-	printf("ROOM name %s, x = %d, y = %d\n", new_room->name, new_room->x, new_room->y);
+	printf("[ROOM] name: \"%s\", x: %d, y: %d\n", new_room->name, new_room->x, new_room->y);
 }
 
 static t_bool	find_room(char* name, t_list* rooms)
@@ -235,5 +235,5 @@ void	parse_link(char* line, t_map* map)
 	if (find_dup_link(map->links, (t_link *)ft_lstlast(map->links)->content))
 		error_exit(DUP_LINK);
 
-	printf("LINK between rooms %s and %s\n", new_link->room1, new_link->room2);
+	printf("[LINK] between rooms \"%s\" and \"%s\"\n", new_link->room1, new_link->room2);
 }
