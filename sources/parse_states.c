@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:46:30 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 10:23:13 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:27:37 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ char*	double_hash(t_state_machine* machine, char* line)
 			error_exit(DUP_END);
 		machine->map->end_flag = TRUE;
 	}
-	else
-		error_exit(UNKNOWN_SYNTAX_HASH);
 	machine->state = END;
 	return (line);
 }
