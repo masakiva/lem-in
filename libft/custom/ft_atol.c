@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skip_spaces.c                                      :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/03 22:24:13 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 14:53:46 by mvidal-a         ###   ########.fr       */
+/*   Created: 2022/11/08 16:34:03 by mvidal-a          #+#    #+#             */
+/*   Updated: 2022/11/08 16:34:09 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char*	skip_spaces(char* str)
+long	ft_atol(char *str)
 {
-	while (ft_isspace(*str))
+	long		nb;
+	int8_t		sign;
+
+	sign = 1;
+	str = skip_spaces(str);
+	if (*str == '-')
+	{
+		sign = -1;
 		str++;
-	return (str);
+	}
+	else if (*str == '+')
+		str++;
+	nb = 0;
+	while (*str >= '0' && *str <= '9')
+	{
+		nb = nb * 10 + *str - '0';
+		str++;
+	}
+	return (nb * sign);
 }
+
