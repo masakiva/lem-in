@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 09:54:37 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:34:57 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ char*	double_hash(t_state_machine* machine, char* line);
 char*	start_end_line(t_state_machine* machine, char* line);
 
 // utils
-int		isnumber(char* line);
+int		ft_str_isnumber(char* str);
+int		ispositiveint(char* line);
 int		isroom(char* line);
 int		islink(char* line);
 void	parse_room(char* line, t_map* map);
