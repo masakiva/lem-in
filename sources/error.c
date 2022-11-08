@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:17:33 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 12:18:24 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:27:55 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,23 @@ int		error_exit(enum e_errcode errcode)
 		"Cannot write on standard output",
 		"Cannot read standard input (GNL error)",
 		"--- separator ---",
+		"Number of ants cannot be defined twice",
+		"Number of ants needed before room definitions",
 		"Room name cannot begin with the L character",
-		"Unknown syntax",
-		"Unknown syntax after ## signs",
-		"##start or ##end must be followed by a room definition",
-		"Link with same room names",
 		"Duplicate room name",
 		"Duplicate room coordinates",
-		"Duplicate link",
+		"##start or ##end must be followed by a room definition",
+		"Duplicate ##start label",
+		"Duplicate ##end label",
+		"##start and ##end rooms must be defined",
+		"Room definitions needed before link definitions",
 		"Link with unknown room name",
+		"Link with same room names",
+		"Duplicate link",
+		"Unknown syntax",
 	};
 
-	ft_putstr_fd("lem-in error: ", STDERR_FILENO);
+	ft_putstr_fd("[lem-in] error: ", STDERR_FILENO);
 	ft_putstr_fd(err_msg[errcode], STDERR_FILENO);
 	if (errcode < _ERRNO_END_)
 	{

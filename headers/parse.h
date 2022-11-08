@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 12:05:41 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:54:37 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,16 @@ typedef struct	s_map
 	t_list*	links;
 	char*	start;
 	char*	end;
+	int		nb_ants;
 	t_bool	start_flag;
 	t_bool	end_flag;
-	t_byte	pad[6];
+	t_byte	pad[2];
 }				t_map;
 
 enum	e_state
 {
 	CHARACTER,
+	NB_ANTS,
 	ROOMNAME,
 	HASH,
 	DOUBLE_HASH,
@@ -67,18 +69,17 @@ int		parse_line(t_map* map);
 
 // state machine states
 char*	character(t_state_machine* machine, char* line);
+char*	nb_ants(t_state_machine* machine, char* line);
 char*	roomname(t_state_machine* machine, char* line);
 char*	hash(t_state_machine* machine, char* line);
 char*	double_hash(t_state_machine* machine, char* line);
 char*	start_end_line(t_state_machine* machine, char* line);
 
 // utils
+int		isnumber(char* line);
 int		isroom(char* line);
 int		islink(char* line);
 void	parse_room(char* line, t_map* map);
 void	parse_link(char* line, t_map* map);
-t_bool	find_dup_roomname(t_list* rooms, char* name_to_compare);
-t_bool	find_dup_roomcoord(t_list* rooms, t_room* room_to_compare);
-t_bool	find_dup_link(t_list* links, t_link* link_to_compare);
 
 #endif // PARSE_H
