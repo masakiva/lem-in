@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 09:56:10 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:04:56 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,27 @@ int		isnumber(char* line)
 
 int		isroom(char* line)
 {
-	while (*line != ' ' && *line != '-' && *line != '\0') // room name
-		line++;
-	if (*line == ' ')
+	if (*line != ' ' && *line != '-' && *line != '\0')
 	{
-		line++;
-		if (ft_isdigit(*line))
+		while (*line != ' ' && *line != '-' && *line != '\0') // room name
+			line++;
+		if (*line == ' ')
 		{
-			while (ft_isdigit(*line)) // x coord
-				line++;
-			if (*line == ' ')
+			line++;
+			if (ft_isdigit(*line))
 			{
-				line++;
-				if (ft_isdigit(*line))
+				while (ft_isdigit(*line)) // x coord
+					line++;
+				if (*line == ' ')
 				{
-					while (ft_isdigit(*line)) // y coord
-						line++;
-					if (*line == '\0')
-						return (TRUE);
+					line++;
+					if (ft_isdigit(*line))
+					{
+						while (ft_isdigit(*line)) // y coord
+							line++;
+						if (*line == '\0')
+							return (TRUE);
+					}
 				}
 			}
 		}
@@ -55,15 +58,21 @@ int		isroom(char* line)
 
 int		islink(char* line)
 {
-	while (*line != ' ' && *line != '-' && *line != '\0') // first room
-		line++;
-	if (*line == '-')
+	if (*line != ' ' && *line != '-' && *line != '\0')
 	{
-		line++;
-		while (*line != ' ' && *line != '-' && *line != '\0') // second room
+		while (*line != ' ' && *line != '-' && *line != '\0') // first room
 			line++;
-		if (*line == '\0')
-			return (TRUE);
+		if (*line == '-')
+		{
+			line++;
+			if (*line != ' ' && *line != '-' && *line != '\0')
+			{
+				while (*line != ' ' && *line != '-' && *line != '\0') // second room
+					line++;
+				if (*line == '\0')
+					return (TRUE);
+			}
+		}
 	}
 	return (FALSE);
 }
@@ -135,7 +144,7 @@ void	parse_room(char* line, t_map* map)
 {
 	t_room*		new_room;
 	t_list*		lst_elem;
-	
+
 	new_room = malloc(sizeof(t_room));
 	if (new_room == NULL)
 		error_exit(MALLOC_ERR);
@@ -199,7 +208,7 @@ void	parse_link(char* line, t_map* map)
 {
 	t_link*		new_link;
 	t_list*		lst_elem;
-	
+
 	new_link = malloc(sizeof(t_link));
 	if (new_link == NULL)
 		error_exit(MALLOC_ERR);

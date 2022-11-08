@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:17:33 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 09:46:39 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:01:21 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		error_exit(enum e_errcode errcode)
 		"Duplicate ##start label",
 		"Duplicate ##end label",
 		"##start and ##end rooms must be defined",
+		"Room definitions needed before link definitions",
 		"Link with unknown room name",
 		"Link with same room names",
 		"Duplicate link",

@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:46:30 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 09:55:29 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:06:40 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ char*	nb_ants(t_state_machine* machine, char* line)
 		printf("nb of ants = %d\n", machine->map->nb_ants);
 		machine->state = END;
 	}
-	else if (machine->map->nb_ants == 0)
-		error_exit(NB_ANTS_MANDATORY);
 	else
 		machine->state = ROOMNAME;
 	return (line);
@@ -53,12 +51,20 @@ char*	nb_ants(t_state_machine* machine, char* line)
 
 char*	roomname(t_state_machine* machine, char* line)
 {
-	if (isroom(line) && machine->map->links == NULL)
+	if (isroom(line))
+	{
+		if (machine->map->nb_ants == 0)
+			error_exit(NB_ANTS_MANDATORY);
 		parse_room(line, machine->map);
-	else if (machine->map->start == NULL || machine->map->end == NULL)
-		error_exit(START_END_MANDATORY);
+	}
 	else if (islink(line))
+	{
+		if (machine->map->rooms == NULL)
+			error_exit(ROOMS_MANDATORY);
+		if (machine->map->start == NULL || machine->map->end == NULL)
+			error_exit(START_END_MANDATORY);
 		parse_link(line, machine->map);
+	}
 	else
 		error_exit(UNKNOWN_SYNTAX);
 	machine->state = END;
