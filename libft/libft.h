@@ -6,7 +6,7 @@
 /*   By: mvidal-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:29:06 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 14:54:05 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:35:14 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,9 @@ int				blank_str(char *line);
 int				ft_isset(char c, char *set);
 int				ft_strcmp(const char *s1, const char *s2);
 int				ft_isnumber(char *str);
+long			ft_atol(char *str);
+int				ft_isint(char* str);
+
 char			*strjoin_free(char *s1, char const *s2);
 
 void			*ft_lstshift(t_list **lst);

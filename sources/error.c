@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:17:33 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 15:03:55 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:40:01 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		error_exit(enum e_errcode errcode)
 		"Number of ants must be a positive integer",
 		"Number of ants cannot be defined twice",
 		"Room name cannot begin with the L character",
+		"Room coordinates must be integers",
 		"Duplicate room name",
 		"Duplicate room coordinates",
 		"##start or ##end must be followed by a room definition",

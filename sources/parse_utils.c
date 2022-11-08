@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 15:42:26 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:40:38 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,12 @@ void	parse_room(char* line, t_map* map)
 	new_room->name = parse_roomname(&line);
 	if (new_room->name == NULL)
 		error_exit(MALLOC_ERR);
+	if (ft_isint(line) == FALSE)
+		error_exit(COORD_INT_OVERFLOW);
 	new_room->x = ft_atoi(line);
 	line = skip_int(line);
+	if (ft_isint(line) == FALSE)
+		error_exit(COORD_INT_OVERFLOW);
 	new_room->y = ft_atoi(line);
 	line = skip_int(line);
 
