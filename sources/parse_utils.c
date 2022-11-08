@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 14:53:37 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:42:26 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int		isroom(char* line)
 		if (*line == ' ')
 		{
 			line++;
+			if (*line == '-')
+				line++;
 			if (ft_isdigit(*line))
 			{
 				while (ft_isdigit(*line)) // x coord
@@ -61,6 +63,8 @@ int		isroom(char* line)
 				if (*line == ' ')
 				{
 					line++;
+					if (*line == '-')
+						line++;
 					if (ft_isdigit(*line))
 					{
 						while (ft_isdigit(*line)) // y coord
