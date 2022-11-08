@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 08:49:28 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:37:34 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,20 @@ void	parse_room(char* line, t_map* map)
 	printf("ROOM name %s, x = %d, y = %d\n", new_room->name, new_room->x, new_room->y);
 }
 
+static t_bool	find_room(char* name, t_list* rooms)
+{
+	t_room*		cur_room;
+
+	while (rooms != NULL)
+	{
+		cur_room = (t_room *)rooms->content;
+		if (ft_strcmp(name, cur_room->name) == 0)
+			return (TRUE);
+		rooms = rooms->next;
+	}
+	return (FALSE);
+}
+
 void	parse_link(char* line, t_map* map)
 {
 	t_link*		new_link;
@@ -133,6 +147,8 @@ void	parse_link(char* line, t_map* map)
 	new_link->room1 = parse_roomname(&line);
 	if (new_link->room1 == NULL)
 		error_exit(MALLOC_ERR);
+	if (find_room(new_link->room1, map->rooms) == FALSE)
+		error_exit(LINK_UNKNOWN_ROOMNAME);
 	if (*line == '-')
 		line++;
 	new_link->room2 = parse_roomname(&line);
@@ -140,6 +156,8 @@ void	parse_link(char* line, t_map* map)
 		error_exit(MALLOC_ERR);
 	if (ft_strcmp(new_link->room1, new_link->room2) == 0)
 		error_exit(LINK_SAME_ROOMNAMES);
+	if (find_room(new_link->room2, map->rooms) == FALSE)
+		error_exit(LINK_UNKNOWN_ROOMNAME);
 
 	lst_elem = ft_lstnew(new_link);
 	if (lst_elem == NULL)
