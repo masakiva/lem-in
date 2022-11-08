@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:46:12 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 12:15:00 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:19:12 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -43,7 +43,7 @@ void	check_input(t_map* map)
 			rooms = rooms->next;
 		}
 		if (!room1_found || !room2_found)
-			error_exit(UNKNOWN_LINK);
+			error_exit(LINK_UNKNOWN_ROOMNAME);
 		links = links->next;
 	}
 }
@@ -53,6 +53,7 @@ int		main(void)
 	int		ret;
 	t_map	map;
 
+	ft_bzero(&map, sizeof(t_map));
 	ret = 1;
 	while (ret == 1)
 	{
