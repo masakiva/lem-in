@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 14:40:13 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:53:37 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,21 +96,6 @@ int		islink(char* line)
 	return (FALSE);
 }
 
-static int		parse_number(char** str)
-{
-	int		nb;
-
-	if (**str == ' ')
-		(*str)++;
-	nb = 0;
-	while (ft_isdigit(**str))
-	{
-		nb = nb * 10 + **str - '0';
-		(*str)++;
-	}
-	return (nb);
-}
-
 static char*	parse_roomname(char** str)
 {
 	size_t	name_len;
@@ -170,8 +155,10 @@ void	parse_room(char* line, t_map* map)
 	new_room->name = parse_roomname(&line);
 	if (new_room->name == NULL)
 		error_exit(MALLOC_ERR);
-	new_room->x = parse_number(&line);
-	new_room->y = parse_number(&line);
+	new_room->x = ft_atoi(line);
+	line = skip_int(line);
+	new_room->y = ft_atoi(line);
+	line = skip_int(line);
 
 	lst_elem = ft_lstnew(new_room);
 	if (lst_elem == NULL)
