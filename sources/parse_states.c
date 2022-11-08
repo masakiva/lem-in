@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:46:30 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 09:24:37 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:49:23 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char*	roomname(t_state_machine* machine, char* line)
 					(t_room *)ft_lstlast(machine->map->rooms)->content))
 			error_exit(DUP_ROOMCOORD);
 	}
+	else if (machine->map->start == NULL || machine->map->end == NULL)
+		error_exit(START_END_MANDATORY);
 	else if (islink(line))
 	{
 		parse_link(line, machine->map);
@@ -90,10 +92,20 @@ char*	hash(t_state_machine* machine, char* line)
 
 char*	double_hash(t_state_machine* machine, char* line)
 {
+	if (machine->map->nb_ants == 0)
+		error_exit(NB_ANTS_MANDATORY);
 	if (ft_strcmp(line, "start") == 0)
+	{
+		if (machine->map->start != NULL)
+			error_exit(DUP_START);
 		machine->map->start_flag = TRUE;
+	}
 	else if (ft_strcmp(line, "end") == 0)
+	{
+		if (machine->map->end != NULL)
+			error_exit(DUP_END);
 		machine->map->end_flag = TRUE;
+	}
 	else
 		error_exit(UNKNOWN_SYNTAX_HASH);
 	machine->state = END;

@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:17:33 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 09:33:17 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:46:39 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ int		error_exit(enum e_errcode errcode)
 		"--- separator ---",
 		"Number of ants cannot be defined twice",
 		"Number of ants needed before room definitions",
-		"Unknown syntax after ## signs",
-		"##start or ##end must be followed by a room definition",
 		"Room name cannot begin with the L character",
 		"Duplicate room name",
 		"Duplicate room coordinates",
+		"Unknown syntax after ## signs",
+		"##start or ##end must be followed by a room definition",
+		"Duplicate ##start label",
+		"Duplicate ##end label",
+		"##start and ##end rooms must be defined",
 		"Link with unknown room name",
 		"Link with same room names",
 		"Duplicate link",
