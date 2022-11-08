@@ -6,13 +6,25 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 12:14:46 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 08:49:28 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+int		isnumber(char* line)
+{
+	if (ft_isdigit(*line))
+	{
+		while (ft_isdigit(*line))
+			line++;
+		if (*line == '\0')
+			return (TRUE);
+	}
+	return (FALSE);
+}
 
 int		isroom(char* line)
 {
