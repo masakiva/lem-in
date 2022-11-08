@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 09:37:34 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:56:10 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,37 @@ static char*	parse_roomname(char** str)
 	return (name);
 }
 
+static t_bool	find_dup_roomname(t_list* rooms, char* name_to_compare)
+{
+	t_room*		cur_room;
+
+	while (rooms != NULL)
+	{
+		cur_room = (t_room *)rooms->content;
+		if (cur_room->name != name_to_compare
+				&& ft_strcmp(cur_room->name, name_to_compare) == 0)
+			return (TRUE);
+		rooms = rooms->next;
+	}
+	return (FALSE);
+}
+
+static t_bool	find_dup_roomcoord(t_list* rooms, t_room* room_to_compare)
+{
+	t_room*		cur_room;
+
+	while (rooms != NULL)
+	{
+		cur_room = (t_room *)rooms->content;
+		if (cur_room != room_to_compare
+				&& cur_room->x == room_to_compare->x
+				&& cur_room->y == room_to_compare->y)
+			return (TRUE);
+		rooms = rooms->next;
+	}
+	return (FALSE);
+}
+
 void	parse_room(char* line, t_map* map)
 {
 	t_room*		new_room;
@@ -119,6 +150,13 @@ void	parse_room(char* line, t_map* map)
 		error_exit(MALLOC_ERR);
 	ft_lstadd_back(&map->rooms, lst_elem);
 
+	if (find_dup_roomname(map->rooms,
+				((t_room *)ft_lstlast(map->rooms)->content)->name))
+		error_exit(DUP_ROOMNAME);
+	if (find_dup_roomcoord(map->rooms,
+				(t_room *)ft_lstlast(map->rooms)->content))
+		error_exit(DUP_ROOMCOORD);
+
 	printf("ROOM name %s, x = %d, y = %d\n", new_room->name, new_room->x, new_room->y);
 }
 
@@ -132,6 +170,27 @@ static t_bool	find_room(char* name, t_list* rooms)
 		if (ft_strcmp(name, cur_room->name) == 0)
 			return (TRUE);
 		rooms = rooms->next;
+	}
+	return (FALSE);
+}
+
+static t_bool	find_dup_link(t_list* links, t_link* link_to_compare)
+{
+	t_link*		cur_link;
+
+	while (links != NULL)
+	{
+		cur_link = (t_link *)links->content;
+		if (cur_link != link_to_compare)
+		{
+			if (ft_strcmp(cur_link->room1, link_to_compare->room1) == 0
+					&& ft_strcmp(cur_link->room2, link_to_compare->room2) == 0)
+				return (TRUE);
+			else if (ft_strcmp(cur_link->room1, link_to_compare->room2) == 0
+					&& ft_strcmp(cur_link->room2, link_to_compare->room1) == 0)
+				return (TRUE);
+		}
+		links = links->next;
 	}
 	return (FALSE);
 }
@@ -164,57 +223,8 @@ void	parse_link(char* line, t_map* map)
 		error_exit(MALLOC_ERR);
 	ft_lstadd_back(&map->links, lst_elem);
 
+	if (find_dup_link(map->links, (t_link *)ft_lstlast(map->links)->content))
+		error_exit(DUP_LINK);
+
 	printf("LINK between rooms %s and %s\n", new_link->room1, new_link->room2);
-}
-
-t_bool	find_dup_roomname(t_list* rooms, char* name_to_compare)
-{
-	t_room*		cur_room;
-
-	while (rooms != NULL)
-	{
-		cur_room = (t_room *)rooms->content;
-		if (cur_room->name != name_to_compare
-				&& ft_strcmp(cur_room->name, name_to_compare) == 0)
-			return (TRUE);
-		rooms = rooms->next;
-	}
-	return (FALSE);
-}
-
-t_bool	find_dup_roomcoord(t_list* rooms, t_room* room_to_compare)
-{
-	t_room*		cur_room;
-
-	while (rooms != NULL)
-	{
-		cur_room = (t_room *)rooms->content;
-		if (cur_room != room_to_compare
-				&& cur_room->x == room_to_compare->x
-				&& cur_room->y == room_to_compare->y)
-			return (TRUE);
-		rooms = rooms->next;
-	}
-	return (FALSE);
-}
-
-t_bool	find_dup_link(t_list* links, t_link* link_to_compare)
-{
-	t_link*		cur_link;
-
-	while (links != NULL)
-	{
-		cur_link = (t_link *)links->content;
-		if (cur_link != link_to_compare)
-		{
-			if (ft_strcmp(cur_link->room1, link_to_compare->room1) == 0
-					&& ft_strcmp(cur_link->room2, link_to_compare->room2) == 0)
-				return (TRUE);
-			else if (ft_strcmp(cur_link->room1, link_to_compare->room2) == 0
-					&& ft_strcmp(cur_link->room2, link_to_compare->room1) == 0)
-				return (TRUE);
-		}
-		links = links->next;
-	}
-	return (FALSE);
 }
