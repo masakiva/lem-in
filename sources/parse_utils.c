@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 10:24:36 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:40:13 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,35 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int		isnumber(char* line)
+int		ft_str_isnumber(char* str)
 {
-	if (ft_isdigit(*line))
+	if (*str == '-')
+		str++;
+	while (*str != '\0')
 	{
-		while (ft_isdigit(*line))
-			line++;
-		if (*line == '\0')
-			return (TRUE);
+		if (!ft_isdigit(*str))
+			return (FALSE);
+		str++;
 	}
-	return (FALSE);
+	return (TRUE);
+}
+
+int		ispositiveint(char* str)
+{
+	size_t	i;
+
+	if (str[0] == '-')
+		return (FALSE);
+	i = 0;
+	while (ft_isdigit(str[i]))
+		i++;
+	if (i > 10)
+		return (FALSE);
+	if (i == 10 && str[0] > '2')
+		return (FALSE);
+	if (ft_atoi(str) < 1)
+		return (FALSE);
+	return (TRUE);
 }
 
 int		isroom(char* line)
