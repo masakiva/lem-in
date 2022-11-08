@@ -97,7 +97,7 @@ void	follow_root_recurse(int current_id, int end_id, t_ek_graph *graph, t_solve 
 	{
 		printf("> %d\n", current_id);
 		printf("> real name [%s]\n", s->rooms[current_id / 2].name_ptr);
-		printf(">> end\n");
+		printf("[ ---- end ---- ]\n");
 		return ;
 	}
 
@@ -120,7 +120,7 @@ void	follow_root(t_map *map, t_solve *s, t_ek_graph *graph)
 {
 	(void)map;
 	
-	printf(">>> start\n");
+	printf("[ ---- start ---- ]\n");
 	follow_root_recurse(graph->start_output_id, graph->end_input_id, graph, s);
 }
 
@@ -136,7 +136,7 @@ void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
 	{
 		used_set_zero(graph);
 		ret = flow_bfs(graph->start_output_id, graph->end_input_id, graph);
-		printf("find new root => %d\n", ret);
+		printf("\nfind new root => %d\n", ret);
 		if (ret == 0)
 			break;
 		follow_root(map, s, graph);
