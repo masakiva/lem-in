@@ -97,6 +97,7 @@ void	follow_root_recurse(int current_id, int end_id, t_ek_graph *graph, t_solve 
 	{
 		printf("> %d\n", current_id);
 		printf("> real name [%s]\n", s->rooms[current_id / 2].name_ptr);
+		printf(">> end");
 		return ;
 	}
 
