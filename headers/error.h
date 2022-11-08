@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:25:16 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/07 12:16:08 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:27:53 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,20 @@ enum		e_errcode
 	WRITE_ERR,
 	GNL_ERR,
 	_ERRNO_END_,
+	DUP_NB_ANTS,
+	NB_ANTS_MANDATORY,
 	BEGIN_WITH_L,
-	UNKNOWN_SYNTAX,
-	UNKNOWN_SYNTAX_HASH,
-	START_END_ROOM_DEF,
-	LINK_SAME_ROOMNAMES,
 	DUP_ROOMNAME,
 	DUP_ROOMCOORD,
+	START_END_ROOM_DEF,
+	DUP_START,
+	DUP_END,
+	START_END_MANDATORY,
+	ROOMS_MANDATORY,
+	LINK_UNKNOWN_ROOMNAME,
+	LINK_SAME_ROOMNAMES,
 	DUP_LINK,
-	UNKNOWN_LINK,
+	UNKNOWN_SYNTAX,
 };
 
 int		error_exit(enum e_errcode errcode);
