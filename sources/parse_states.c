@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:46:30 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 14:36:37 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:04:59 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ char*	nb_ants(t_state_machine* machine, char* line)
 
 char*	roomname(t_state_machine* machine, char* line)
 {
+	if (machine->map->nb_ants == 0)
+		error_exit(NB_ANTS_MANDATORY);
 	if (isroom(line))
-	{
-		if (machine->map->nb_ants == 0)
-			error_exit(NB_ANTS_MANDATORY);
 		parse_room(line, machine->map);
-	}
 	else if (islink(line))
 	{
 		if (machine->map->rooms == NULL)

@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skip_spaces.c                                      :+:      :+:    :+:   */
+/*   skip_int.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/03 22:24:13 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 14:53:46 by mvidal-a         ###   ########.fr       */
+/*   Created: 2022/11/08 14:50:10 by mvidal-a          #+#    #+#             */
+/*   Updated: 2022/11/08 14:53:53 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char*	skip_spaces(char* str)
+char*	skip_int(char* str)
 {
-	while (ft_isspace(*str))
+	str = skip_spaces(str);
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
 		str++;
 	return (str);
 }
+

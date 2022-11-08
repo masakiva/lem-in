@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:25:16 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 14:35:50 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:04:23 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ enum		e_errcode
 	WRITE_ERR,
 	GNL_ERR,
 	_ERRNO_END_,
+	NB_ANTS_MANDATORY,
 	POSITIVE_NB_ANTS,
 	DUP_NB_ANTS,
-	NB_ANTS_MANDATORY,
 	BEGIN_WITH_L,
 	DUP_ROOMNAME,
 	DUP_ROOMCOORD,
