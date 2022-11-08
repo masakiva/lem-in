@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/07 15:06:09 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:30:14 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	create_rooms(t_solve *s, t_map *map)
 		new_room.id = i;
 		new_room.x = s->map_room_ary[i]->x;
 		new_room.y = s->map_room_ary[i]->y;
+		new_room.name_ptr = s->map_room_ary[i]->name;
 		new_room.links = NULL;
 		new_room.links_size = 0;
 		s->rooms[i] = new_room;
