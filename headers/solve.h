@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/08 13:25:53 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:46:08 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef	struct	s_solve_room
 	int		x;
 	int		y;
 	int		*links;
+	char	*name_ptr;
 	int		links_size;
 }				t_solve_room;
 
