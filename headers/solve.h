@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/07 17:36:42 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:25:53 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 # include <stdio.h>
 
 #define		ARRY_END	-42
-
-typedef struct	s_board
-{
-	int		*board;
-}				t_board;
 
 typedef	struct	s_solve_room
 {
@@ -49,6 +44,7 @@ typedef struct	s_ek_edge
 	int		rev;
 	int		to;
 	int		from;
+	int		is_rev;
 	int		cap;
 }				t_ek_edge;
 
@@ -64,6 +60,9 @@ typedef struct	s_ek_graph
 	t_ek_node	*nodes;
 	
 	int			*used;
+	int			*bfs_used;
+	int			*bfs_node_from;
+	int			*bfs_edge_from;
 
 	int			nodes_size;
 	int			edges_size;
