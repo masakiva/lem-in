@@ -60,12 +60,14 @@ void	generate_node(t_solve *s, t_ek_graph *graph)
 			graph->nodes[i].edges[0].cap = 1;
 			graph->nodes[i].edges[0].rev = 0;
 			graph->nodes[i].edges[0].from = -1;
+			graph->nodes[i].edges[0].is_rev = 0;
 			graph->nodes[i].edges_size++;
 			//rev
 			graph->nodes[i + 1].edges[0].to = i;	
 			graph->nodes[i + 1].edges[0].cap = 0;
 			graph->nodes[i + 1].edges[0].rev = 0;
 			graph->nodes[i + 1].edges[0].from = -1;
+			graph->nodes[i + 1].edges[0].is_rev = 1;
 			graph->nodes[i + 1].edges_size++;
 		}
 		i++;
@@ -91,6 +93,7 @@ void	generate_node(t_solve *s, t_ek_graph *graph)
 			node_ptr->edges[node_ptr->edges_size].to = to_index;
 			node_ptr->edges[node_ptr->edges_size].cap = 1;
 			node_ptr->edges[node_ptr->edges_size].from = -1;
+			node_ptr->edges[node_ptr->edges_size].is_rev = 0;
 
 			rev_ptr = &graph->nodes[to_index];
 			
@@ -99,6 +102,7 @@ void	generate_node(t_solve *s, t_ek_graph *graph)
 			rev_ptr->edges[rev_ptr->edges_size].to = to_index;
 			rev_ptr->edges[rev_ptr->edges_size].cap = 0;
 			rev_ptr->edges[rev_ptr->edges_size].from = -1;
+			rev_ptr->edges[rev_ptr->edges_size].is_rev = 1;
 
 			//each rev index
 			node_ptr->edges[node_ptr->edges_size].rev = rev_ptr->edges_size;
