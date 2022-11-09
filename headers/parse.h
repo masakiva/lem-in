@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 13:34:57 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:31:54 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "libft.h"
 # include "error.h"
+
+# define ARG_OPTIONS	"h"
+# define HELP_OPTION	0x01
+# define LONG_HELP_OPTION	"help"
 
 typedef t_byte	t_bool;
 
@@ -64,8 +68,10 @@ typedef struct	s_state_machine
 
 typedef char*	(*t_parse)(t_state_machine *, char *);
 
-int		parse_line(t_map* map);
 
+t_byte	retrieve_options(int argc, char **argv, char *op_chars);
+
+int		parse_line(t_map* map);
 
 // state machine states
 char*	character(t_state_machine* machine, char* line);
