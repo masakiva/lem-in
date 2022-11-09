@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/09 22:18:17 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/10 00:29:01 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int		find_index_by_name(t_solve *s, char *room_name)
 void	parse_data(t_solve *s, t_map *map)
 {
 	s->rooms_size = ft_lstsize(map->rooms);
-	printf("room num %d\n", s->rooms_size);
+	//printf("room num %d\n", s->rooms_size);
 	
 	s->all_links_size = ft_lstsize(map->links);
-	printf("links num %d\n", s->all_links_size);
+	//printf("links num %d\n", s->all_links_size);
 
 }
 
@@ -113,7 +113,7 @@ void	set_link(t_solve *s, t_map *map)
 	{
 		room1 = find_index_by_name(s, ((t_link*)link_ptr->content)->room1);
 		room2 = find_index_by_name(s, ((t_link*)link_ptr->content)->room2);
-		printf("link1: [%d] link2: [%d]\n", room1, room2);
+		//printf("link1: [%d] link2: [%d]\n", room1, room2);
 		s->rooms[room1].links_size++;
 		s->rooms[room2].links_size++;
 		link_ptr = link_ptr->next;
@@ -163,7 +163,7 @@ void	solve(t_map *map)
 	create_rooms(&s, map);
 	set_link(&s, map);
 	set_start_and_end(map, &s);
-	show_all_data(&s);
+	//show_all_data(&s);
 
 	generate_graph(map, &s, &graph);
 	find_max_flow(map, &s, &graph);
