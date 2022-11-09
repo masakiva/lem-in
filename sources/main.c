@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:46:12 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 09:34:27 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:55:38 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -26,7 +26,7 @@ int		main(void)
 		ret = parse_line(&map);
 	}
 
-	//solve(&map);
+	solve(&map);
 	
 	return (EXIT_SUCCESS);
 }
