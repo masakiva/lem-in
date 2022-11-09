@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/10 00:49:44 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/10 01:12:57 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ typedef struct	s_ant
 typedef struct	s_ant_manager
 {
 	t_ant		*ants;
+	t_list		*path_list;
+	int			ants_count;
+	int			ants_limit;
 }				t_ant_manager;
 
 typedef struct	s_solve
