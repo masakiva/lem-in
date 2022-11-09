@@ -71,8 +71,8 @@ int		count_flow_path(t_path *path, t_map *map, t_solve *s, t_ek_graph *graph)
 
 	m = &(graph->path_manager);
 	printf(" root size [%d] ant: [%d]\n",
-			path->root_size, ft_max(0, m->turn - path->root_size + 1));
-	ant_num += ft_max(0, m->turn - path->root_size + 1);
+			path->root_size, ft_max(0, m->turn - path->root_size + 2));
+	ant_num += ft_max(0, m->turn - path->root_size + 2);
 	return ant_num;
 	(void)s;
 	(void)map;
@@ -114,11 +114,12 @@ void	check_all_roots(t_map *map, t_solve *s, t_ek_graph *graph)
 	node = m->path_set_list;
 	m->current_path = NULL;
 	m->current_path_set = NULL;
-	m->turn = 1;
+	m->turn = 0;
 
 	while (m->current_path_set == NULL)
 	{
-		printf("\n======== TURN [%d] ========\n", m->turn++);
+		m->turn++;
+		printf("\n======== TURN [%d] ========\n", m->turn);
 		node = m->path_set_list;
 		while (node)
 		{
