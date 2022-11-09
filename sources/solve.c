@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/09 21:45:50 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/09 22:18:17 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	parse_data(t_solve *s, t_map *map)
 	s->all_links_size = ft_lstsize(map->links);
 	printf("links num %d\n", s->all_links_size);
 
-	s->ant_size = 3;
 }
 
 void	create_rooms(t_solve *s, t_map *map)
@@ -152,6 +151,7 @@ void	set_start_and_end(t_map *map, t_solve *s)
 {
 	s->start_id = find_index_by_name(s, map->start);
 	s->end_id = find_index_by_name(s, map->end);
+	s->ant_size = map->nb_ants;
 }
 
 void	solve(t_map *map)
