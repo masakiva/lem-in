@@ -204,13 +204,16 @@ void	follow_root(t_map *map, t_solve *s, t_ek_graph *graph)
 void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
 {
 	int		ret;
+	int		ant_num;
 
 	(void)map;
 	(void)s;
 	max_flow_init(graph);
 	//if (1)
-	while (1)
+	ant_num = 1;
+	while (ant_num <= s->ant_size)
 	{
+		ant_num++;
 		used_set_zero(graph);
 		ret = flow_bfs(graph->start_output_id, graph->end_input_id, graph);
 		printf("\nfind new root => %d\n", ret);
