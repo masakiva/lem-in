@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/09 22:10:24 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/09 23:05:28 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct	s_ek_node
 	int				edges_size;
 }				t_ek_node;
 
-
 typedef struct	s_path
 {
 	int			*root;
@@ -76,6 +75,7 @@ typedef struct	s_path_manager
 
 	t_path		*current_path;
 	t_path_set	*current_path_set;
+	int			turn;
 }				t_path_manager;
 
 typedef struct	s_ek_graph
