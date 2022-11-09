@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/08 13:30:14 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:45:50 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,4 +167,5 @@ void	solve(t_map *map)
 
 	generate_graph(map, &s, &graph);
 	find_max_flow(map, &s, &graph);
+	select_path_set(map, &s, &graph);
 }
