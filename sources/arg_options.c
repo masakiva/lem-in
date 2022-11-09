@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:27:14 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/09 11:30:12 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:39:42 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ t_byte			retrieve_options(int argc, char **argv, char *op_chars)
 	}
 	return (options);
 }
-

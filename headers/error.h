@@ -6,14 +6,30 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:25:16 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 16:40:23 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:13:52 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-#include "libft.h"
+# include "libft.h"
+
+
+# define HELP_MSG	"[lem-in] usage:\nprovide data describing the ant "\
+	"farm in standard input in the following format:\n"\
+	"\tnumber_of_ants\n"\
+	"\tthe_rooms\n"\
+	"\tthe_links\n"\
+	"for example:\n"\
+	"\t3\n"\
+	"\t##start\n"\
+	"\t0 1 0\n"\
+	"\t1 5 0\n"\
+	"\t##end\n"\
+	"\t2 9 0\n"\
+	"\t0-1\n"\
+	"\t1-2\n"
 
 enum		e_errcode
 {
