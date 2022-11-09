@@ -206,10 +206,7 @@ void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
 	int		ret;
 	int		ant_num;
 
-	(void)map;
-	(void)s;
 	max_flow_init(graph);
-	//if (1)
 	ant_num = 1;
 	while (ant_num <= s->ant_size)
 	{
