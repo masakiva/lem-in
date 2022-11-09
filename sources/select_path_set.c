@@ -8,7 +8,7 @@ void	show_path(t_path *path, t_map *map, t_solve *s, t_ek_graph *graph)
 	int			i;
 
 	i = 0;
-	printf("<start> (%d)\n", path->root_size);
+	printf("<start> (%d) use: %d\n", path->root_size, path->use_num);
 	while (i < path->root_size)
 	{
 		printf(" root: [%s]\n", s->rooms[path->root[i]].name_ptr);
@@ -72,7 +72,9 @@ int		count_flow_path(t_path *path, t_map *map, t_solve *s, t_ek_graph *graph)
 	m = &(graph->path_manager);
 	printf(" root size [%d] ant: [%d]\n",
 			path->root_size, ft_max(0, m->turn - path->root_size + 2));
-	ant_num += ft_max(0, m->turn - path->root_size + 2);
+	ant_num = ft_max(0, m->turn - path->root_size + 2);
+	if (ant_num > 0)
+		path->use_num++;
 	return ant_num;
 	(void)s;
 	(void)map;
