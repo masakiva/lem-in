@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/09 20:29:55 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:44:26 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct	s_path_set
 typedef struct	s_path_manager
 {
 	t_list		*path_set_list;
-	int			path_set_size;
+	int			path_set_list_size;
 
 	t_path		*current_path;
 	t_path_set	*current_path_set;
@@ -105,4 +105,7 @@ void	print_data(t_map *m);
 void	generate_graph(t_map *map, t_solve *s, t_ek_graph *g);
 void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *g);
 
+
+//select_path_set
+void	select_path_set(t_map *map, t_solve *s, t_ek_graph *g);
 #endif
