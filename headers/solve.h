@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/10 00:38:03 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/10 00:49:44 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_path
 {
 	int			*root;
 	int			root_size;
+	int			use_num;
 }				t_path;
 
 typedef struct	s_path_set
@@ -107,6 +108,7 @@ typedef struct	s_solve
 {
 	t_room			**map_room_ary;
 	t_solve_room	*rooms;
+	t_ant_manager	ant_manager;
 	int				rooms_size;
 	int				all_links_size;
 	int				ant_size;

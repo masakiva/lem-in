@@ -130,6 +130,7 @@ void	allocate_path(t_ek_graph *graph, t_solve *s)
 		i++;
 	}
 	path->root_size = i;
+	path->use_num = 0;
 
 	int 	index = graph->path_manager.current_path_set->paths_size;
 
