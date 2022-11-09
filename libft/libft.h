@@ -6,7 +6,7 @@
 /*   By: mvidal-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:29:06 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 16:35:14 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:14:26 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 # define SUCCESS	1
 # define FAILURE	0
 
-# define WRITE_SUCCESS -2
+# define WRITE_SUCCESS	-2
+
+# define NOT_FOUND		-1
 
 typedef struct	s_list
 {
