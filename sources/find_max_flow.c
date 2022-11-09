@@ -138,6 +138,7 @@ void	allocate_path(t_ek_graph *graph, t_solve *s)
 	graph->path_manager.current_path_set->paths[index] = NULL;
 	graph->path_manager.current_path_set->paths_size = index;
 
+
 	//i = 0;
 	//while (i < path->root_size)
 	//{
@@ -157,9 +158,9 @@ void	follow_root_recurse(int current_id, int start_id, int end_id, t_ek_graph *g
 		//printf("> %d\n", current_id);
 		//printf("> real name [%s]\n", s->rooms[current_id / 2].name_ptr);
 		set_root_to_buffer(current_id, graph);
-		show_buffer(graph, s);
+		//show_buffer(graph, s);
 		allocate_path(graph, s);
-		printf("[ ---- end ---- ]\n");
+		//printf("[ ---- end ---- ]\n");
 		return ;
 	}
 
@@ -170,7 +171,7 @@ void	follow_root_recurse(int current_id, int start_id, int end_id, t_ek_graph *g
 		{
 			if (current_id == start_id)
 			{
-				printf("[ ---- start ---- ]\n");
+				//printf("[ ---- start ---- ]\n");
 				graph->root_buffer_end = graph->root_buffer_begin;
 			}
 			set_root_to_buffer(current_id, graph);
@@ -213,7 +214,7 @@ void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
 		ant_num++;
 		used_set_zero(graph);
 		ret = flow_bfs(graph->start_output_id, graph->end_input_id, graph);
-		printf("\nfind new root => %d\n", ret);
+		//printf("\nfind new root => %d\n", ret);
 		if (ret == 0)
 			break;
 		follow_root(map, s, graph);
