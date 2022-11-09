@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/09 20:28:58 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/09 20:29:55 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ typedef struct	s_ek_graph
 	int			*root_buffer_begin;
 	int			*root_buffer_end;
 	
-	int			*used;
 	int			*bfs_used;
 	int			*bfs_node_from;
 	int			*bfs_edge_from;
