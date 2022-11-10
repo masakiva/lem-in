@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/09 11:31:54 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:33:19 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 # include "libft.h"
 # include "error.h"
 
-# define ARG_OPTIONS	"h"
+# define ARG_OPTIONS	"hv"
 # define HELP_OPTION	0x01
+# define VISUAL_OPTION	0x02
 # define LONG_HELP_OPTION	"help"
+# define LONG_VISUAL_OPTION	"visual"
 
 typedef t_byte	t_bool;
 
