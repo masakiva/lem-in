@@ -55,7 +55,11 @@ char*	roomname(t_state_machine* machine, char* line)
 	if (machine->map->nb_ants == 0)
 		error_exit(NB_ANTS_MANDATORY);
 	if (isroom(line))
+	{
+		if (machine->map->links != NULL)
+			error_exit(ROOM_AFTER_LINK);
 		parse_room(line, machine->map);
+	}
 	else if (islink(line))
 	{
 		if (machine->map->rooms == NULL)
