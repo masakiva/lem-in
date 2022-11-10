@@ -6,7 +6,7 @@
 #    By: mvidal-a <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/23 13:17:34 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/08 16:35:09 by mvidal-a         ###   ########.fr        #
+#    Updated: 2022/11/10 15:24:19 by mvidal-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,9 +112,11 @@ $(NAME):		$(OBJS)
 
 bonus:			$(NAME) $(OBJS_BONUS)
 				ar rcs $(NAME) $(OBJS_BONUS)
+				touch bonus
 
 custom:			$(NAME) $(OBJS_CUSTOM)
 				ar rcs $(NAME) $(OBJS_CUSTOM)
+				touch custom
 
 $(OBJDIR):
 				mkdir $@
@@ -136,4 +138,4 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY:			all clean fclean re bonus custom
+.PHONY:			all clean fclean re
