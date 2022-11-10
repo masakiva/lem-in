@@ -1,4 +1,5 @@
 #include "ft_queue.h"
+#include "error.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -80,6 +81,8 @@ void	queue_push(t_queue *q, void *content)
 	if (q->head == NULL)
 	{
 		q->head = ft_q_node_new(content);
+		if (q->head == NULL)
+			error_exit(MALLOC_ERR);
 		q->tail = q->head;
 		if (q->tail != NULL)
 			q->size++;
@@ -87,7 +90,7 @@ void	queue_push(t_queue *q, void *content)
 	}
 	tmp = ft_q_node_new(content);
 	if (tmp == NULL)
-		return ;
+		error_exit(MALLOC_ERR);
 	ft_q_node_add_last(q->tail, tmp);
 	q->tail = tmp;
 	q->size++;

@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 16:49:19 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:16:32 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,8 +176,6 @@ void	parse_room(char* line, t_map* map)
 	if (lst_elem == NULL)
 		error_exit(MALLOC_ERR);
 	ft_lstadd_back(&map->rooms, lst_elem);
-
-	printf("[ROOM] name: \"%s\", x: %d, y: %d\n", new_room->name, new_room->x, new_room->y);
 }
 
 static t_bool	find_room(char* name, t_list* rooms)
@@ -242,6 +240,4 @@ void	parse_link(char* line, t_map* map)
 	if (lst_elem == NULL)
 		error_exit(MALLOC_ERR);
 	ft_lstadd_back(&map->links, lst_elem);
-
-	printf("[LINK] between rooms \"%s\" and \"%s\"\n", new_link->room1, new_link->room2);
 }

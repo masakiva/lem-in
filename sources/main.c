@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:46:12 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/09 12:15:06 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:13:49 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -19,6 +19,7 @@ int		main(int argc, char** argv)
 	t_byte	options;
 	t_map	map;
 	int		ret;
+	char	*line;
 
 	if (argc > 1)
 	{
@@ -32,9 +33,18 @@ int		main(int argc, char** argv)
 
 	ft_bzero(&map, sizeof(t_map));
 
+	queue_constructor(&map.line_queue);
 	ret = 1;
 	while (ret == 1)
 		ret = parse_line(&map);
+
+	while (queue_size(&map.line_queue) != 0)
+	{
+		line = (char*)queue_front(&map.line_queue);
+		ft_putendl_fd(line, STDOUT_FILENO);
+		free(line);
+		queue_pop(&map.line_queue);
+	}
 
 	solve(&map);
 	

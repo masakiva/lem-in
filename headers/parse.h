@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/09 11:31:54 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:02:04 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "error.h"
+# include "ft_queue.h"
 
 # define ARG_OPTIONS	"h"
 # define HELP_OPTION	0x01
@@ -37,6 +38,7 @@ typedef struct	s_link
 
 typedef struct	s_map
 {
+	t_queue	line_queue;
 	t_list*	rooms;
 	t_list*	links;
 	char*	start;
