@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:46:30 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 11:00:08 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:16:26 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char*	nb_ants(t_state_machine* machine, char* line)
 		if (machine->map->nb_ants != 0)
 			error_exit(DUP_NB_ANTS);
 		machine->map->nb_ants = ft_atoi(line);
-		printf("[NB OF ANTS] %d\n", machine->map->nb_ants);
 		machine->state = END;
 	}
 	else
@@ -114,14 +113,12 @@ char*	start_end_line(t_state_machine* machine, char* line)
 		parse_room(line, machine->map);
 		if (machine->map->start_flag == TRUE)
 		{
-			printf("^ START ROOM ^\n");
 			machine->map->start =
 				((t_room *)ft_lstlast(machine->map->rooms)->content)->name;
 			machine->map->start_flag = FALSE;
 		}
 		if (machine->map->end_flag == TRUE)
 		{
-			printf("^ END ROOM ^\n");
 			machine->map->end =
 				((t_room *)ft_lstlast(machine->map->rooms)->content)->name;
 			machine->map->end_flag = FALSE;
