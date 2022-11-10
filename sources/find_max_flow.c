@@ -8,10 +8,18 @@
 void	max_flow_init(t_ek_graph *graph)
 {
 	graph->bfs_used = malloc(sizeof(int) * graph->nodes_size);
+	if (graph->bfs_used)
+		error_exit(MALLOC_ERR);
 	graph->bfs_node_from = malloc(sizeof(int) * graph->nodes_size);
+	if (graph->bfs_node_from)
+		error_exit(MALLOC_ERR);
 	graph->bfs_edge_from = malloc(sizeof(int) * graph->nodes_size);
+	if (graph->bfs_edge_from)
+		error_exit(MALLOC_ERR);
 
 	graph->root_buffer_begin = malloc(sizeof(int) * graph->nodes_size);
+	if (graph->root_buffer_begin)
+		error_exit(MALLOC_ERR);
 	graph->path_manager.path_set_list_size = 0;
 	graph->path_manager.path_set_list = NULL;
 }
@@ -120,9 +128,13 @@ void	allocate_path(t_ek_graph *graph, t_solve *s)
 	int		*head = graph->root_buffer_begin;
 	int		*end = graph->root_buffer_end;
 	t_path	*path = malloc(sizeof(path));
+	if (path)
+		error_exit(MALLOC_ERR);
 	int		i = 0;
 
 	path->root = malloc(sizeof(int) * (end - head));
+	if (path->root)
+		error_exit(MALLOC_ERR);
 
 	while (head != end)
 	{
@@ -190,15 +202,21 @@ void	follow_root(t_map *map, t_solve *s, t_ek_graph *graph)
 {
 	(void)map;
 	t_path_set	*path_set = malloc(sizeof(t_path_set));
+	if (path_set)
+		error_exit(MALLOC_ERR);
 	t_list		*list_node;
 
 	list_node = ft_lstnew(path_set);
+	if (list_node == NULL)
+		error_exit(MALLOC_ERR);
 	ft_lstadd_back(&(graph->path_manager.path_set_list), list_node);
 	
 	graph->path_manager.path_set_list_size++;
 	graph->path_manager.current_path_set = path_set;
 	//path_set
 	path_set->paths = malloc(sizeof(t_path *) * (graph->path_manager.path_set_list_size + 1));
+	if (path_set->paths)
+		error_exit(MALLOC_ERR);
 	path_set->paths_size = 0;
 
 	follow_root_recurse(graph->start_output_id, graph->start_output_id, graph->end_input_id, graph, s);

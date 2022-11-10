@@ -16,6 +16,7 @@ typedef struct	s_queue
 	t_q_node	*head;
 	t_q_node	*tail;
 	int			size;
+	uint8_t		pad[4];
 }				t_queue;
 
 t_q_node	*ft_q_node_new(void *content);
