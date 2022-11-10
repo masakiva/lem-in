@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:17:33 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 16:40:01 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:01:18 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		error_exit(enum e_errcode errcode)
 		"Link with unknown room name",
 		"Link with same room names",
 		"Duplicate link",
+		"You must define rooms before links",
 		"Unknown syntax",
 	};
 
