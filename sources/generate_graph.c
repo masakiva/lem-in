@@ -126,7 +126,7 @@ void	set_start_node(t_solve *s, t_ek_graph *graph)
 
 void	generate_graph(t_map *map, t_solve *s, t_ek_graph *graph)
 {
-	printf("----- generate graph -----\n");
+	//printf("----- generate graph -----\n");
 	(void)map;
 	//set graph data
 
@@ -143,5 +143,5 @@ void	generate_graph(t_map *map, t_solve *s, t_ek_graph *graph)
 	graph->nodes = malloc(sizeof(t_ek_node) * graph->nodes_size);
 	generate_node(s, graph);
 	set_start_node(s, graph);
-	show_graph(graph);
+	//show_graph(graph);
 }
