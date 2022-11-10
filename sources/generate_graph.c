@@ -6,6 +6,7 @@ void	show_graph(t_ek_graph *graph)
 {
 	int i = 0;
 
+	return ;
 	while (i < graph->nodes_size)
 	{
 		printf("node: real id: [%d] id: [%d]", graph->nodes[i].id / 2, graph->nodes[i].id);
@@ -38,8 +39,6 @@ void	generate_node(t_solve *s, t_ek_graph *graph)
 	while (i < graph->nodes_size)
 	{
 		graph->nodes[i].id = i;
-		printf("size : %d\n", s->rooms[i / 2].links_size);
-		printf("size2: %lu\n",sizeof(t_ek_edge) * (s->rooms[i / 2].links_size + 1) );
 		graph->nodes[i].edges = malloc(sizeof(t_ek_edge) * (s->rooms[i / 2].links_size + 1));
 		if (graph->nodes[i].edges == NULL)
 		{
@@ -55,7 +54,6 @@ void	generate_node(t_solve *s, t_ek_graph *graph)
 	{
 		if (i % 2 == 0) //input
 		{
-			printf("x: %d\n", i);
 			graph->nodes[i].edges[0].to = i + 1;	
 			graph->nodes[i].edges[0].cap = 1;
 			graph->nodes[i].edges[0].rev = 0;
@@ -81,7 +79,7 @@ void	generate_node(t_solve *s, t_ek_graph *graph)
 
 	while (i < s->rooms_size)
 	{
-		printf("room: %d link size: %d\n", s->rooms[i].id, s->rooms[i].links_size);
+		//printf("room: %d link size: %d\n", s->rooms[i].id, s->rooms[i].links_size);
 		link_index = 0;
 		//each link
 		while (link_index < s->rooms[i].links_size)
@@ -138,8 +136,8 @@ void	generate_graph(t_map *map, t_solve *s, t_ek_graph *graph)
 	//node * 2(rev) + edge * 2(both_side) * 2(rev)
 	graph->edges_size = s->rooms_size * 2 + s->all_links_size * 2 * 2;
 
-	printf("%d\n", graph->nodes_size);
-	printf("%d\n", graph->edges_size);
+	//printf("%d\n", graph->nodes_size);
+	//printf("%d\n", graph->edges_size);
 
 	//malloc
 	graph->nodes = malloc(sizeof(t_ek_node) * graph->nodes_size);
