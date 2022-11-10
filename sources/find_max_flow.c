@@ -10,6 +10,10 @@ void	max_flow_init(t_ek_graph *graph)
 	graph->bfs_used = malloc(sizeof(int) * graph->nodes_size);
 	graph->bfs_node_from = malloc(sizeof(int) * graph->nodes_size);
 	graph->bfs_edge_from = malloc(sizeof(int) * graph->nodes_size);
+
+	graph->root_buffer_begin = malloc(sizeof(int) * graph->nodes_size);
+	graph->path_manager.path_set_list_size = 0;
+	graph->path_manager.path_set_list = NULL;
 }
 
 void	used_set_zero(t_ek_graph *graph)
@@ -82,10 +86,65 @@ int		flow_bfs(int from, int end, t_ek_graph *graph)
 			}
 			i++;
 		}
-
 	}
 	queue_destructor(q);
 	return 0;
+}
+
+void	set_root_to_buffer(int	current_id, t_ek_graph *graph)
+{
+	if (graph->root_buffer_end != graph->root_buffer_begin)
+	{
+		if (current_id % 2 != 0)
+			return ;
+	}
+	*graph->root_buffer_end = current_id / 2;
+	graph->root_buffer_end++;
+}
+
+void	show_buffer(t_ek_graph *graph, t_solve *s)
+{
+	int		*head = graph->root_buffer_begin;
+	int		*end = graph->root_buffer_end;
+
+	while (head != end)
+	{
+		printf("buffer %s\n", s->rooms[*head].name_ptr);
+		head++;
+	}
+}
+
+void	allocate_path(t_ek_graph *graph, t_solve *s)
+{
+	int		*head = graph->root_buffer_begin;
+	int		*end = graph->root_buffer_end;
+	t_path	*path = malloc(sizeof(path));
+	int		i = 0;
+
+	path->root = malloc(sizeof(int) * (end - head));
+
+	while (head != end)
+	{
+		path->root[i] = *head;
+		head++;
+		i++;
+	}
+	path->root_size = i;
+
+	int 	index = graph->path_manager.current_path_set->paths_size;
+
+	graph->path_manager.current_path_set->paths[index] = path;
+	index++;
+	graph->path_manager.current_path_set->paths[index] = NULL;
+	graph->path_manager.current_path_set->paths_size = index;
+
+	//i = 0;
+	//while (i < path->root_size)
+	//{
+	//	printf("%d %s\n", path->root[i], s->rooms[path->root[i]]);
+	//	i++;
+	//}
+	(void)s;
 }
 
 //再帰的に帰るならmallocして詰めて帰る。
@@ -93,28 +152,31 @@ void	follow_root_recurse(int current_id, int start_id, int end_id, t_ek_graph *g
 {
 	int i = 0;
 
-
 	if (current_id == end_id)
 	{
-		printf("> %d\n", current_id);
-		printf("> real name [%s]\n", s->rooms[current_id / 2].name_ptr);
+		//printf("> %d\n", current_id);
+		//printf("> real name [%s]\n", s->rooms[current_id / 2].name_ptr);
+		set_root_to_buffer(current_id, graph);
+		show_buffer(graph, s);
+		allocate_path(graph, s);
 		printf("[ ---- end ---- ]\n");
 		return ;
 	}
 
-	int flag;
-
 	while (i < graph->nodes[current_id].edges_size)
 	{
-		flag = 1;
-		if (graph->nodes[current_id].edges[i].cap == 0 && graph->nodes[current_id].edges[i].is_rev == 0)
+		if (graph->nodes[current_id].edges[i].cap == 0
+			&& graph->nodes[current_id].edges[i].is_rev == 0)
 		{
 			if (current_id == start_id)
+			{
 				printf("[ ---- start ---- ]\n");
+				graph->root_buffer_end = graph->root_buffer_begin;
+			}
+			set_root_to_buffer(current_id, graph);
 
-
-			printf("> %d\n", current_id);
-			printf("> real name [%s]\n", s->rooms[current_id / 2].name_ptr);
+			//printf("> %d\n", current_id);
+			//printf("> real name [%s]\n", s->rooms[current_id / 2].name_ptr);
 			follow_root_recurse(graph->nodes[current_id].edges[i].to, start_id, end_id, graph, s);
 		}
 		i++;
@@ -124,7 +186,18 @@ void	follow_root_recurse(int current_id, int start_id, int end_id, t_ek_graph *g
 void	follow_root(t_map *map, t_solve *s, t_ek_graph *graph)
 {
 	(void)map;
+	t_path_set	*path_set = malloc(sizeof(t_path_set));
+	t_list		*list_node;
+
+	list_node = ft_lstnew(path_set);
+	ft_lstadd_back(&(graph->path_manager.path_set_list), list_node);
 	
+	graph->path_manager.path_set_list_size++;
+	graph->path_manager.current_path_set = path_set;
+	//path_set
+	path_set->paths = malloc(sizeof(t_path *) * (graph->path_manager.path_set_list_size + 1));
+	path_set->paths_size = 0;
+
 	follow_root_recurse(graph->start_output_id, graph->start_output_id, graph->end_input_id, graph, s);
 }
 

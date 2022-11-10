@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/08 14:46:08 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:44:26 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,36 @@ typedef struct	s_ek_node
 	int				edges_size;
 }				t_ek_node;
 
+
+typedef struct	s_path
+{
+	int			*root;
+	int			root_size;
+}				t_path;
+
+typedef struct	s_path_set
+{
+	t_path		**paths;
+	int			paths_size;
+}				t_path_set;
+
+typedef struct	s_path_manager
+{
+	t_list		*path_set_list;
+	int			path_set_list_size;
+
+	t_path		*current_path;
+	t_path_set	*current_path_set;
+}				t_path_manager;
+
 typedef struct	s_ek_graph
 {
-	t_ek_node	*nodes;
+	t_ek_node		*nodes;
+	t_path_manager	path_manager;
+
+	int			*root_buffer_begin;
+	int			*root_buffer_end;
 	
-	int			*used;
 	int			*bfs_used;
 	int			*bfs_node_from;
 	int			*bfs_edge_from;
@@ -80,4 +105,7 @@ void	print_data(t_map *m);
 void	generate_graph(t_map *map, t_solve *s, t_ek_graph *g);
 void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *g);
 
+
+//select_path_set
+void	select_path_set(t_map *map, t_solve *s, t_ek_graph *g);
 #endif
