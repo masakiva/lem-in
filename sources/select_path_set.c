@@ -70,8 +70,8 @@ int		count_flow_path(t_path *path, t_map *map, t_solve *s, t_ek_graph *graph)
 	t_path_manager	*m;
 
 	m = &(graph->path_manager);
-	printf(" root size [%d] ant: [%d]\n",
-			path->root_size, ft_max(0, m->turn - path->root_size + 2));
+	//printf(" root size [%d] ant: [%d]\n",
+	//		path->root_size, ft_max(0, m->turn - path->root_size + 2));
 	ant_num = ft_max(0, m->turn - path->root_size + 2);
 	if (ant_num > 0)
 		path->use_num++;
@@ -121,11 +121,11 @@ void	check_all_roots(t_map *map, t_solve *s, t_ek_graph *graph)
 	while (m->current_path_set == NULL)
 	{
 		m->turn++;
-		printf("\n======== TURN [%d] ========\n", m->turn);
+		//printf("\n======== TURN [%d] ========\n", m->turn);
 		node = m->path_set_list;
 		while (node)
 		{
-			printf("-------- PATH SET --------\n");	
+			//printf("-------- PATH SET --------\n");	
 			path_set = (t_path_set *)node->content;
 			check_flow_path(path_set, map, s, graph);
 			if (m->current_path_set != NULL)
@@ -143,10 +143,10 @@ void	check_all_roots(t_map *map, t_solve *s, t_ek_graph *graph)
 
 void	select_path_set(t_map *map, t_solve *s, t_ek_graph *graph)
 {
-	show_all_path(map, s, graph);
+	//show_all_path(map, s, graph);
 	check_all_roots(map, s, graph);
 
-	printf("\n\n==> best path set: ant size: [%d] turn: [%d]\n",
-			s->ant_size, graph->path_manager.turn);
-	show_path_set(graph->path_manager.current_path_set, map, s, graph);
+	//printf("\n\n==> best path set: ant size: [%d] turn: [%d]\n",
+	//		s->ant_size, graph->path_manager.turn);
+	//show_path_set(graph->path_manager.current_path_set, map, s, graph);
 }
