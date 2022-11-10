@@ -9,6 +9,8 @@ void	flow_ant_init(t_solve *s, t_path_manager *m)
 	t_list	*node;
 
 	s->ant_manager.ants = malloc(sizeof(t_ant) * s->ant_size);
+	if (s->ant_manager.ants == NULL)
+		error_exit(MALLOC_ERR);
 	i = 0;
 	while (i < s->ant_size)
 	{
@@ -21,6 +23,8 @@ void	flow_ant_init(t_solve *s, t_path_manager *m)
 	while (i < m->current_path_set->paths_size)
 	{
 		node = ft_lstnew(m->current_path_set->paths[i]);
+		if (node == NULL)
+			error_exit(MALLOC_ERR);
 		ft_lstadd_back(&(s->ant_manager.path_list), node);
 		i++;
 	}
