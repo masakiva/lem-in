@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:25:16 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/09 12:13:52 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:00:23 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ enum		e_errcode
 	LINK_UNKNOWN_ROOMNAME,
 	LINK_SAME_ROOMNAMES,
 	DUP_LINK,
+	ROOM_AFTER_LINK,
 	UNKNOWN_SYNTAX,
 };
 
