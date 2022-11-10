@@ -128,6 +128,10 @@ void	check_all_roots(t_map *map, t_solve *s, t_ek_graph *graph)
 			printf("-------- PATH SET --------\n");	
 			path_set = (t_path_set *)node->content;
 			check_flow_path(path_set, map, s, graph);
+			if (m->current_path_set != NULL)
+			{
+				break ; //find path
+			}
 			node = node->next;
 		}
 	}
