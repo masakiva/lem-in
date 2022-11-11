@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 19:02:04 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:59:02 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 # include "error.h"
 # include "ft_queue.h"
 
-# define ARG_OPTIONS	"h"
+# define ARG_OPTIONS	"hv"
 # define HELP_OPTION	0x01
+# define VISUAL_OPTION	0x02
 # define LONG_HELP_OPTION	"help"
+# define LONG_VISUAL_OPTION	"visual"
 
 typedef t_byte	t_bool;
 
@@ -46,7 +48,8 @@ typedef struct	s_map
 	int		nb_ants;
 	t_bool	start_flag;
 	t_bool	end_flag;
-	t_byte	pad[2];
+	t_bool	visual;
+	t_byte	pad[1];
 }				t_map;
 
 enum	e_state
