@@ -132,6 +132,7 @@ void	put_node_link(t_visualizar *v)
 
 int	ft_key_reflect(t_visualizar *v)
 {
+	mlx_do_sync(v->mlx_ptr);
 	fill_black(v);
 	put_node_link(v);
 	put_nodes(v);
@@ -141,23 +142,37 @@ int	ft_key_reflect(t_visualizar *v)
 
 int		visualizar_exit(t_visualizar *v)
 {
-	printf("pressed [x]\n");
+	if (VISUAL_PRINTF)
+		printf("pressed [x]\n");
 	exit(0);
 	(void)v;
 }
 
 void	update_display_ratio(int isUp, t_visualizar *v)
 {
+	double ratio = v->display_ratio;
+
 	v->display_ratio += isUp;
+	ratio = v->display_ratio / ratio;
+	if (ratio < 0)
+		ratio = 1;
+	printf("ratio %f\n", ratio);
 	if (v->display_ratio < 1)
 		v->display_ratio = 1;
+	else
+	{
+		//printf("b w: %d m: %d v:%d\n", v->world_y, v->mouse_y, v->display_ratio);
+		//v->world_y = (v->mouse_y / v->display_ratio + v->world_y) * ratio - v->mouse_y / v->display_ratio;
+		//printf("a %d %d %d\n", v->world_y, v->mouse_y, v->display_ratio);
+		//v->world_x = (v->mouse_x + (v->world_x)) * ratio - v->mouse_x;
+	}
 }
 
 void	update_world_cordinate(t_visualizar *v, int key)
 {
 	int x = 0;
 	int y = 0;
-	int move_size = 20;
+	int move_size = 10;
 
 	if (key == KEY_W)
 		y = -move_size;
@@ -173,13 +188,14 @@ void	update_world_cordinate(t_visualizar *v, int key)
 
 int		ft_key_pressed(int key, t_visualizar *v)
 {
-	printf("pressed [%d]\n", key);
+	if (VISUAL_PRINTF)
+		printf("pressed [%d]\n", key);
 	if (key == KEY_ESC)
 		visualizar_exit(v);
 	if (key == KEY_UP)
-		update_display_ratio(10, v);
+		update_display_ratio(1, v);
 	if (key == KEY_DOWN)
-		update_display_ratio(-10, v);
+		update_display_ratio(-1, v);
 	if (key == KEY_W || key == KEY_A || key == KEY_D || key == KEY_S)
 		update_world_cordinate(v, key);
 
@@ -189,12 +205,56 @@ int		ft_key_pressed(int key, t_visualizar *v)
 	return 0;
 }
 
+int		ft_mouse_pressed(int button, int x,int y, t_visualizar *v)
+{
+	if (VISUAL_PRINTF)
+		printf("button press: %d x: %d y: %d\n", button, x, y);
+	if (button == 4) //scroll up
+		update_display_ratio(4, v);
+	if (button == 5) //scroll down
+		update_display_ratio(-4, v);
+	if (button == 1)
+		v->mouse_button1_pressed = 1;
+	ft_key_reflect(v);
+	return 0;
+}
+
+int		ft_mouse_released(int button, int x,int y, t_visualizar *v)
+{
+	if (VISUAL_PRINTF)
+		printf("button released: %d x: %d y: %d\n", button, x, y);
+	if (button == 1)
+		v->mouse_button1_pressed = 0;
+	ft_key_reflect(v);
+	return 0;
+}
+
+
+int		ft_mouse_moved(int x,int y, t_visualizar *v)
+{
+	if (VISUAL_PRINTF)
+		printf("move x: %d y: %d\n", x, y);
+	
+	if (v->mouse_button1_pressed == 1)
+	{
+		v->world_x += x - v->mouse_x;
+		v->world_y += y - v->mouse_y;
+	}
+
+	v->mouse_x = x;
+	v->mouse_y = y;
+	ft_key_reflect(v);
+	return 0;
+}
 
 void	v_loop(t_visualizar *v)
 {
+	ft_key_reflect(v);
 	mlx_hook(v->win_ptr, 2, 1L << 0, ft_key_pressed, v);
 	mlx_hook(v->win_ptr, EVENT_EXIT, 1L << 0, visualizar_exit, v);
-	//mlx_loop_hook(d->mlx_ptr, ft_key_reflect, d);
+	mlx_hook(v->win_ptr, 4, 1L << 0, ft_mouse_pressed, v);
+	mlx_hook(v->win_ptr, 5, 1L << 0, ft_mouse_released, v);
+	mlx_hook(v->win_ptr, 6, 1L << 0, ft_mouse_moved, v);
 	mlx_loop(v->mlx_ptr);
 }
 
@@ -217,8 +277,11 @@ void	visualize_lem_in_init(t_visualizar *v, t_map *map, t_solve *s, t_ek_graph *
 		i++;
 	}
 	v->display_ratio = 1;
-	v->world_x = 100;
-	v->world_y = 100;
+	v->world_x = 200;
+	v->world_y = 200;
+	v->mouse_x = 0;
+	v->mouse_y = 0;
+	v->mouse_button1_pressed = 0;
 }
 
 void	visualize_mlx_init(t_visualizar *v)
