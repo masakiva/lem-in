@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MAP="maps/simple.map"
+MAP="maps/subject3.map"
 if [ $1 != 0 ]
 then
 	MAP=$1
