@@ -41,10 +41,7 @@ void	generate_node(t_solve *s, t_ek_graph *graph)
 		graph->nodes[i].id = i;
 		graph->nodes[i].edges = malloc(sizeof(t_ek_edge) * (s->rooms[i / 2].links_size + 1));
 		if (graph->nodes[i].edges == NULL)
-		{
-			printf("generate_node Malloc failed\n");
-			exit(0);
-		}
+			error_exit(MALLOC_ERR);
 		graph->nodes[i].edges_size = 0;
 		i++;
 	}
@@ -126,7 +123,7 @@ void	set_start_node(t_solve *s, t_ek_graph *graph)
 
 void	generate_graph(t_map *map, t_solve *s, t_ek_graph *graph)
 {
-	printf("----- generate graph -----\n");
+	//printf("----- generate graph -----\n");
 	(void)map;
 	//set graph data
 
@@ -141,7 +138,9 @@ void	generate_graph(t_map *map, t_solve *s, t_ek_graph *graph)
 
 	//malloc
 	graph->nodes = malloc(sizeof(t_ek_node) * graph->nodes_size);
+	if (graph->nodes == NULL)
+		error_exit(MALLOC_ERR);
 	generate_node(s, graph);
 	set_start_node(s, graph);
-	show_graph(graph);
+	//show_graph(graph);
 }

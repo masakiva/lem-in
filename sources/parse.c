@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/08 08:45:18 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:13:34 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		parse_line(t_map* map)
 	ret = get_next_line(STDIN_FILENO, &line);
 	if (ret == ERROR)
 		error_exit(GNL_ERR);
+	queue_push(&map->line_queue, (void *)line);
 	extract_line_infos(line, map);
-	free(line);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/10 00:38:51 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/10 17:12:02 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	show_all_data(t_solve *s)
 	int		i;
 	int		j;
 
+	return ;
 	i = 0;
 	printf("--- show t_solve ---\n");
 	while (i < s->rooms_size)
