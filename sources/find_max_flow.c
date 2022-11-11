@@ -211,7 +211,6 @@ void	follow_root(t_map *map, t_solve *s, t_ek_graph *graph)
 		error_exit(MALLOC_ERR);
 	ft_lstadd_back(&(graph->path_manager.path_set_list), list_node);
 	
-	graph->path_manager.path_set_list_size++;
 	graph->path_manager.current_path_set = path_set;
 	//path_set
 	path_set->paths = malloc(sizeof(t_path *) * (graph->path_manager.path_set_list_size + 1));
@@ -234,9 +233,14 @@ void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
 		ant_num++;
 		used_set_zero(graph);
 		ret = flow_bfs(graph->start_output_id, graph->end_input_id, graph);
-		//printf("\nfind new root => %d\n", ret);
+		//printf("\nfind new root => %d %d\n", ret, graph->path_manager.path_set_list_size);
 		if (ret == 0)
-			break;
+		{
+			if (graph->path_manager.path_set_list_size == 0)
+				exit(0);
+			break ;
+		}
+		graph->path_manager.path_set_list_size++;
 		follow_root(map, s, graph);
 	}
 }
