@@ -49,6 +49,8 @@
 # define ORANGE		0xFFB852
 # define DARK_BLUE	0x1919A6
 
+# define VISUAL_PRINTF	0
+
 typedef struct	s_v_node
 {
 	int		id;
@@ -77,6 +79,9 @@ typedef struct	s_visualizar
 	int			display_ratio;
 	int			world_x;
 	int			world_y;
+	int			mouse_x;
+	int			mouse_y;
+	int			mouse_button1_pressed;
 
 	//lem-member
 	t_map		*map;
