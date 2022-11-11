@@ -21,3 +21,6 @@ tags
 
 # debug
 .gdb_history
+
+# mlx
+libmlx.dylib

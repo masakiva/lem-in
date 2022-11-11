@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/11 13:54:44 by mvidal-a         ###   ########.fr        #
+#    Updated: 2022/11/11 22:04:59 by tkodai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS		+= find_max_flow.c
 SRCS		+= ft_queue.c
 SRCS		+= select_path_set.c
 SRCS		+= flow_ants.c
+SRCS		+= visualizar.c
 
 vpath %.c $(SRCS_PATH)
 
@@ -54,6 +55,7 @@ HDRS		+= parse.h
 HDRS		+= solve.h
 HDRS		+= ft_queue.h
 HDRS		+= ft_vector_int.h
+HDRS		+= visualizar.h
 
 vpath %.h $(HDRS_PATH)
 
@@ -84,6 +86,12 @@ LDFLAGS		+= -L $(LIBFT_PATH)
 
 LDLIBS		+= -lft
 
+MINILIB	= minilibx_mms_20200219
+
+MLXFLAG	= libmlx.dylib -framework OpenGL -framework AppKit
+
+MLX		= libmlx.dylib
+
 #-----------------------------------------------#
 ################### DEBUG #######################
 #-----------------------------------------------#
@@ -100,8 +108,13 @@ endif
 #-----------------------------------------------#
 all:				$(NAME)
 
-$(NAME):			$(LIBFT_PATH)$(LIBFT_NAME) $(OBJS)
-					$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
+$(MLX) :
+					cd 	"$(PWD)/$(MINILIB)" && make
+					cd 	"$(PWD)/$(MINILIB)" && cp mlx.h ../
+					cd 	"$(PWD)/$(MINILIB)" && cp $(MLX) ../$(MLX)
+
+$(NAME):			$(LIBFT_PATH)$(LIBFT_NAME) $(OBJS) $(MLX)
+					$(CC) $(LDFLAGS) $(OBJS) $(MLXFLAG) $(LDLIBS) -o $@
 
 $(OBJS_PATH)%.o:	%.c
 					$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
@@ -124,6 +137,9 @@ clean:
 
 fclean:				clean
 					$(RM) $(NAME)
+					cd 	"$(PWD)/$(MINILIB)" && $(RM) $(MLX)
+					$(RM) libmlx.dylib
+					$(RM) mlx.h
 
 re:					fclean all
 

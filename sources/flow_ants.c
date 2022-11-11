@@ -2,6 +2,7 @@
 #include "parse.h"
 #include "../headers/ft_queue.h"
 #include "../headers/solve.h"
+#include "../headers/visualizar.h"
 
 void	flow_ant_init(t_solve *s, t_path_manager *m)
 {
@@ -131,4 +132,6 @@ void	flow_ants(t_map *map, t_solve *s, t_ek_graph *graph)
 	flow_ant_init(s, &(graph->path_manager));
 	flow_ants_execute(s, graph);
 	(void)map;
+
+	lem_in_visualizar(map, s, graph);
 }
