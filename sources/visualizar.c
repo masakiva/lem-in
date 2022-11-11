@@ -87,6 +87,9 @@ void	put_nodes(t_visualizar *v)
 {
 	int		i = 0;
 
+	drawCircle(10, 0 * v->display_ratio,
+				0 * v->display_ratio, v, RED);
+
 	while (i < v->nodes_size)
 	{
 		//protected_pixel_put(v, v->nodes[i].v_x * v->display_ratio,
@@ -136,6 +139,7 @@ int	ft_key_reflect(t_visualizar *v)
 	fill_black(v);
 	put_node_link(v);
 	put_nodes(v);
+	printf("wx: %d wy: %d mx %d my %d dratio %d\n", v->world_x, v->world_y, v->mouse_x, v->mouse_y, v->display_ratio);
 	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);
 	return (0);
 }
@@ -150,21 +154,27 @@ int		visualizar_exit(t_visualizar *v)
 
 void	update_display_ratio(int isUp, t_visualizar *v)
 {
-	double ratio = v->display_ratio;
+	int		ratio = v->display_ratio;
+	
+	int		old_mouse_x = v->mouse_x - v->world_x;;
+	int		old_mouse_y = v->mouse_y - v->world_y;
 
 	v->display_ratio += isUp;
-	ratio = v->display_ratio / ratio;
+
+	int		move_mouse_x = old_mouse_x * v->display_ratio / ratio;
+	int		moved_x = move_mouse_x - old_mouse_x;
+
+	int		move_mouse_y = old_mouse_y * v->display_ratio / ratio;
+	int		moved_y = move_mouse_y - old_mouse_y;
+
 	if (ratio < 0)
 		ratio = 1;
-	printf("ratio %f\n", ratio);
 	if (v->display_ratio < 1)
 		v->display_ratio = 1;
 	else
 	{
-		//printf("b w: %d m: %d v:%d\n", v->world_y, v->mouse_y, v->display_ratio);
-		//v->world_y = (v->mouse_y / v->display_ratio + v->world_y) * ratio - v->mouse_y / v->display_ratio;
-		//printf("a %d %d %d\n", v->world_y, v->mouse_y, v->display_ratio);
-		//v->world_x = (v->mouse_x + (v->world_x)) * ratio - v->mouse_x;
+		v->world_x -= moved_x;
+		v->world_y -= moved_y;
 	}
 }
 
@@ -276,7 +286,7 @@ void	visualize_lem_in_init(t_visualizar *v, t_map *map, t_solve *s, t_ek_graph *
 		v->nodes[i].v_y = v->s->rooms[i].y;
 		i++;
 	}
-	v->display_ratio = 1;
+	v->display_ratio = 100;
 	v->world_x = 200;
 	v->world_y = 200;
 	v->mouse_x = 0;
