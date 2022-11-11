@@ -51,7 +51,6 @@ void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color)
 			dx = (int)x - (int)x1;
 			dy = (int)y - (int)y1;
 
-			/* 円を描画 */
 			if((dx * dx) + (dy * dy) <= radius * radius)
 			{
 				protected_pixel_put(v, x, y, color);
@@ -83,12 +82,11 @@ void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v)
     }
 }
 
+
+
 void	put_nodes(t_visualizar *v)
 {
 	int		i = 0;
-
-	drawCircle(10, 0 * v->display_ratio,
-				0 * v->display_ratio, v, RED);
 
 	while (i < v->nodes_size)
 	{
@@ -98,6 +96,23 @@ void	put_nodes(t_visualizar *v)
 				v->nodes[i].v_y * v->display_ratio, v, LIME);
 		drawCircle(28, v->nodes[i].v_x * v->display_ratio,
 				v->nodes[i].v_y * v->display_ratio, v, BLACK);
+		i++;
+	}
+}
+
+void	put_nodes_name(t_visualizar *v)
+{
+	int		i = 0;
+
+	while (i < v->nodes_size)
+	{
+		mlx_string_put(v->mlx_ptr, v->win_ptr,
+				v->nodes[i].v_x * v->display_ratio + v->world_x,
+				v->nodes[i].v_y * v->display_ratio + v->world_y,
+				LIME,
+		       	v->s->rooms[i].name_ptr);
+		//protected_pixel_put(v, v->nodes[i].v_x * v->display_ratio,
+		//			v->nodes[i].v_y * v->display_ratio, LIME);
 		i++;
 	}
 }
@@ -141,6 +156,7 @@ int	ft_key_reflect(t_visualizar *v)
 	put_nodes(v);
 	printf("wx: %d wy: %d mx %d my %d dratio %d\n", v->world_x, v->world_y, v->mouse_x, v->mouse_y, v->display_ratio);
 	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);
+	put_nodes_name(v);
 	return (0);
 }
 
