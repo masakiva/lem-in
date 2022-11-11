@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 16:33:19 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:53:51 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ typedef struct	s_map
 	int		nb_ants;
 	t_bool	start_flag;
 	t_bool	end_flag;
-	t_byte	pad[2];
+	t_bool	visual;
+	t_byte	pad[1];
 }				t_map;
 
 enum	e_state
