@@ -100,7 +100,6 @@ void	check_flow_path(t_path_set *path_set, t_map *map, t_solve *s, t_ek_graph *g
 	(void)s;
 	(void)map;
 	(void)graph;
-	
 }
 
 void	check_all_roots(t_map *map, t_solve *s, t_ek_graph *graph)

@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 19:16:32 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:48:11 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ static t_bool	find_dup_link(t_list* links, t_link* link_to_compare)
 {
 	t_link*		cur_link;
 
+	return FALSE;
 	while (links != NULL)
 	{
 		cur_link = (t_link *)links->content;

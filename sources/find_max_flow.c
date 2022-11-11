@@ -24,7 +24,7 @@ void	max_flow_init(t_ek_graph *graph)
 	graph->path_manager.path_set_list = NULL;
 }
 
-void	used_set_zero(t_ek_graph *graph)
+void	used_set_zero(t_ek_graph *graph, int start_id)
 {
 	int		i;
 
@@ -36,6 +36,7 @@ void	used_set_zero(t_ek_graph *graph)
 		graph->bfs_edge_from[i] = 0;
 		i++;
 	}
+	graph->bfs_used[start_id] = 1;
 }
 
 void	check_flow(t_ek_graph *graph, int start_id, int current_id)
@@ -231,7 +232,7 @@ void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
 	while (ant_num <= s->ant_size)
 	{
 		ant_num++;
-		used_set_zero(graph);
+		used_set_zero(graph, graph->start_output_id);
 		ret = flow_bfs(graph->start_output_id, graph->end_input_id, graph);
 		//printf("\nfind new root => %d %d\n", ret, graph->path_manager.path_set_list_size);
 		if (ret == 0)
