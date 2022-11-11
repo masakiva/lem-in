@@ -40,7 +40,7 @@ void	start_ants(t_solve *s, t_queue *q)
 	while (node)
 	{
 		path = (t_path *)node->content;
-		if (path->use_num)
+		if (path->use_num && m->ants_count < s->ant_size)
 		{
 			m->ants[m->ants_count].path = path;//regist ants => queue
 			queue_push(q, &(m->ants[m->ants_count]));
