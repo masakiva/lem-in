@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:46:12 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 19:13:49 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:44:16 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -26,7 +26,8 @@ int		main(int argc, char** argv)
 		options = retrieve_options(argc, argv, ARG_OPTIONS);
 		if (options & HELP_OPTION)
 		{
-			ft_putstr_fd(HELP_MSG, STDOUT_FILENO);
+			if (ft_putstr_fd(HELP_MSG, STDOUT_FILENO) != WRITE_SUCCESS)
+				error_exit(WRITE_ERR);
 			return (EXIT_SUCCESS);
 		}
 	}
@@ -41,7 +42,8 @@ int		main(int argc, char** argv)
 	while (queue_size(&map.line_queue) != 0)
 	{
 		line = (char*)queue_front(&map.line_queue);
-		ft_putendl_fd(line, STDOUT_FILENO);
+		if (ft_putendl_fd(line, STDOUT_FILENO) != WRITE_SUCCESS)
+			error_exit(WRITE_ERR);
 		free(line);
 		queue_pop(&map.line_queue);
 	}
