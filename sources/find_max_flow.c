@@ -237,7 +237,7 @@ void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
 		if (ret == 0)
 		{
 			if (graph->path_manager.path_set_list_size == 0)
-				exit(0);
+				error_exit(UNSOLVABLE);
 			break ;
 		}
 		graph->path_manager.path_set_list_size++;

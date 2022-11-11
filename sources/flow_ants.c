@@ -111,9 +111,23 @@ void	flow_ants_execute(t_solve *s, t_ek_graph *graph)
 	(void)graph;
 }
 
+void	put_map(t_map *map)
+{
+	char	*line;
+
+	while (queue_size(&map->line_queue) != 0)
+	{
+		line = (char*)queue_front(&map->line_queue);
+		if (ft_putendl_fd(line, 1) != WRITE_SUCCESS)
+			error_exit(WRITE_ERR);
+		free(line);
+		queue_pop(&map->line_queue);
+	}
+}
 
 void	flow_ants(t_map *map, t_solve *s, t_ek_graph *graph)
 {
+	put_map(map);
 	flow_ant_init(s, &(graph->path_manager));
 	flow_ants_execute(s, graph);
 	(void)map;
