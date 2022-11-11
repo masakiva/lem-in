@@ -6,20 +6,21 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:46:12 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 16:35:37 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:54:25 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
 #include "parse.h"
 #include "solve.h"
 #include <unistd.h>
-#include <ncurses.h>
 
 int		main(int argc, char** argv)
 {
 	t_byte	options;
 	t_map	map;
 	int		ret;
+
+	ft_bzero(&map, sizeof(t_map));
 
 	if (argc > 1)
 	{
@@ -30,19 +31,14 @@ int		main(int argc, char** argv)
 			return (EXIT_SUCCESS);
 		}
 		if (options & VISUAL_OPTION)
-		{
-			initscr();
-			return (EXIT_SUCCESS);
-		}
+			map.visual = TRUE;
 	}
-
-	ft_bzero(&map, sizeof(t_map));
 
 	ret = 1;
 	while (ret == 1)
 		ret = parse_line(&map);
 
-	solve(&map);
+	solve(&map, visual_option);
 	
 	return (EXIT_SUCCESS);
 }
