@@ -43,7 +43,6 @@ void	start_ants(t_solve *s, t_queue *q)
 		if (path->use_num)
 		{
 			m->ants[m->ants_count].path = path;//regist ants => queue
-			//queue_push(q, (void *)(long long)m->ants_count);
 			queue_push(q, &(m->ants[m->ants_count]));
 			m->ants_count++;
 			path->use_num--;
@@ -52,26 +51,36 @@ void	start_ants(t_solve *s, t_queue *q)
 	}
 }
 
+void	put_ants(t_ant *ant, t_solve *s)
+{
+	ft_putstr_fd("L", 1);
+	ft_putnbr_fd(ant->id, 1);
+	ft_putstr_fd("-", 1);
+	ft_putstr_fd(s->rooms[ant->path->root[ant->path_position]].name_ptr, 1);
+	ft_putstr_fd(" ", 1);
+}
+
 void	pop_ants(t_solve *s, t_ek_graph *graph, t_queue *current_q, t_queue *next_q)
 {
 	t_ant	*ant;
 
-	while (queue_size(current_q) != 0)
+	while (1)
 	{
 		ant = (t_ant *)queue_front(current_q);
 		queue_pop(current_q);
-		printf("L");
-		printf("%d-", ant->id);
-		printf("%s ", s->rooms[ant->path->root[ant->path_position]].name_ptr);
+		put_ants(ant, s);
 		ant->path_position++;
-	
 		if (ant->path_position != ant->path->root_size)
 			queue_push(next_q, ant);
+		if (queue_size(current_q) != 0)
+			ft_putstr_fd(" ", 1);
+		else
+		{
+			ft_putstr_fd("\n", 1);
+			break ;
+		}
 	}
-	printf("\n");
-	(void)s;
 	(void)graph;
-	(void)next_q;
 }
 
 void	flow_ants_execute(t_solve *s, t_ek_graph *graph)
@@ -94,11 +103,7 @@ void	flow_ants_execute(t_solve *s, t_ek_graph *graph)
 		tmp_q = next_q;
 		next_q = current_q;
 		current_q = tmp_q;
-		//pop_ants(s, graph, q);
 		pop_ants(s, graph, current_q, next_q);
-		//queue_pop(q);
-		
-		//printf("x: %d\n", ant->id);
 		start_ants(s, next_q);
 	}
 	queue_destructor(current_q);
@@ -112,6 +117,4 @@ void	flow_ants(t_map *map, t_solve *s, t_ek_graph *graph)
 	flow_ant_init(s, &(graph->path_manager));
 	flow_ants_execute(s, graph);
 	(void)map;
-	(void)s;
-	(void)graph;
 }
