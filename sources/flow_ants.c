@@ -133,5 +133,6 @@ void	flow_ants(t_map *map, t_solve *s, t_ek_graph *graph)
 	flow_ants_execute(s, graph);
 	(void)map;
 
-	lem_in_visualizar(map, s, graph);
+	if (map->visual == 1)
+		lem_in_visualizar(map, s, graph);
 }
