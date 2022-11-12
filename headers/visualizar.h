@@ -49,6 +49,8 @@
 # define ORANGE		0xFFB852
 # define DARK_BLUE	0x1919A6
 
+# define LIME2		0x1bff80
+
 # define VISUAL_PRINTF	0
 
 typedef struct	s_v_node
@@ -93,7 +95,7 @@ void	lem_in_visualizar(t_map *map, t_solve *s, t_ek_graph *graph);
 
 //draw sharp
 void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color);
-void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v);
+void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v, int color);
 
 //pixel
 void	fill_black(t_visualizar *v);
