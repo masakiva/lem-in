@@ -33,37 +33,6 @@ void	put_nodes_name(t_visualizar *v)
 	}
 }
 
-void	put_node_link2(t_visualizar *v, t_solve_room *node, int id)
-{
-	int		i = 0;
-	int		x;
-	int		y;
-	int		opponent_id;
-
-	id = 0;
-	while (i < node->links_size)
-	{
-		opponent_id = node->links[i];	
-		x = v->s->rooms[opponent_id].x * v->display_ratio;
-		y = v->s->rooms[opponent_id].y * v->display_ratio;
-		drawLineTwoPixels(x, y, node->x * v->display_ratio, node->y * v->display_ratio, v, LIME);
-		i++;
-	}
-}
-
-void	put_node_link(t_visualizar *v)
-{
-	int				i = 0;
-	t_solve_room	*node;
-
-	while (i < v->nodes_size)
-	{
-		node = &v->s->rooms[i];
-		put_node_link2(v, node, i);
-		i++;
-	}
-}
-
 void	put_line_variable_width(int x1, int y1, int x2, int y2,
 							t_visualizar *v, int color, int width)
 {
@@ -81,6 +50,42 @@ void	put_line_variable_width(int x1, int y1, int x2, int y2,
 		y++;
 	}
 }
+
+void	put_node_link2(t_visualizar *v, t_solve_room *node, int id)
+{
+	int		i = 0;
+	int		x;
+	int		y;
+	int		opponent_id;
+
+	id = 0;
+	while (i < node->links_size)
+	{
+		opponent_id = node->links[i];	
+		x = v->s->rooms[opponent_id].x * v->display_ratio;
+		y = v->s->rooms[opponent_id].y * v->display_ratio;
+		//drawLineTwoPixels(x, y, node->x * v->display_ratio, node->y * v->display_ratio, v, LIME);
+		put_line_variable_width(x, y, node->x * v->display_ratio,
+				node->y * v->display_ratio, v, LIME, 1);
+
+		i++;
+	}
+}
+
+void	put_node_link(t_visualizar *v)
+{
+	int				i = 0;
+	t_solve_room	*node;
+
+	while (i < v->nodes_size)
+	{
+		node = &v->s->rooms[i];
+		put_node_link2(v, node, i);
+		i++;
+	}
+}
+
+
 
 void	put_use_link2(t_visualizar *v, t_path *path)
 {
