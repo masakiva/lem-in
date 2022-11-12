@@ -4,94 +4,12 @@
 #include "../headers/solve.h"
 #include "../headers/visualizar.h"
 
-void	my_mlx_pixel_put(t_visualizar *v, int x, int y, int color)
-{
-	char	*dest;
-
-	dest = v->img_addr + (y * v->img_line_lenght + x * (v->img_bit_per_pixel / 8));
-	*(unsigned int *)dest = color;
-}
-
-void	protected_pixel_put(t_visualizar *v, int x, int y, int color)
-{
-	x += v->world_x;
-	y += v->world_y;
-	if (x < 0 || y < 0 || v->width <= x || v->height <= y)
-		return ;
-	my_mlx_pixel_put(v, x, y, color);
-}
-
-void	fill_black(t_visualizar *v)
-{
-	int		x;
-	int		y;
-
-	y = 0;
-	while (y < v->height)
-	{
-		x = 0;
-		while (x < v->width)
-		{
-			my_mlx_pixel_put(v, x, y, BLACK);
-			x++;
-		}
-		y++;
-	}
-}
-
-void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color)
-{
-	int x, y;
-	int dx, dy;
-
-	for(y = 0 + y1 - radius; y < y1 + radius; y++)
-	{
-		for(x = 0 + x1 - radius; x < x1 + radius; x++)
-		{
-			dx = (int)x - (int)x1;
-			dy = (int)y - (int)y1;
-
-			if((dx * dx) + (dy * dy) <= radius * radius)
-			{
-				protected_pixel_put(v, x, y, color);
-			}
-		}
-	}
-}
-
-void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v)
-{
-	int x, y;
-	int dx, dy;
-	double rad;
-	int length;
-	int l;
-
-	dx = xe - xs;
-	dy = ye - ys;
-
-	length = sqrt(dx * dx + dy * dy);
-
-	rad = atan2(dy, dx);
-
- 	for(l = 0; l < length; l++)
-	{
-    	x = xs + l * cos(rad);
-    	y = ys + l * sin(rad);
-		protected_pixel_put(v, x, y, LIME);
-    }
-}
-
-
-
 void	put_nodes(t_visualizar *v)
 {
 	int		i = 0;
 
 	while (i < v->nodes_size)
 	{
-		//protected_pixel_put(v, v->nodes[i].v_x * v->display_ratio,
-		//			v->nodes[i].v_y * v->display_ratio, LIME);
 		drawCircle(30, v->nodes[i].v_x * v->display_ratio,
 				v->nodes[i].v_y * v->display_ratio, v, LIME);
 		drawCircle(28, v->nodes[i].v_x * v->display_ratio,
@@ -111,8 +29,6 @@ void	put_nodes_name(t_visualizar *v)
 				v->nodes[i].v_y * v->display_ratio + v->world_y,
 				LIME,
 		       	v->s->rooms[i].name_ptr);
-		//protected_pixel_put(v, v->nodes[i].v_x * v->display_ratio,
-		//			v->nodes[i].v_y * v->display_ratio, LIME);
 		i++;
 	}
 }

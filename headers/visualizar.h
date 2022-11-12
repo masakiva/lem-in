@@ -91,4 +91,12 @@ typedef struct	s_visualizar
 
 void	lem_in_visualizar(t_map *map, t_solve *s, t_ek_graph *graph);
 
+//draw sharp
+void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color);
+void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v);
+
+//pixel
+void	fill_black(t_visualizar *v);
+void	protected_pixel_put(t_visualizar *v, int x, int y, int color);
+void	my_mlx_pixel_put(t_visualizar *v, int x, int y, int color);
 #endif
