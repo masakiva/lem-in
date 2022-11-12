@@ -50,6 +50,8 @@
 # define DARK_BLUE	0x1919A6
 
 # define LIME2		0x1bff80
+# define LIME3		0x99ff99
+# define LIME4		0x6bb36b
 
 # define VISUAL_PRINTF	0
 
