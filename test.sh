@@ -9,5 +9,5 @@ make
 echo "---- ["$MAP"] ----"
 cat $MAP
 echo "---- [lem-in] ----"
-./lem-in < $MAP 
+./lem-in -v < $MAP 
 
