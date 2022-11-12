@@ -46,7 +46,7 @@ void	put_node_link2(t_visualizar *v, t_solve_room *node, int id)
 		opponent_id = node->links[i];	
 		x = v->s->rooms[opponent_id].x * v->display_ratio;
 		y = v->s->rooms[opponent_id].y * v->display_ratio;
-		drawLineTwoPixels(x, y, node->x * v->display_ratio, node->y * v->display_ratio, v);
+		drawLineTwoPixels(x, y, node->x * v->display_ratio, node->y * v->display_ratio, v, LIME);
 		i++;
 	}
 }
@@ -64,11 +64,67 @@ void	put_node_link(t_visualizar *v)
 	}
 }
 
+void	put_line_variable_width(int x1, int y1, int x2, int y2,
+							t_visualizar *v, int color, int width)
+{
+	int		x = 0;
+	int		y = 0;
+
+	while (y < width)
+	{
+		x = 0;
+		while (x < width)
+		{
+			drawLineTwoPixels(x1 + x, y1 + y, x2 + x, y2 + y, v, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	put_use_link2(t_visualizar *v, t_path *path)
+{
+	int		old;
+	int		id;
+	int		i = 1;
+	int		x;
+	int		y;
+
+	old = path->root[0];
+	while (i < path->root_size)
+	{
+		id = path->root[i];
+		x = v->s->rooms[old].x * v->display_ratio;
+		y = v->s->rooms[old].y * v->display_ratio;
+		put_line_variable_width(x, y,
+				v->s->rooms[id].x * v->display_ratio,
+				v->s->rooms[id].y * v->display_ratio, v, LIME, 5);	
+		old = path->root[i];
+		i++;
+	}
+}
+
+void	put_use_link(t_visualizar *v)
+{
+	t_path_set	*path_set;
+	t_path		*path;
+	int			i = 0;
+
+	path_set = v->graph->path_manager.current_path_set;
+	while (i < path_set->paths_size)
+	{
+		path = path_set->paths[i];
+		put_use_link2(v, path);
+		i++;
+	}
+}
+
 int	ft_key_reflect(t_visualizar *v)
 {
 	mlx_do_sync(v->mlx_ptr);
 	fill_black(v);
 	put_node_link(v);
+	put_use_link(v);
 	put_nodes(v);
 	printf("wx: %d wy: %d mx %d my %d dratio %d\n", v->world_x, v->world_y, v->mouse_x, v->mouse_y, v->display_ratio);
 	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);

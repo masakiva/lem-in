@@ -24,7 +24,7 @@ void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color)
 	}
 }
 
-void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v)
+void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v, int color)
 {
 	int x, y;
 	int dx, dy;
@@ -43,6 +43,6 @@ void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v)
 	{
     	x = xs + l * cos(rad);
     	y = ys + l * sin(rad);
-		protected_pixel_put(v, x, y, LIME);
+		protected_pixel_put(v, x, y, color);
     }
 }
