@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/12 04:11:22 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/12 13:47:04 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,30 @@ typedef struct	s_ant_manager
 	int			ants_limit;
 }				t_ant_manager;
 
+typedef struct	s_ans_ant
+{
+	int			id;
+	int			room_id;
+}				t_ans_ant;
+
+typedef struct	s_ans_turn
+{
+	t_list	*ans_ants;
+	int		turn;
+}				t_ans_turn;
+
+typedef struct	s_answer
+{
+	t_list		*ans_turns;	
+	t_list		*currnt_turn;
+}				t_answer;
+
 typedef struct	s_solve
 {
 	t_room			**map_room_ary;
 	t_solve_room	*rooms;
 	t_ant_manager	ant_manager;
+	t_answer		answer;
 	int				rooms_size;
 	int				all_links_size;
 	int				ant_size;
