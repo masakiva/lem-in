@@ -101,6 +101,8 @@ typedef struct	s_visualizar
 	int			turn;
 	int			frame;
 	int			move_frame;
+	int			end_ants;
+	int			start_ants;
 	
 	//tmp_buffer
 	char		str_buffer[STR_BUFFER_SIZE + 1];
