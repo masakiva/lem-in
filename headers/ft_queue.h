@@ -1,7 +1,6 @@
 #ifndef FT_QUEUE_H
 #define FT_QUEUE_H
 
-#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct	s_q_node
