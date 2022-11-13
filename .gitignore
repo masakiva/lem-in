@@ -2,10 +2,10 @@
 *.o
 objects
 *.a
+*.dylib
 *.out
 a.out*
 lem-in
-libmlx.dylib
 
 # macos garbage
 .DS_Store
