@@ -6,7 +6,7 @@
 /*   By: mvidal-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:29:06 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/09 11:14:26 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/13 18:32:29 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdint.h>
 # include <sys/types.h>
 
-# define ERROR		-1
+# define ERROR	-1
 
 # define TRUE	1
 # define FALSE	0
@@ -25,9 +25,7 @@
 # define SUCCESS	1
 # define FAILURE	0
 
-# define WRITE_SUCCESS	-2
-
-# define NOT_FOUND		-1
+# define NOT_FOUND	-1
 
 typedef struct	s_list
 {
@@ -36,6 +34,7 @@ typedef struct	s_list
 }				t_list;
 
 typedef	uint8_t	t_byte;
+typedef	uint8_t	t_bool;
 
 /*
 **	part 1
@@ -77,10 +76,10 @@ char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-ssize_t			ft_putchar_fd(char c, int fd);
-ssize_t			ft_putstr_fd(const char *s, int fd);
-ssize_t			ft_putendl_fd(const char *s, int fd);
-ssize_t			ft_putnbr_fd(int n, int fd);
+t_bool			ft_putchar_fd(char c, int fd);
+t_bool			ft_putstr_fd(const char *s, int fd);
+t_bool			ft_putendl_fd(const char *s, int fd);
+t_bool			ft_putnbr_fd(int n, int fd);
 
 /*
 **	bonus (chained list management)
