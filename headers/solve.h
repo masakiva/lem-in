@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/10 01:12:57 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/13 17:58:20 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SOLVE_H
 
 # include <stdlib.h>
-# include <stdio.h>
 # include "ft_queue.h"
 
 #define		ARRY_END	-42

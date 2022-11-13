@@ -6,14 +6,13 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:17 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 19:13:34 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/13 17:57:56 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
 
 void	extract_line_infos(char* line, t_map* map)
 {
