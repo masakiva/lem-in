@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/13 17:57:59 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/13 20:25:55 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,25 +191,6 @@ static t_bool	find_room(char* name, t_list* rooms)
 	return (FALSE);
 }
 
-static t_bool	find_dup_link(t_list* links, t_link* link_to_compare)
-{
-	t_link*		cur_link;
-
-	return FALSE;
-	while (links != NULL)
-	{
-		cur_link = (t_link *)links->content;
-		if (ft_strcmp(cur_link->room1, link_to_compare->room1) == 0
-				&& ft_strcmp(cur_link->room2, link_to_compare->room2) == 0)
-			return (TRUE);
-		else if (ft_strcmp(cur_link->room1, link_to_compare->room2) == 0
-				&& ft_strcmp(cur_link->room2, link_to_compare->room1) == 0)
-			return (TRUE);
-		links = links->next;
-	}
-	return (FALSE);
-}
-
 void	parse_link(char* line, t_map* map)
 {
 	t_link*		new_link;
@@ -233,8 +214,6 @@ void	parse_link(char* line, t_map* map)
 		error_exit(LINK_SAME_ROOMNAMES);
 	if (find_room(new_link->room2, map->rooms) == FALSE)
 		error_exit(LINK_UNKNOWN_ROOMNAME);
-	if (find_dup_link(map->links, new_link))
-		error_exit(DUP_LINK);
 
 	lst_elem = ft_lstnew(new_link);
 	if (lst_elem == NULL)

@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/11 13:59:02 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/13 20:25:39 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ typedef char*	(*t_parse)(t_state_machine *, char *);
 t_byte	retrieve_options(int argc, char **argv, char *op_chars);
 
 int		parse_line(t_map* map);
+
+void	check_input(t_map* map);
 
 // state machine states
 char*	character(t_state_machine* machine, char* line);
