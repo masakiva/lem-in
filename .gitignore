@@ -5,6 +5,7 @@ objects
 *.out
 a.out*
 lem-in
+libmlx.dylib
 
 # macos garbage
 .DS_Store
@@ -21,6 +22,3 @@ tags
 
 # debug
 .gdb_history
-
-# mlx
-libmlx.dylib
