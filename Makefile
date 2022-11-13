@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/13 20:22:56 by tkodai           ###   ########.fr        #
+#    Updated: 2022/11/13 20:33:55 by tkodai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS		+= error.c
 SRCS		+= parse.c
 SRCS		+= parse_states.c
 SRCS		+= parse_utils.c
+SRCS		+= check_input.c
 SRCS		+= arg_options.c
 SRCS		+= solve.c
 SRCS		+= generate_graph.c
