@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:17:33 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 11:01:18 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:54:55 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		error_exit(enum e_errcode errcode)
 		"Duplicate link",
 		"You must define rooms before links",
 		"Unknown syntax",
+		"Unsolvable map",
 	};
 
 	ft_putstr_fd("[lem-in] error: ", STDERR_FILENO);

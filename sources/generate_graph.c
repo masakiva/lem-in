@@ -2,6 +2,7 @@
 #include "parse.h"
 #include "../headers/solve.h"
 
+#if 0
 void	show_graph(t_ek_graph *graph)
 {
 	int i = 0;
@@ -30,6 +31,7 @@ void	show_graph(t_ek_graph *graph)
 		i++;
 	}
 }
+#endif
 
 void	generate_node(t_solve *s, t_ek_graph *graph)
 {
@@ -108,7 +110,6 @@ void	generate_node(t_solve *s, t_ek_graph *graph)
 
 			link_index++;
 		}
-
 		i++;
 	}
 }
@@ -125,7 +126,6 @@ void	generate_graph(t_map *map, t_solve *s, t_ek_graph *graph)
 {
 	//printf("----- generate graph -----\n");
 	(void)map;
-	//set graph data
 
 	//room => node, link => edge
 	//edge * 2(in, out)
@@ -136,7 +136,6 @@ void	generate_graph(t_map *map, t_solve *s, t_ek_graph *graph)
 	//printf("%d\n", graph->nodes_size);
 	//printf("%d\n", graph->edges_size);
 
-	//malloc
 	graph->nodes = malloc(sizeof(t_ek_node) * graph->nodes_size);
 	if (graph->nodes == NULL)
 		error_exit(MALLOC_ERR);

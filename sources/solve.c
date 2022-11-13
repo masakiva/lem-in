@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/10 17:12:02 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/13 17:58:06 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 #include "solve.h"
 #include "libft.h"
 #include "ft_queue.h"
-#include <stdio.h>
 
+#if 0
 void	show_all_data(t_solve *s)
 {
 	int		i;
 	int		j;
 
-	return ;
 	i = 0;
 	printf("--- show t_solve ---\n");
 	while (i < s->rooms_size)
@@ -40,6 +39,7 @@ void	show_all_data(t_solve *s)
 		i++;
 	}
 }
+#endif
 
 int		find_index_by_name(t_solve *s, char *room_name)
 {
@@ -58,11 +58,7 @@ int		find_index_by_name(t_solve *s, char *room_name)
 void	parse_data(t_solve *s, t_map *map)
 {
 	s->rooms_size = ft_lstsize(map->rooms);
-	//printf("room num %d\n", s->rooms_size);
-	
 	s->all_links_size = ft_lstsize(map->links);
-	//printf("links num %d\n", s->all_links_size);
-
 }
 
 void	create_rooms(t_solve *s, t_map *map)
@@ -114,7 +110,6 @@ void	set_link(t_solve *s, t_map *map)
 	{
 		room1 = find_index_by_name(s, ((t_link*)link_ptr->content)->room1);
 		room2 = find_index_by_name(s, ((t_link*)link_ptr->content)->room2);
-		//printf("link1: [%d] link2: [%d]\n", room1, room2);
 		s->rooms[room1].links_size++;
 		s->rooms[room2].links_size++;
 		link_ptr = link_ptr->next;
@@ -130,7 +125,6 @@ void	set_link(t_solve *s, t_map *map)
 		s->rooms[i].links_size = 0;
 		i++;
 	}
-
 	//submit links 
 	link_ptr = map->links;
 	while (link_ptr)

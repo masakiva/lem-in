@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:25:16 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 11:00:23 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:54:11 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ enum		e_errcode
 	DUP_LINK,
 	ROOM_AFTER_LINK,
 	UNKNOWN_SYNTAX,
+	UNSOLVABLE,
 };
 
 int		error_exit(enum e_errcode errcode);
