@@ -3,7 +3,7 @@
 
 #include "parse.h"
 #include "solve.h"
-#include "mlx.h"
+#include "../minilibx_mms_20200219/mlx.h"
 #include <math.h>
 #include <stdio.h>
 #include <unistd.h>

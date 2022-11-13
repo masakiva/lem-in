@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/11 22:04:59 by tkodai           ###   ########.fr        #
+#    Updated: 2022/11/13 19:40:13 by mvidal-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ CC = clang
 #-----------------------------------------------#
 ################### PATHS #######################
 #-----------------------------------------------#
-LIBFT_PATH	+= ./libft/
 HDRS_PATH	+= ./headers/
 SRCS_PATH	+= ./sources/
 OBJS_PATH	+= ./objects/
@@ -80,17 +79,17 @@ CPPFLAGS	+= -I $(HDRS_PATH)					\
 #-----------------------------------------------#
 ################# LIBRARIES #####################
 #-----------------------------------------------#
+LIBFT_PATH	+= ./libft/
+MLX_PATH	+= ./minilibx_mms_20200219/
+
 LIBFT_NAME	+= libft.a
+MLX_NAME	+= libmlx.dylib
 
 LDFLAGS		+= -L $(LIBFT_PATH)
+LDFLAGS		+= -L $(MLX_PATH)
 
 LDLIBS		+= -lft
-
-MINILIB	= minilibx_mms_20200219
-
-MLXFLAG	= libmlx.dylib -framework OpenGL -framework AppKit
-
-MLX		= libmlx.dylib
+LDLIBS		+= -lmlx
 
 #-----------------------------------------------#
 ################### DEBUG #######################
@@ -108,13 +107,8 @@ endif
 #-----------------------------------------------#
 all:				$(NAME)
 
-$(MLX) :
-					cd 	"$(PWD)/$(MINILIB)" && make
-					cd 	"$(PWD)/$(MINILIB)" && cp mlx.h ../
-					cd 	"$(PWD)/$(MINILIB)" && cp $(MLX) ../$(MLX)
-
-$(NAME):			$(LIBFT_PATH)$(LIBFT_NAME) $(OBJS) $(MLX)
-					$(CC) $(LDFLAGS) $(OBJS) $(MLXFLAG) $(LDLIBS) -o $@
+$(NAME):			$(LIBFT_PATH)$(LIBFT_NAME) $(MLX_PATH)$(MLX_NAME) $(OBJS)
+					$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
 
 $(OBJS_PATH)%.o:	%.c
 					$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
@@ -127,19 +121,20 @@ $(OBJS_PATH):
 $(LIBFT_PATH)$(LIBFT_NAME):
 					$(MAKE) -C $(LIBFT_PATH) bonus custom
 
+$(MLX_PATH)$(MLX_NAME):
+					$(MAKE) -C $(MLX_PATH)
+
 lib:
 					$(MAKE) -C $(LIBFT_PATH) bonus custom
 					$(MAKE) $(NAME)
 
 clean:
 					$(MAKE) -C $(LIBFT_PATH) fclean
+					$(MAKE) -C $(LIBFT_PATH) clean
 					$(RM) -r $(OBJS_PATH)
 
 fclean:				clean
 					$(RM) $(NAME)
-					cd 	"$(PWD)/$(MINILIB)" && $(RM) $(MLX)
-					$(RM) libmlx.dylib
-					$(RM) mlx.h
 
 re:					fclean all
 
