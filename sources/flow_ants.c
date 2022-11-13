@@ -54,11 +54,17 @@ void	start_ants(t_solve *s, t_queue *q)
 
 void	put_ants(t_ant *ant, t_solve *s)
 {
-	ft_putstr_fd("L", 1);
-	ft_putnbr_fd(ant->id, 1);
-	ft_putstr_fd("-", 1);
-	ft_putstr_fd(s->rooms[ant->path->root[ant->path_position]].name_ptr, 1);
-	ft_putstr_fd(" ", 1);
+	if (ft_putchar_fd('L', STDOUT_FILENO) != WRITE_SUCCESS)
+		error_exit(WRITE_ERR);
+	if (ft_putnbr_fd(ant->id, STDOUT_FILENO) != WRITE_SUCCESS)
+		error_exit(WRITE_ERR);
+	if (ft_putchar_fd('-', STDOUT_FILENO) != WRITE_SUCCESS)
+		error_exit(WRITE_ERR);
+	if (ft_putstr_fd(s->rooms[ant->path->root[ant->path_position]].name_ptr,
+				STDOUT_FILENO) != WRITE_SUCCESS)
+		error_exit(WRITE_ERR);
+	if (ft_putchar_fd(' ', STDOUT_FILENO) != WRITE_SUCCESS)
+		error_exit(WRITE_ERR);
 }
 
 void	pop_ants(t_solve *s, t_ek_graph *graph, t_queue *current_q, t_queue *next_q)
@@ -74,10 +80,14 @@ void	pop_ants(t_solve *s, t_ek_graph *graph, t_queue *current_q, t_queue *next_q
 		if (ant->path_position != ant->path->root_size)
 			queue_push(next_q, ant);
 		if (queue_size(current_q) != 0)
-			ft_putstr_fd(" ", 1);
+		{
+			if (ft_putchar_fd(' ', STDOUT_FILENO) != WRITE_SUCCESS)
+				error_exit(WRITE_ERR);
+		}
 		else
 		{
-			ft_putstr_fd("\n", 1);
+			if (ft_putchar_fd('\n', STDOUT_FILENO) != WRITE_SUCCESS)
+				error_exit(WRITE_ERR);
 			break ;
 		}
 	}
@@ -119,7 +129,7 @@ void	put_map(t_map *map)
 	while (queue_size(&map->line_queue) != 0)
 	{
 		line = (char*)queue_front(&map->line_queue);
-		if (ft_putendl_fd(line, 1) != WRITE_SUCCESS)
+		if (ft_putendl_fd(line, STDOUT_FILENO) != WRITE_SUCCESS)
 			error_exit(WRITE_ERR);
 		free(line);
 		queue_pop(&map->line_queue);
