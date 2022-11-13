@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:17:33 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/11 14:54:55 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/13 20:26:04 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ int		error_exit(enum e_errcode errcode)
 		"##start or ##end must be followed by a room definition",
 		"Duplicate ##start label",
 		"Duplicate ##end label",
-		"##start and ##end rooms must be defined",
+		"##start and ##end rooms must be defined before links",
 		"Room definitions needed before link definitions",
 		"Link with unknown room name",
 		"Link with same room names",
-		"Duplicate link",
 		"You must define rooms before links",
 		"Unknown syntax",
+		"Input data missing",
+		"Some rooms and links must be defined",
+		"Some links must be defined",
 		"Unsolvable map",
 	};
 

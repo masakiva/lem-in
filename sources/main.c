@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:46:12 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/13 19:17:54 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/13 20:24:28 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -39,6 +39,8 @@ int		main(int argc, char** argv)
 	ret = 1;
 	while (ret == 1)
 		ret = parse_line(&map);
+
+	check_input(&map);
 
 	solve(&map);
 	return (EXIT_SUCCESS);

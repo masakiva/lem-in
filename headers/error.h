@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:25:16 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/11 14:54:11 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/13 20:25:57 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ enum		e_errcode
 	ROOMS_MANDATORY,
 	LINK_UNKNOWN_ROOMNAME,
 	LINK_SAME_ROOMNAMES,
-	DUP_LINK,
 	ROOM_AFTER_LINK,
 	UNKNOWN_SYNTAX,
+	INPUT_MISSING,
+	ROOMS_LINKS_MISSING,
+	LINKS_MISSING,
 	UNSOLVABLE,
 };
 
