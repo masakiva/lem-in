@@ -24,7 +24,7 @@ void	max_flow_init(t_ek_graph *graph)
 	graph->path_manager.path_set_list = NULL;
 }
 
-void	used_set_zero(t_ek_graph *graph)
+void	used_set_zero(t_ek_graph *graph, int start_id)
 {
 	int		i;
 
@@ -36,6 +36,7 @@ void	used_set_zero(t_ek_graph *graph)
 		graph->bfs_edge_from[i] = 0;
 		i++;
 	}
+	graph->bfs_used[start_id] = 1;
 }
 
 void	check_flow(t_ek_graph *graph, int start_id, int current_id)
@@ -115,10 +116,11 @@ void	show_buffer(t_ek_graph *graph, t_solve *s)
 	int		*head = graph->root_buffer_begin;
 	int		*end = graph->root_buffer_end;
 
+(void)s;
 	return ;
 	while (head != end)
 	{
-		printf("buffer %s\n", s->rooms[*head].name_ptr);
+		//printf("buffer %s\n", s->rooms[*head].name_ptr);
 		head++;
 	}
 }
@@ -211,7 +213,6 @@ void	follow_root(t_map *map, t_solve *s, t_ek_graph *graph)
 		error_exit(MALLOC_ERR);
 	ft_lstadd_back(&(graph->path_manager.path_set_list), list_node);
 	
-	graph->path_manager.path_set_list_size++;
 	graph->path_manager.current_path_set = path_set;
 	//path_set
 	path_set->paths = malloc(sizeof(t_path *) * (graph->path_manager.path_set_list_size + 1));
@@ -232,11 +233,16 @@ void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
 	while (ant_num <= s->ant_size)
 	{
 		ant_num++;
-		used_set_zero(graph);
+		used_set_zero(graph, graph->start_output_id);
 		ret = flow_bfs(graph->start_output_id, graph->end_input_id, graph);
-		//printf("\nfind new root => %d\n", ret);
+		//printf("\nfind new root => %d %d\n", ret, graph->path_manager.path_set_list_size);
 		if (ret == 0)
-			break;
+		{
+			if (graph->path_manager.path_set_list_size == 0)
+				error_exit(UNSOLVABLE);
+			break ;
+		}
+		graph->path_manager.path_set_list_size++;
 		follow_root(map, s, graph);
 	}
 }

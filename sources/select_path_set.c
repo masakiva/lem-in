@@ -3,6 +3,7 @@
 #include "../headers/ft_queue.h"
 #include "../headers/solve.h"
 
+#if 0
 void	show_path(t_path *path, t_map *map, t_solve *s, t_ek_graph *graph)
 {
 	int			i;
@@ -56,6 +57,7 @@ void	show_all_path(t_map *map, t_solve *s, t_ek_graph *graph)
 		node = node->next;
 	}
 }
+#endif
 
 int		ft_max(int x1, int x2)
 {
@@ -70,17 +72,12 @@ int		count_flow_path(t_path *path, t_map *map, t_solve *s, t_ek_graph *graph)
 	t_path_manager	*m;
 
 	m = &(graph->path_manager);
-	//printf(" root size [%d] ant: [%d]\n",
-	//		path->root_size, ft_max(0, m->turn - path->root_size + 2));
 	ant_num = ft_max(0, m->turn - path->root_size + 2);
 	if (ant_num > 0)
 		path->use_num++;
 	return ant_num;
 	(void)s;
 	(void)map;
-	(void)graph;
-
-
 }
 
 void	check_flow_path(t_path_set *path_set, t_map *map, t_solve *s, t_ek_graph *graph)
@@ -103,7 +100,6 @@ void	check_flow_path(t_path_set *path_set, t_map *map, t_solve *s, t_ek_graph *g
 	(void)s;
 	(void)map;
 	(void)graph;
-	
 }
 
 void	check_all_roots(t_map *map, t_solve *s, t_ek_graph *graph)

@@ -6,13 +6,12 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:51:23 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 19:16:32 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/13 17:57:59 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 int		ft_str_isnumber(char* str)
 {
@@ -196,6 +195,7 @@ static t_bool	find_dup_link(t_list* links, t_link* link_to_compare)
 {
 	t_link*		cur_link;
 
+	return FALSE;
 	while (links != NULL)
 	{
 		cur_link = (t_link *)links->content;
