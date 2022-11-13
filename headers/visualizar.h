@@ -39,6 +39,7 @@
 # define KEY_R		15
 # define KEY_P		35
 # define KEY_F		3
+# define KEY_M		46
 
 # define BLACK		0x000000
 # define LIME		0x00FF00

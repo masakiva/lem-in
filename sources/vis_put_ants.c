@@ -120,6 +120,8 @@ void	vis_put_ants(t_visualizar *v)
 			is_end = 1;
 			v->start_ants++;
 		}
+		else if (pos_index == 0)
+			v->start_ants++;
 		//max
 		if (ant->path->root_size <= pos_index + 1)
 		{
