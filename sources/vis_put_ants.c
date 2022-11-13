@@ -15,7 +15,7 @@ void	draw_ants(t_visualizar *v, t_ant *ant, int pos_index, int is_end)
 		drawCircle(9, 
 			x * v->display_ratio,
 			y * v->display_ratio,
-			v, WHITE);
+			v, RED);
 		return ;
 	}
 	int		next_id = ant->path->root[pos_index + 1];
@@ -102,6 +102,9 @@ void	vis_put_ants(t_visualizar *v)
 	int				i = 0;
 	int				pos_index = 0;
 	int				is_end;
+	
+	v->start_ants = 0;
+	v->end_ants = 0;
 
 	m = &v->s->ant_manager;
 	while (i < v->s->ant_size)
@@ -111,12 +114,17 @@ void	vis_put_ants(t_visualizar *v)
 		pos_index = v->turn - ant->start_turn;
 		//min
 		if (pos_index < 0)
+		{
 			pos_index = 0;
+			is_end = 1;
+			v->start_ants++;
+		}
 		//max
 		if (ant->path->root_size <= pos_index + 1)
 		{
 			pos_index = ant->path->root_size - 1;
 			is_end = 1;
+			v->end_ants++;
 		}
 
 		draw_ants(v, ant, pos_index, is_end);
