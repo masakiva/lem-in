@@ -134,6 +134,9 @@ int	ft_key_reflect(t_visualizar *v)
 	printf("wx: %d wy: %d mx %d my %d dratio %d\n", v->world_x, v->world_y, v->mouse_x, v->mouse_y, v->display_ratio);
 	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);
 	put_nodes_name(v);
+	set_coordinate(v, v->mouse_x, v->mouse_y);
+	put_buffer(v, v->mouse_x, v->mouse_y);
+	put_buffer(v, 30, 30);
 	return (0);
 }
 

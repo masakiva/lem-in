@@ -54,6 +54,7 @@
 # define LIME4		0x6bb36b
 
 # define VISUAL_PRINTF	0
+# define STR_BUFFER_SIZE 100
 
 typedef struct	s_v_node
 {
@@ -86,6 +87,10 @@ typedef struct	s_visualizar
 	int			mouse_x;
 	int			mouse_y;
 	int			mouse_button1_pressed;
+	
+	//tmp_buffer
+	char		str_buffer[STR_BUFFER_SIZE + 1];
+	char		*str_buffer_head;
 
 	//lem-member
 	t_map		*map;
@@ -98,6 +103,10 @@ void	lem_in_visualizar(t_map *map, t_solve *s, t_ek_graph *graph);
 //draw sharp
 void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color);
 void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v, int color);
+
+//info
+void	set_coordinate(t_visualizar *v, int x, int y);
+void	put_buffer(t_visualizar *v, int x, int y);
 
 //pixel
 void	fill_black(t_visualizar *v);

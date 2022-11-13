@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/12 13:23:16 by tkodai           ###   ########.fr        #
+#    Updated: 2022/11/13 14:22:47 by tkodai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS		+= flow_ants.c
 SRCS		+= visualizar.c
 SRCS		+= vis_pixel_put.c
 SRCS		+= vis_draw_shape.c
+SRCS		+= vis_put_info.c
 
 vpath %.c $(SRCS_PATH)
 
