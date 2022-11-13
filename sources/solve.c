@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:33:11 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/11 14:38:50 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/13 17:58:06 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "solve.h"
 #include "libft.h"
 #include "ft_queue.h"
-#include <stdio.h>
 
 #if 0
 void	show_all_data(t_solve *s)

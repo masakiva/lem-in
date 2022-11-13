@@ -1,7 +1,6 @@
 #include "ft_queue.h"
 #include "error.h"
 
-#include <stdio.h>
 #include <stdlib.h>
 
 t_q_node	*ft_q_node_new(void *content)

@@ -1,7 +1,6 @@
 #ifndef FT_VECTOR_INT_H
 #define FT_VECTOR_INT_H
 
-#include <stdio.h>
 #include <stdlib.h>
 
 typedef int		value_type;
