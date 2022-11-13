@@ -2,6 +2,9 @@
 *.o
 objects
 *.a
+*.swiftmodule
+*.swiftdoc
+*.dylib
 *.out
 a.out*
 lem-in
@@ -21,6 +24,3 @@ tags
 
 # debug
 .gdb_history
-
-# mlx
-libmlx.dylib
