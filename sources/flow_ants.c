@@ -9,7 +9,6 @@ void	flow_ant_init(t_solve *s, t_path_manager *m)
 	int		i;
 	t_list	*node;
 
-	s->answer.ans_turns = NULL;
 	s->ant_manager.ants = malloc(sizeof(t_ant) * s->ant_size);
 	s->ant_manager.turn = 0;
 	if (s->ant_manager.ants == NULL)
@@ -46,26 +45,13 @@ void	start_ants(t_solve *s, t_queue *q)
 		if (path->use_num && m->ants_count < s->ant_size)
 		{
 			m->ants[m->ants_count].path = path;//regist ants => queue
-			m->ants[m->ants_count].start_turn = m->turn; 
+			m->ants[m->ants_count].start_turn = m->turn;
 			queue_push(q, &(m->ants[m->ants_count]));
 			m->ants_count++;
 			path->use_num--;
 		}
 		node = node->next;
 	}
-	//answer
-	t_ans_turn	*new_turn;
-	t_list		*list_node;
-
-	new_turn = malloc(sizeof(t_ans_turn));
-	if (new_turn == NULL)
-		error_exit(MALLOC_ERR);
-	list_node = ft_lstnew(new_turn);
-	if (list_node == NULL)
-		error_exit(MALLOC_ERR);
-	new_turn->ans_ants = NULL;
-	ft_lstadd_back(&s->answer.ans_turns, list_node);
-	s->answer.currnt_turn = list_node;
 }
 
 void	put_ants(t_ant *ant, t_solve *s)
@@ -75,21 +61,6 @@ void	put_ants(t_ant *ant, t_solve *s)
 	ft_putstr_fd("-", 1);
 	ft_putstr_fd(s->rooms[ant->path->root[ant->path_position]].name_ptr, 1);
 	ft_putstr_fd(" ", 1);
-
-	//answer
-	t_ans_ant	*new_ant;
-	t_list		*list_node;
-
-	new_ant = malloc(sizeof(t_ans_ant));
-	if (new_ant == NULL)
-		error_exit(MALLOC_ERR);
-	list_node = ft_lstnew(new_ant);
-	if (list_node == NULL)
-		error_exit(MALLOC_ERR);
-	new_ant->id = ant->id;
-	new_ant->room_id = ant->path->root[ant->path_position];
-
-	ft_lstadd_back(&s->answer.currnt_turn, list_node);
 }
 
 void	pop_ants(t_solve *s, t_ek_graph *graph, t_queue *current_q, t_queue *next_q)
