@@ -158,7 +158,7 @@ int	ft_key_reflect(t_visualizar *v)
 	put_buffer(v, 30, 30);
 
 	//tmp TODO delete 
-	//vis_put_ants(v);
+	vis_put_ants_name(v);
 	put_info(v);
 
 	if (VISUAL_PRINTF)
@@ -300,6 +300,7 @@ void	v_loop(t_visualizar *v)
 	mlx_hook(v->win_ptr, 4, 1L << 0, ft_mouse_pressed, v);
 	mlx_hook(v->win_ptr, 5, 1L << 0, ft_mouse_released, v);
 	mlx_hook(v->win_ptr, 6, 1L << 0, ft_mouse_moved, v);
+	mlx_loop_hook(v->mlx_ptr, ft_key_reflect, v);
 	mlx_loop(v->mlx_ptr);
 }
 

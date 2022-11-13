@@ -133,4 +133,5 @@ double get_time(unsigned long long int b);
 
 //ant
 void	vis_put_ants(t_visualizar *v);
+void	vis_put_ants_name(t_visualizar *v);
 #endif
