@@ -127,16 +127,28 @@ void	put_use_link(t_visualizar *v)
 int	ft_key_reflect(t_visualizar *v)
 {
 	mlx_do_sync(v->mlx_ptr);
+
 	fill_black(v);
 	put_node_link(v);
 	put_use_link(v);
 	put_nodes(v);
+	vis_put_ants(v);
+
 	printf("wx: %d wy: %d mx %d my %d dratio %d\n", v->world_x, v->world_y, v->mouse_x, v->mouse_y, v->display_ratio);
 	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);
+
+	//string puts
 	put_nodes_name(v);
 	set_coordinate(v, v->mouse_x, v->mouse_y);
 	put_buffer(v, v->mouse_x, v->mouse_y);
 	put_buffer(v, 30, 30);
+
+	//tmp TODO delete 
+	vis_put_ants(v);
+
+	if (VISUAL_PRINTF)
+		printf("turn [%d]\n", v->turn);
+
 	return (0);
 }
 
@@ -192,6 +204,13 @@ void	update_world_cordinate(t_visualizar *v, int key)
 	v->world_y += y;
 }
 
+void	update_turn(t_visualizar *v, int step)
+{
+	v->turn += step;
+	if (v->turn < 0)
+		v->turn = 0;
+}
+
 int		ft_key_pressed(int key, t_visualizar *v)
 {
 	if (VISUAL_PRINTF)
@@ -204,6 +223,10 @@ int		ft_key_pressed(int key, t_visualizar *v)
 		update_display_ratio(-1, v);
 	if (key == KEY_W || key == KEY_A || key == KEY_D || key == KEY_S)
 		update_world_cordinate(v, key);
+	if (key == KEY_N)
+		update_turn(v, 1);
+	if (key == KEY_B)
+		update_turn(v, -1);
 
 
 	ft_key_reflect(v);
@@ -288,6 +311,8 @@ void	visualize_lem_in_init(t_visualizar *v, t_map *map, t_solve *s, t_ek_graph *
 	v->mouse_x = 0;
 	v->mouse_y = 0;
 	v->mouse_button1_pressed = 0;
+
+	v->turn = 0;
 }
 
 void	visualize_mlx_init(t_visualizar *v)

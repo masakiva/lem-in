@@ -33,6 +33,8 @@
 # define KEY_S		1
 # define KEY_A		0
 # define KEY_D		2
+# define KEY_N		45
+# define KEY_B		11
 
 # define BLACK		0x000000
 # define LIME		0x00FF00
@@ -53,7 +55,7 @@
 # define LIME3		0x99ff99
 # define LIME4		0x6bb36b
 
-# define VISUAL_PRINTF	0
+# define VISUAL_PRINTF	1
 # define STR_BUFFER_SIZE 100
 
 typedef struct	s_v_node
@@ -87,6 +89,10 @@ typedef struct	s_visualizar
 	int			mouse_x;
 	int			mouse_y;
 	int			mouse_button1_pressed;
+
+	//game
+	int			turn;
+	int			frame;
 	
 	//tmp_buffer
 	char		str_buffer[STR_BUFFER_SIZE + 1];
@@ -112,4 +118,7 @@ void	put_buffer(t_visualizar *v, int x, int y);
 void	fill_black(t_visualizar *v);
 void	protected_pixel_put(t_visualizar *v, int x, int y, int color);
 void	my_mlx_pixel_put(t_visualizar *v, int x, int y, int color);
+
+//ant
+void	vis_put_ants(t_visualizar *v);
 #endif
