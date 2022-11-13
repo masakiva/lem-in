@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/13 19:40:13 by mvidal-a         ###   ########.fr        #
+#    Updated: 2022/11/13 19:47:55 by mvidal-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,10 +130,10 @@ lib:
 
 clean:
 					$(MAKE) -C $(LIBFT_PATH) fclean
-					$(MAKE) -C $(LIBFT_PATH) clean
 					$(RM) -r $(OBJS_PATH)
 
 fclean:				clean
+					$(MAKE) -C $(MLX_PATH) clean
 					$(RM) $(NAME)
 
 re:					fclean all
