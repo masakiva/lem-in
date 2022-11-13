@@ -45,7 +45,7 @@ void	draw_ant_name(t_visualizar *v, t_ant *ant, int pos_index)
 	char	*tmp;
 
 	tmp = ft_itoa(ant->id);
-	ant_name = ft_strjoin("_id: ", tmp);
+	ant_name = ft_strjoin(" ant_id: ", tmp);
 
 	mlx_string_put(v->mlx_ptr, v->win_ptr,
 			x * v->display_ratio + v->world_x + 10,

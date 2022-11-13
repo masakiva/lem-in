@@ -225,6 +225,8 @@ void	update_turn(t_visualizar *v, int step)
 	v->turn += step;
 	if (v->turn < 0)
 		v->turn = 0;
+	if (v->turn > v->graph->path_manager.turn)
+		v->turn = v->graph->path_manager.turn;
 }
 
 int		ft_key_pressed(int key, t_visualizar *v)
