@@ -1,0 +1,48 @@
+#include "libft.h"
+#include "parse.h"
+#include "../headers/ft_queue.h"
+#include "../headers/solve.h"
+#include "../headers/visualizar.h"
+
+void	draw_ants(t_visualizar *v, t_ant *ant, int pos_index)
+{
+	int		node_id = ant->path->root[pos_index];
+
+	int		x = v->s->rooms[node_id].x;
+	int		y = v->s->rooms[node_id].y;
+
+	mlx_string_put(v->mlx_ptr, v->win_ptr,
+			x * v->display_ratio + v->world_x,
+			y * v->display_ratio + v->world_y,
+			RED,
+			"ant");
+	printf("x %d y %d\n", x, y);
+}
+
+void	vis_put_ants(t_visualizar *v)
+{
+	t_ant_manager	*m;
+	t_ant			*ant;
+	int				i = 0;
+	int				pos_index = 0;
+
+	m = &v->s->ant_manager;
+	while (i < v->s->ant_size)
+	{
+		ant = &m->ants[i];
+		pos_index = v->turn - ant->start_turn;
+		//min
+		if (pos_index < 0)
+			pos_index = 0;
+		//max
+		if (ant->path->root_size < pos_index + 1)
+			pos_index = ant->path->root_size - 1;
+
+		draw_ants(v, ant, pos_index);
+
+		printf("id: %d pos: %d limit %d ", ant->id, pos_index, ant->path->root_size);
+		printf("room_id: %d room: %s\n", ant->path->root[pos_index], v->s->rooms[ant->path->root[pos_index]].name_ptr);
+		i++;
+	}
+	(void)v;
+}
