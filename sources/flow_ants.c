@@ -3,6 +3,7 @@
 #include "../headers/ft_queue.h"
 #include "../headers/solve.h"
 #include "../headers/visualizar.h"
+#include <unistd.h>
 
 void	flow_ant_init(t_solve *s, t_path_manager *m)
 {
@@ -54,16 +55,16 @@ void	start_ants(t_solve *s, t_queue *q)
 
 void	put_ants(t_ant *ant, t_solve *s)
 {
-	if (ft_putchar_fd('L', STDOUT_FILENO) != WRITE_SUCCESS)
+	if (ft_putchar_fd('L', STDOUT_FILENO) != SUCCESS)
 		error_exit(WRITE_ERR);
-	if (ft_putnbr_fd(ant->id, STDOUT_FILENO) != WRITE_SUCCESS)
+	if (ft_putnbr_fd(ant->id, STDOUT_FILENO) != SUCCESS)
 		error_exit(WRITE_ERR);
-	if (ft_putchar_fd('-', STDOUT_FILENO) != WRITE_SUCCESS)
+	if (ft_putchar_fd('-', STDOUT_FILENO) != SUCCESS)
 		error_exit(WRITE_ERR);
 	if (ft_putstr_fd(s->rooms[ant->path->root[ant->path_position]].name_ptr,
-				STDOUT_FILENO) != WRITE_SUCCESS)
+				STDOUT_FILENO) != SUCCESS)
 		error_exit(WRITE_ERR);
-	if (ft_putchar_fd(' ', STDOUT_FILENO) != WRITE_SUCCESS)
+	if (ft_putchar_fd(' ', STDOUT_FILENO) != SUCCESS)
 		error_exit(WRITE_ERR);
 }
 
@@ -81,12 +82,12 @@ void	pop_ants(t_solve *s, t_ek_graph *graph, t_queue *current_q, t_queue *next_q
 			queue_push(next_q, ant);
 		if (queue_size(current_q) != 0)
 		{
-			if (ft_putchar_fd(' ', STDOUT_FILENO) != WRITE_SUCCESS)
+			if (ft_putchar_fd(' ', STDOUT_FILENO) != SUCCESS)
 				error_exit(WRITE_ERR);
 		}
 		else
 		{
-			if (ft_putchar_fd('\n', STDOUT_FILENO) != WRITE_SUCCESS)
+			if (ft_putchar_fd('\n', STDOUT_FILENO) != SUCCESS)
 				error_exit(WRITE_ERR);
 			break ;
 		}
@@ -129,7 +130,7 @@ void	put_map(t_map *map)
 	while (queue_size(&map->line_queue) != 0)
 	{
 		line = (char*)queue_front(&map->line_queue);
-		if (ft_putendl_fd(line, STDOUT_FILENO) != WRITE_SUCCESS)
+		if (ft_putendl_fd(line, STDOUT_FILENO) != SUCCESS)
 			error_exit(WRITE_ERR);
 		free(line);
 		queue_pop(&map->line_queue);
