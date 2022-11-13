@@ -11,6 +11,7 @@ void	flow_ant_init(t_solve *s, t_path_manager *m)
 	t_list	*node;
 
 	s->ant_manager.ants = malloc(sizeof(t_ant) * s->ant_size);
+	s->ant_manager.turn = 0;
 	if (s->ant_manager.ants == NULL)
 		error_exit(MALLOC_ERR);
 	i = 0;
@@ -45,6 +46,7 @@ void	start_ants(t_solve *s, t_queue *q)
 		if (path->use_num && m->ants_count < s->ant_size)
 		{
 			m->ants[m->ants_count].path = path;//regist ants => queue
+			m->ants[m->ants_count].start_turn = m->turn;
 			queue_push(q, &(m->ants[m->ants_count]));
 			m->ants_count++;
 			path->use_num--;
@@ -116,6 +118,7 @@ void	flow_ants_execute(t_solve *s, t_ek_graph *graph)
 		next_q = current_q;
 		current_q = tmp_q;
 		pop_ants(s, graph, current_q, next_q);
+		s->ant_manager.turn++;
 		start_ants(s, next_q);
 	}
 	queue_destructor(current_q);
