@@ -119,7 +119,7 @@ void	lem_in_visualizar(t_map *map, t_solve *s, t_ek_graph *graph);
 //draw sharp
 void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color);
 void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v, int color);
-void drawLineTwoPixels2(int xs, int ys, int xe, int ye, t_visualizar *v, int color);
+void drawLineTwoPixels2(int xs, int ys, int xe, int ye, t_visualizar *v, int color, int ox, int oy);
 
 //info
 void	set_coordinate(t_visualizar *v, int x, int y);

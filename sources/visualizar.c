@@ -58,7 +58,7 @@ void	put_line_variable_width(int x1, int y1, int x2, int y2,
 		x = 0;
 		while (x < width)
 		{
-			drawLineTwoPixels2(x1 + x, y1 + y, x2 + x, y2 + y, v, color);
+			drawLineTwoPixels2(x1 + x, y1 + y, x2 + x, y2 + y, v, color, x1, y1);
 			x++;
 		}
 		y++;
