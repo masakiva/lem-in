@@ -33,8 +33,10 @@
 # define KEY_S		1
 # define KEY_A		0
 # define KEY_D		2
+
 # define KEY_N		45
 # define KEY_B		11
+# define KEY_R		15
 
 # define BLACK		0x000000
 # define LIME		0x00FF00
@@ -57,8 +59,9 @@
 # define LIME3		0x99ff99
 # define LIME4		0x6bb36b
 
-# define VISUAL_PRINTF	1
+# define VISUAL_PRINTF	0
 # define STR_BUFFER_SIZE 100
+# define ZOOM_STEP		10
 
 # define CYCLE_PER_SEC 2700000000
 
@@ -116,6 +119,7 @@ void	lem_in_visualizar(t_map *map, t_solve *s, t_ek_graph *graph);
 //draw sharp
 void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color);
 void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v, int color);
+void drawLineTwoPixels2(int xs, int ys, int xe, int ye, t_visualizar *v, int color);
 
 //info
 void	set_coordinate(t_visualizar *v, int x, int y);

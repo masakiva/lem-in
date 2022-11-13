@@ -11,27 +11,16 @@ void	draw_ants(t_visualizar *v, t_ant *ant, int pos_index)
 	int		x = v->s->rooms[node_id].x;
 	int		y = v->s->rooms[node_id].y;
 
-	char	*ant_name;
 
-	ant_name = ft_itoa(ant->id);
-	//ant_name = ft_strjoin("ant_id: ", ant_name);
-
-	mlx_string_put(v->mlx_ptr, v->win_ptr,
-			x * v->display_ratio + v->world_x,
-			y * v->display_ratio + v->world_y,
-			RED,
-			ant_name);
-	drawCircle(10, 
-			x * v->display_ratio,
-			y * v->display_ratio,
-			v, LIME);
+//	drawCircle(10, 
+//			x * v->display_ratio,
+//			y * v->display_ratio,
+//			v, LIME);
 	drawCircle(9, 
 			x * v->display_ratio,
 			y * v->display_ratio,
-			v, THIN_LIME);
-	//printf("x %d y %d\n", x, y);
+			v, RED);
 
-	free(ant_name);
 }
 
 void	draw_ant_name(t_visualizar *v, t_ant *ant, int pos_index)
