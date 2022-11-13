@@ -100,6 +100,7 @@ typedef struct	s_visualizar
 	//game
 	int			turn;
 	int			frame;
+	int			move_frame;
 	
 	//tmp_buffer
 	char		str_buffer[STR_BUFFER_SIZE + 1];
