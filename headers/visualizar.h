@@ -51,12 +51,16 @@
 # define ORANGE		0xFFB852
 # define DARK_BLUE	0x1919A6
 
+# define THIN_LIME	0xe3fed2
+
 # define LIME2		0x1bff80
 # define LIME3		0x99ff99
 # define LIME4		0x6bb36b
 
 # define VISUAL_PRINTF	1
 # define STR_BUFFER_SIZE 100
+
+# define CYCLE_PER_SEC 2700000000
 
 typedef struct	s_v_node
 {
@@ -98,6 +102,9 @@ typedef struct	s_visualizar
 	char		str_buffer[STR_BUFFER_SIZE + 1];
 	char		*str_buffer_head;
 
+	//time
+	unsigned long long	first_time;
+
 	//lem-member
 	t_map		*map;
 	t_solve		*s;
@@ -113,11 +120,16 @@ void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v, int colo
 //info
 void	set_coordinate(t_visualizar *v, int x, int y);
 void	put_buffer(t_visualizar *v, int x, int y);
+void	put_info(t_visualizar *v);
 
 //pixel
 void	fill_black(t_visualizar *v);
 void	protected_pixel_put(t_visualizar *v, int x, int y, int color);
 void	my_mlx_pixel_put(t_visualizar *v, int x, int y, int color);
+
+//time
+unsigned long long get_cycle();
+double get_time(unsigned long long int b);
 
 //ant
 void	vis_put_ants(t_visualizar *v);
