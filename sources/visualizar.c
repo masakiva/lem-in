@@ -278,7 +278,7 @@ int		ft_key_pressed(int key, t_visualizar *v)
 		reset_all(v);
 	if (key == KEY_P)
 		position_reset(v);
-	if (key == KEY_F)
+	if (key == KEY_M)
 		flow_ants_start(v);
 
 	ft_key_reflect(v);
