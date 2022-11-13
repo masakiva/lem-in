@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/13 19:47:55 by mvidal-a         ###   ########.fr        #
+#    Updated: 2022/11/13 19:58:29 by mvidal-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,8 @@ all:				$(NAME)
 
 $(NAME):			$(LIBFT_PATH)$(LIBFT_NAME) $(MLX_PATH)$(MLX_NAME) $(OBJS)
 					$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
+					install_name_tool -change libmlx.dylib `pwd`/minilibx_mms_20200219/libmlx.dylib lem-in
+
 
 $(OBJS_PATH)%.o:	%.c
 					$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
