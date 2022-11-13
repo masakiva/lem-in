@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:46:48 by abenoit           #+#    #+#             */
-/*   Updated: 2021/01/31 13:20:46 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/13 18:25:42 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_printarray_fd(char **array, int fd)
 	if (array != NULL)
 		while (array[i] != NULL)
 		{
-			if (ft_putstr_fd(array[i], fd) != WRITE_SUCCESS)
+			if (ft_putstr_fd(array[i], fd) != SUCCESS)
 				return (FAILURE);
 			if (ft_putchar_fd('\n', fd) != SUCCESS)
 				return (FAILURE);
