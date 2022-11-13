@@ -4,100 +4,32 @@
 #include "../headers/solve.h"
 #include "../headers/visualizar.h"
 
-void	my_mlx_pixel_put(t_visualizar *v, int x, int y, int color)
-{
-	char	*dest;
-
-	dest = v->img_addr + (y * v->img_line_lenght + x * (v->img_bit_per_pixel / 8));
-	*(unsigned int *)dest = color;
-}
-
-void	protected_pixel_put(t_visualizar *v, int x, int y, int color)
-{
-	x += v->world_x;
-	y += v->world_y;
-	if (x < 0 || y < 0 || v->width <= x || v->height <= y)
-		return ;
-	my_mlx_pixel_put(v, x, y, color);
-}
-
-void	fill_black(t_visualizar *v)
-{
-	int		x;
-	int		y;
-
-	y = 0;
-	while (y < v->height)
-	{
-		x = 0;
-		while (x < v->width)
-		{
-			my_mlx_pixel_put(v, x, y, BLACK);
-			x++;
-		}
-		y++;
-	}
-}
-
-void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color)
-{
-	int x, y;
-	int dx, dy;
-
-	for(y = 0 + y1 - radius; y < y1 + radius; y++)
-	{
-		for(x = 0 + x1 - radius; x < x1 + radius; x++)
-		{
-			dx = (int)x - (int)x1;
-			dy = (int)y - (int)y1;
-
-			if((dx * dx) + (dy * dy) <= radius * radius)
-			{
-				protected_pixel_put(v, x, y, color);
-			}
-		}
-	}
-}
-
-void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v)
-{
-	int x, y;
-	int dx, dy;
-	double rad;
-	int length;
-	int l;
-
-	dx = xe - xs;
-	dy = ye - ys;
-
-	length = sqrt(dx * dx + dy * dy);
-
-	rad = atan2(dy, dx);
-
- 	for(l = 0; l < length; l++)
-	{
-    	x = xs + l * cos(rad);
-    	y = ys + l * sin(rad);
-		protected_pixel_put(v, x, y, LIME);
-    }
-}
-
-
-
 void	put_nodes(t_visualizar *v)
 {
 	int		i = 0;
 
 	while (i < v->nodes_size)
 	{
-		//protected_pixel_put(v, v->nodes[i].v_x * v->display_ratio,
-		//			v->nodes[i].v_y * v->display_ratio, LIME);
 		drawCircle(30, v->nodes[i].v_x * v->display_ratio,
 				v->nodes[i].v_y * v->display_ratio, v, LIME);
 		drawCircle(28, v->nodes[i].v_x * v->display_ratio,
 				v->nodes[i].v_y * v->display_ratio, v, BLACK);
 		i++;
 	}
+}
+
+//typedef long long ll;
+
+//const ll CYCLE_PER_SEC = 2700000000;
+
+unsigned long long int get_cycle() {
+  unsigned int low, high;
+  __asm__ volatile ("rdtsc" : "=a" (low), "=d" (high));
+  return ((unsigned long long int) low) | ((unsigned long long int) high << 32);
+}
+
+double get_time(unsigned long long int begin_cycle) {
+  return (double) (get_cycle() - begin_cycle) / CYCLE_PER_SEC;
 }
 
 void	put_nodes_name(t_visualizar *v)
@@ -111,9 +43,25 @@ void	put_nodes_name(t_visualizar *v)
 				v->nodes[i].v_y * v->display_ratio + v->world_y,
 				LIME,
 		       	v->s->rooms[i].name_ptr);
-		//protected_pixel_put(v, v->nodes[i].v_x * v->display_ratio,
-		//			v->nodes[i].v_y * v->display_ratio, LIME);
 		i++;
+	}
+}
+
+void	put_line_variable_width(int x1, int y1, int x2, int y2,
+							t_visualizar *v, int color, int width)
+{
+	int		x = 0;
+	int		y = 0;
+
+	while (y < width)
+	{
+		x = 0;
+		while (x < width)
+		{
+			drawLineTwoPixels(x1 + x, y1 + y, x2 + x, y2 + y, v, color);
+			x++;
+		}
+		y++;
 	}
 }
 
@@ -130,7 +78,10 @@ void	put_node_link2(t_visualizar *v, t_solve_room *node, int id)
 		opponent_id = node->links[i];	
 		x = v->s->rooms[opponent_id].x * v->display_ratio;
 		y = v->s->rooms[opponent_id].y * v->display_ratio;
-		drawLineTwoPixels(x, y, node->x * v->display_ratio, node->y * v->display_ratio, v);
+		//drawLineTwoPixels(x, y, node->x * v->display_ratio, node->y * v->display_ratio, v, LIME);
+		put_line_variable_width(x, y, node->x * v->display_ratio,
+				node->y * v->display_ratio, v, LIME, 1);
+
 		i++;
 	}
 }
@@ -148,15 +99,72 @@ void	put_node_link(t_visualizar *v)
 	}
 }
 
+
+
+void	put_use_link2(t_visualizar *v, t_path *path)
+{
+	int		old;
+	int		id;
+	int		i = 1;
+	int		x;
+	int		y;
+
+	old = path->root[0];
+	while (i < path->root_size)
+	{
+		id = path->root[i];
+		x = v->s->rooms[old].x * v->display_ratio;
+		y = v->s->rooms[old].y * v->display_ratio;
+		put_line_variable_width(x, y,
+				v->s->rooms[id].x * v->display_ratio,
+				v->s->rooms[id].y * v->display_ratio, v, LIME, 5);	
+		old = path->root[i];
+		i++;
+	}
+}
+
+void	put_use_link(t_visualizar *v)
+{
+	t_path_set	*path_set;
+	t_path		*path;
+	int			i = 0;
+
+	path_set = v->graph->path_manager.current_path_set;
+	while (i < path_set->paths_size)
+	{
+		path = path_set->paths[i];
+		put_use_link2(v, path);
+		i++;
+	}
+}
+
 int	ft_key_reflect(t_visualizar *v)
 {
 	mlx_do_sync(v->mlx_ptr);
+
 	fill_black(v);
 	put_node_link(v);
+	put_use_link(v);
 	put_nodes(v);
-	printf("wx: %d wy: %d mx %d my %d dratio %d\n", v->world_x, v->world_y, v->mouse_x, v->mouse_y, v->display_ratio);
+	vis_put_ants(v);
+
+	//printf("wx: %d wy: %d mx %d my %d dratio %d\n", v->world_x, v->world_y, v->mouse_x, v->mouse_y, v->display_ratio);
 	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);
+
+	//string puts
 	put_nodes_name(v);
+	set_coordinate(v, v->mouse_x, v->mouse_y);
+	put_buffer(v, v->mouse_x, v->mouse_y);
+	put_buffer(v, 30, 30);
+
+	//tmp TODO delete 
+	vis_put_ants_name(v);
+	put_info(v);
+
+	if (VISUAL_PRINTF)
+		printf("turn [%d]\n", v->turn);
+	if (VISUAL_PRINTF)
+		printf("time [%f]\n", get_time(v->first_time));
 	return (0);
 }
 
@@ -212,6 +220,15 @@ void	update_world_cordinate(t_visualizar *v, int key)
 	v->world_y += y;
 }
 
+void	update_turn(t_visualizar *v, int step)
+{
+	v->turn += step;
+	if (v->turn < 0)
+		v->turn = 0;
+	if (v->turn > v->graph->path_manager.turn)
+		v->turn = v->graph->path_manager.turn;
+}
+
 int		ft_key_pressed(int key, t_visualizar *v)
 {
 	if (VISUAL_PRINTF)
@@ -224,6 +241,10 @@ int		ft_key_pressed(int key, t_visualizar *v)
 		update_display_ratio(-1, v);
 	if (key == KEY_W || key == KEY_A || key == KEY_D || key == KEY_S)
 		update_world_cordinate(v, key);
+	if (key == KEY_N)
+		update_turn(v, 1);
+	if (key == KEY_B)
+		update_turn(v, -1);
 
 
 	ft_key_reflect(v);
@@ -281,6 +302,7 @@ void	v_loop(t_visualizar *v)
 	mlx_hook(v->win_ptr, 4, 1L << 0, ft_mouse_pressed, v);
 	mlx_hook(v->win_ptr, 5, 1L << 0, ft_mouse_released, v);
 	mlx_hook(v->win_ptr, 6, 1L << 0, ft_mouse_moved, v);
+	mlx_loop_hook(v->mlx_ptr, ft_key_reflect, v);
 	mlx_loop(v->mlx_ptr);
 }
 
@@ -305,9 +327,12 @@ void	visualize_lem_in_init(t_visualizar *v, t_map *map, t_solve *s, t_ek_graph *
 	v->display_ratio = 100;
 	v->world_x = 200;
 	v->world_y = 200;
-	v->mouse_x = 0;
-	v->mouse_y = 0;
+	v->mouse_x = WINDOW_WIDHT / 2;
+	v->mouse_y = WINDOW_HEIGHT / 2;
 	v->mouse_button1_pressed = 0;
+
+	v->first_time = get_cycle();
+	v->turn = 0;
 }
 
 void	visualize_mlx_init(t_visualizar *v)
