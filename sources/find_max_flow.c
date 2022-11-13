@@ -116,10 +116,11 @@ void	show_buffer(t_ek_graph *graph, t_solve *s)
 	int		*head = graph->root_buffer_begin;
 	int		*end = graph->root_buffer_end;
 
+(void)s;
 	return ;
 	while (head != end)
 	{
-		printf("buffer %s\n", s->rooms[*head].name_ptr);
+		//printf("buffer %s\n", s->rooms[*head].name_ptr);
 		head++;
 	}
 }
