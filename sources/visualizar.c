@@ -142,6 +142,10 @@ void	put_use_link(t_visualizar *v)
 int	ft_key_reflect(t_visualizar *v)
 {
 	mlx_do_sync(v->mlx_ptr);
+	
+	//frame
+	v->move_frame = (int)(get_time(v->first_time) * 1000) % 1000;
+	v->turn = (int)get_time(v->first_time) % v->graph->path_manager.turn;
 
 	fill_black(v);
 	put_node_link(v);
@@ -345,6 +349,7 @@ void	visualize_lem_in_init(t_visualizar *v, t_map *map, t_solve *s, t_ek_graph *
 	v->mouse_button1_pressed = 0;
 
 	v->first_time = get_cycle();
+	v->move_frame = 0;
 	v->turn = 0;
 }
 
