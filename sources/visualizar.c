@@ -18,6 +18,20 @@ void	put_nodes(t_visualizar *v)
 	}
 }
 
+//typedef long long ll;
+
+//const ll CYCLE_PER_SEC = 2700000000;
+
+unsigned long long int get_cycle() {
+  unsigned int low, high;
+  __asm__ volatile ("rdtsc" : "=a" (low), "=d" (high));
+  return ((unsigned long long int) low) | ((unsigned long long int) high << 32);
+}
+
+double get_time(unsigned long long int begin_cycle) {
+  return (double) (get_cycle() - begin_cycle) / CYCLE_PER_SEC;
+}
+
 void	put_nodes_name(t_visualizar *v)
 {
 	int		i = 0;
@@ -134,7 +148,7 @@ int	ft_key_reflect(t_visualizar *v)
 	put_nodes(v);
 	vis_put_ants(v);
 
-	printf("wx: %d wy: %d mx %d my %d dratio %d\n", v->world_x, v->world_y, v->mouse_x, v->mouse_y, v->display_ratio);
+	//printf("wx: %d wy: %d mx %d my %d dratio %d\n", v->world_x, v->world_y, v->mouse_x, v->mouse_y, v->display_ratio);
 	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);
 
 	//string puts
@@ -144,11 +158,13 @@ int	ft_key_reflect(t_visualizar *v)
 	put_buffer(v, 30, 30);
 
 	//tmp TODO delete 
-	vis_put_ants(v);
+	//vis_put_ants(v);
+	put_info(v);
 
 	if (VISUAL_PRINTF)
 		printf("turn [%d]\n", v->turn);
-
+	if (VISUAL_PRINTF)
+		printf("time [%f]\n", get_time(v->first_time));
 	return (0);
 }
 
@@ -308,10 +324,11 @@ void	visualize_lem_in_init(t_visualizar *v, t_map *map, t_solve *s, t_ek_graph *
 	v->display_ratio = 100;
 	v->world_x = 200;
 	v->world_y = 200;
-	v->mouse_x = 0;
-	v->mouse_y = 0;
+	v->mouse_x = WINDOW_WIDHT / 2;
+	v->mouse_y = WINDOW_HEIGHT / 2;
 	v->mouse_button1_pressed = 0;
 
+	v->first_time = get_cycle();
 	v->turn = 0;
 }
 
