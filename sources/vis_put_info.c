@@ -169,8 +169,10 @@ void	put_info(t_visualizar *v)
 	put_turn(v);
 	put_string(v, "N: next step", 120);//N: next
 	put_string(v, "B: previous step", 150);//B: prev
-	put_string(v, "R: reset", 180);//B: prev
-	put_s_e_ants_num(v, 210);
+	put_string(v, "R: reset flow", 180);//B: prev
+	put_string(v, "P: reset coordinate", 210);//B: prev
+	put_string(v, "F: movement of ants", 240);//B: prev
+	put_s_e_ants_num(v, 270);
 }
 
 void	put_buffer(t_visualizar *v, int x, int y)
