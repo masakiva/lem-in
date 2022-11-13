@@ -10,12 +10,18 @@ void	draw_ants(t_visualizar *v, t_ant *ant, int pos_index, int is_end)
 	int		x = v->s->rooms[node_id].x;
 	int		y = v->s->rooms[node_id].y;
 
-	if (is_end)
+	if (is_end || v->is_flow == 0)
 	{
-		drawCircle(9, 
+		drawCircle(8, 
 			x * v->display_ratio,
 			y * v->display_ratio,
-			v, RED);
+			v, LIME);
+		drawCircle(7, 
+			x * v->display_ratio,
+			y * v->display_ratio,
+			v, WHITE);
+		ant->visualize_x = x * v->display_ratio;
+		ant->visualize_y = y * v->display_ratio;
 		return ;
 	}
 	int		next_id = ant->path->root[pos_index + 1];
@@ -30,40 +36,35 @@ void	draw_ants(t_visualizar *v, t_ant *ant, int pos_index, int is_end)
 
 	rad = atan2(dy, dx);
 
-	x = x + length * v->move_frame / 1000 * cos(rad);
-	y = y + length * v->move_frame / 1000 * sin(rad);
+	x = x + length * v->move_frame / FRAME_RATIO * cos(rad);
+	y = y + length * v->move_frame / FRAME_RATIO * sin(rad);
 	
-	drawCircle(9, x, y, 
-			v, RED);
+	drawCircle(8, x, y, 
+			v, LIME);
+	drawCircle(7, x, y, 
+			v, WHITE);
 
+	ant->visualize_x = x;
+	ant->visualize_y = y;
 
-
-//	drawCircle(10, 
-//			x * v->display_ratio,
-//			y * v->display_ratio,
-//			v, LIME);
 }
 
 void	draw_ant_name(t_visualizar *v, t_ant *ant, int pos_index)
 {
-	int		node_id = ant->path->root[pos_index];
-
-	int		x = v->s->rooms[node_id].x;
-	int		y = v->s->rooms[node_id].y;
-
 	char	*ant_name;
 	char	*tmp;
 
 	tmp = ft_itoa(ant->id);
-	ant_name = ft_strjoin(" ant_id: ", tmp);
+	ant_name = ft_strjoin(" id: ", tmp);
 
 	mlx_string_put(v->mlx_ptr, v->win_ptr,
-			x * v->display_ratio + v->world_x + 10,
-			y * v->display_ratio + v->world_y,
-			RED,
+			ant->visualize_x + v->world_x + 10,
+			ant->visualize_y + v->world_y,
+			WHITE,
 			ant_name);
 	free(ant_name);
 	free(tmp);
+	pos_index = 0;
 }
 
 

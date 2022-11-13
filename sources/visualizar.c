@@ -144,8 +144,9 @@ int	ft_key_reflect(t_visualizar *v)
 	mlx_do_sync(v->mlx_ptr);
 	
 	//frame
-	v->move_frame = (int)(get_time(v->first_time) * 1000) % 1000;
-	v->turn = (int)get_time(v->first_time) % v->graph->path_manager.turn;
+	v->move_frame = (int)(get_time(v->first_time) / FLOW_SPEED * FRAME_RATIO) % FRAME_RATIO;
+	if (v->is_flow == 1)
+		v->turn = (int)get_time(v->first_time) / FLOW_SPEED % (v->graph->path_manager.turn + 2);
 
 	fill_black(v);
 	put_node_link(v);
@@ -237,12 +238,24 @@ void	update_turn(t_visualizar *v, int step)
 
 void	reset_all(t_visualizar *v)
 {
+	v->first_time = get_cycle();
+	v->turn = 0;
+}
+
+void	position_reset(t_visualizar *v)
+{
 	v->display_ratio = 100;
 	v->world_x = 200;
 	v->world_y = 200;
+}
 
-	//v->first_time = get_cycle();
-	v->turn = 0;
+void	flow_ants_start(t_visualizar *v)
+{
+	reset_all(v);
+	if (v->is_flow == 1)
+		v->is_flow = 0;
+	else
+		v->is_flow = 1;
 }
 
 int		ft_key_pressed(int key, t_visualizar *v)
@@ -263,6 +276,10 @@ int		ft_key_pressed(int key, t_visualizar *v)
 		update_turn(v, -1);
 	if (key == KEY_R)
 		reset_all(v);
+	if (key == KEY_P)
+		position_reset(v);
+	if (key == KEY_F)
+		flow_ants_start(v);
 
 	ft_key_reflect(v);
 
@@ -351,6 +368,7 @@ void	visualize_lem_in_init(t_visualizar *v, t_map *map, t_solve *s, t_ek_graph *
 	v->first_time = get_cycle();
 	v->move_frame = 0;
 	v->turn = 0;
+	v->is_flow = 0;
 }
 
 void	visualize_mlx_init(t_visualizar *v)

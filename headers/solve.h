@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/13 21:16:11 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/14 00:33:32 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct	s_ant
 	int			start_turn;
 	int			end_turn;
 	t_path		*path;
+	int			visualize_x;
+	int			visualize_y;
 }				t_ant;
 
 typedef struct	s_ant_manager

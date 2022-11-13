@@ -37,6 +37,8 @@
 # define KEY_N		45
 # define KEY_B		11
 # define KEY_R		15
+# define KEY_P		35
+# define KEY_F		3
 
 # define BLACK		0x000000
 # define LIME		0x00FF00
@@ -62,6 +64,9 @@
 # define VISUAL_PRINTF	0
 # define STR_BUFFER_SIZE 100
 # define ZOOM_STEP		10
+
+# define FLOW_SPEED		1
+# define FRAME_RATIO	5000
 
 # define CYCLE_PER_SEC 2700000000
 
@@ -103,6 +108,7 @@ typedef struct	s_visualizar
 	int			move_frame;
 	int			end_ants;
 	int			start_ants;
+	int			is_flow;
 	
 	//tmp_buffer
 	char		str_buffer[STR_BUFFER_SIZE + 1];
