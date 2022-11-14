@@ -227,10 +227,13 @@ void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
 {
 	int		ret;
 	int		ant_num;
+	int		limit = s->ant_size;
 
 	max_flow_init(graph);
 	ant_num = 1;
-	while (ant_num <= s->ant_size)
+	if (map->visual == 1)
+		limit = 100000;
+	while (ant_num <= limit)
 	{
 		ant_num++;
 		used_set_zero(graph, graph->start_output_id);

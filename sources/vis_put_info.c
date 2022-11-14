@@ -144,6 +144,50 @@ void	put_s_e_ants_num(t_visualizar *v, int pos)
 	put_buffer(v, 30, pos);
 }
 
+void	put_ants_num(t_visualizar *v, int pos)
+{
+	v->str_buffer_head = v->str_buffer + STR_BUFFER_SIZE;
+	*v->str_buffer_head = '\0';
+
+	int time = v->s->ant_size;
+	int sign = 1;
+
+	if (time < 0)
+		sign = -1;
+	while (*(v->str_buffer_head) == '\0' || time != 0)
+	{
+		*(--v->str_buffer_head) = time % 10 * sign + '0';
+		time = time / 10;
+	}
+	if (sign == -1)
+		*(--v->str_buffer_head) = '-';
+	set_string_to_buffer(&v->str_buffer_head, " :stna");
+
+	put_buffer(v, 30, pos);
+}
+
+void	put_need_turn(t_visualizar *v, int pos)
+{
+	v->str_buffer_head = v->str_buffer + STR_BUFFER_SIZE;
+	*v->str_buffer_head = '\0';
+
+	int time = v->s->ant_manager.turn;
+	int sign = 1;
+
+	if (time < 0)
+		sign = -1;
+	while (*(v->str_buffer_head) == '\0' || time != 0)
+	{
+		*(--v->str_buffer_head) = time % 10 * sign + '0';
+		time = time / 10;
+	}
+	if (sign == -1)
+		*(--v->str_buffer_head) = '-';
+	set_string_to_buffer(&v->str_buffer_head, " :pets deriuqer");
+
+	put_buffer(v, 30, pos);
+}
+
 void	put_string(t_visualizar *v, char *str, int pos)
 {
 	char	buffer[120];
@@ -167,13 +211,17 @@ void	put_info(t_visualizar *v)
 {
 	//put_time(v);
 	put_turn(v);
-	put_s_e_ants_num(v, 90);
+	put_need_turn(v, 90);
+	put_ants_num(v, 120);
+	put_s_e_ants_num(v, 150);
 	
-	put_string(v, "N: next step", 150);//N: next
-	put_string(v, "B: previous step", 180);//B: prev
-	put_string(v, "R: reset step", 210);//B: prev
-	put_string(v, "P: reset coordinate", 240);//B: prev
-	put_string(v, "M: movement of ants on/off", 270);//B: prev
+	put_string(v, "N: next step", 210);//N: next
+	put_string(v, "B: previous step", 240);//B: prev
+	put_string(v, "R: reset step", 270);//B: prev
+	put_string(v, "P: reset coordinate", 300);//B: prev
+	put_string(v, "M: movement of ants on/off", 330);//B: prev
+	put_string(v, "I: inclese the num of ants", 360);//B: prev
+	put_string(v, "U: declese the num of ants", 390);//B: prev
 }
 
 void	put_buffer(t_visualizar *v, int x, int y)

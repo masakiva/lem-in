@@ -141,7 +141,6 @@ void	select_path_set(t_map *map, t_solve *s, t_ek_graph *graph)
 {
 	//show_all_path(map, s, graph);
 	check_all_roots(map, s, graph);
-
 	//printf("\n\n==> best path set: ant size: [%d] turn: [%d]\n",
 	//		s->ant_size, graph->path_manager.turn);
 	//show_path_set(graph->path_manager.current_path_set, map, s, graph);

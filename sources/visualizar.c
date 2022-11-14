@@ -260,7 +260,7 @@ void	flow_ants_start(t_visualizar *v)
 
 int		ft_key_pressed(int key, t_visualizar *v)
 {
-	//if (VISUAL_PRINTF)
+	if (VISUAL_PRINTF)
 		printf("pressed [%d]\n", key);
 	if (key == KEY_ESC)
 		visualizar_exit(v);
@@ -280,6 +280,10 @@ int		ft_key_pressed(int key, t_visualizar *v)
 		position_reset(v);
 	if (key == KEY_M)
 		flow_ants_start(v);
+	if (key == KEY_I)
+		ant_num_change(v, 1);
+	if (key == KEY_U)
+		ant_num_change(v, -1);
 
 	ft_key_reflect(v);
 
@@ -387,7 +391,7 @@ void	visualize_mlx_init(t_visualizar *v)
 
 void	lem_in_visualizar(t_map *map, t_solve *s, t_ek_graph *graph)
 {
-	printf("--- visualize ---\n");
+	//printf("--- visualize ---\n");
 
 	t_visualizar	tmp_v;
 	t_visualizar	*v = &tmp_v;
