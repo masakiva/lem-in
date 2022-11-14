@@ -48,7 +48,24 @@ void	reset_simulation(t_visualizar *v)
 		free(del);
 	}
 	v->s->ant_manager.path_list = NULL;
+	//path set init
 
+	t_path_set	*path_set;
+	t_path		*path;
+	node = v->graph->path_manager.path_set_list;
+	while (node)
+	{
+		path_set = (t_path_set *)node->content;
+		int i = 0;
+
+		while (i < path_set->paths_size)
+		{
+			path = path_set->paths[i];
+			path->use_num = 0;
+			i++;
+		}
+		node = node->next;
+	}
 	//reset
 
 
