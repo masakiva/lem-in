@@ -14,6 +14,8 @@ void	visualize_lem_in_init2(t_visualizar *v, t_map *map, t_solve *s, t_ek_graph 
 	v->graph = graph;
 
 	v->nodes = malloc(sizeof(t_v_node) * s->rooms_size);
+	if (v->nodes == NULL)
+		error_exit(MALLOC_ERR);
 	v->nodes_size = s->rooms_size;
 	i = 0;
 	while (i < s->rooms_size)

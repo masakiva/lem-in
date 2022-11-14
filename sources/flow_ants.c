@@ -145,7 +145,6 @@ void	flow_ants_from_visualizar(t_map *map, t_solve *s, t_ek_graph *graph)
 	put_map(map);
 	flow_ant_init(s, &(graph->path_manager));
 	flow_ants_execute(s, graph);
-	(void)map;
 }
 
 
@@ -154,8 +153,8 @@ void	flow_ants(t_map *map, t_solve *s, t_ek_graph *graph)
 	put_map(map);
 	flow_ant_init(s, &(graph->path_manager));
 	flow_ants_execute(s, graph);
-	(void)map;
 
 	if (map->visual == 1)
 		lem_in_visualizar(map, s, graph);
+	exit(0);
 }
