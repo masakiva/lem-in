@@ -40,6 +40,7 @@
 # define KEY_P		35
 # define KEY_F		3
 # define KEY_M		46
+# define KEY_I		34
 
 # define BLACK		0x000000
 # define LIME		0x00FF00
@@ -148,4 +149,7 @@ double get_time(unsigned long long int b);
 //ant
 void	vis_put_ants(t_visualizar *v);
 void	vis_put_ants_name(t_visualizar *v);
+
+//re
+void	ant_num_change(t_visualizar *v, int num);
 #endif

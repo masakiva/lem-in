@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/14 00:33:32 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/14 15:10:48 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,4 +135,5 @@ void	select_path_set(t_map *map, t_solve *s, t_ek_graph *g);
 
 //flow ant
 void	flow_ants(t_map *map, t_solve *s, t_ek_graph *g);
+void	flow_ants_from_visualizar(t_map *map, t_solve *s, t_ek_graph *g);
 #endif
