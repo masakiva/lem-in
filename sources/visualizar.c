@@ -58,7 +58,7 @@ void	put_line_variable_width(int x1, int y1, int x2, int y2,
 		x = 0;
 		while (x < width)
 		{
-			drawLineTwoPixels(x1 + x, y1 + y, x2 + x, y2 + y, v, color);
+			drawLineTwoPixels2(x1 + x, y1 + y, x2 + x, y2 + y, v, color, x1, y1);
 			x++;
 		}
 		y++;
@@ -78,9 +78,9 @@ void	put_node_link2(t_visualizar *v, t_solve_room *node, int id)
 		opponent_id = node->links[i];	
 		x = v->s->rooms[opponent_id].x * v->display_ratio;
 		y = v->s->rooms[opponent_id].y * v->display_ratio;
-		//drawLineTwoPixels(x, y, node->x * v->display_ratio, node->y * v->display_ratio, v, LIME);
-		put_line_variable_width(x, y, node->x * v->display_ratio,
-				node->y * v->display_ratio, v, LIME, 1);
+		drawLineTwoPixels(x, y, node->x * v->display_ratio, node->y * v->display_ratio, v, LIME);
+		//put_line_variable_width(x, y, node->x * v->display_ratio,
+		//		node->y * v->display_ratio, v, LIME, 1);
 
 		i++;
 	}
@@ -115,9 +115,10 @@ void	put_use_link2(t_visualizar *v, t_path *path)
 		id = path->root[i];
 		x = v->s->rooms[old].x * v->display_ratio;
 		y = v->s->rooms[old].y * v->display_ratio;
-		put_line_variable_width(x, y,
+		put_line_variable_width(
 				v->s->rooms[id].x * v->display_ratio,
-				v->s->rooms[id].y * v->display_ratio, v, LIME, 5);	
+				v->s->rooms[id].y * v->display_ratio,
+				x, y, v, LIME, 5);	
 		old = path->root[i];
 		i++;
 	}
@@ -141,6 +142,11 @@ void	put_use_link(t_visualizar *v)
 int	ft_key_reflect(t_visualizar *v)
 {
 	mlx_do_sync(v->mlx_ptr);
+	
+	//frame
+	v->move_frame = (int)(get_time(v->first_time) / FLOW_SPEED * FRAME_RATIO) % FRAME_RATIO;
+	if (v->is_flow == 1)
+		v->turn = (int)get_time(v->first_time) / FLOW_SPEED % (v->graph->path_manager.turn + 2);
 
 	fill_black(v);
 	put_node_link(v);
@@ -152,14 +158,15 @@ int	ft_key_reflect(t_visualizar *v)
 	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);
 
 	//string puts
-	put_nodes_name(v);
+	//put_nodes_name(v);
+	put_info(v);
 	set_coordinate(v, v->mouse_x, v->mouse_y);
 	put_buffer(v, v->mouse_x, v->mouse_y);
 	put_buffer(v, 30, 30);
 
 	//tmp TODO delete 
 	vis_put_ants_name(v);
-	put_info(v);
+	put_nodes_name(v);
 
 	if (VISUAL_PRINTF)
 		printf("turn [%d]\n", v->turn);
@@ -229,9 +236,31 @@ void	update_turn(t_visualizar *v, int step)
 		v->turn = v->graph->path_manager.turn;
 }
 
+void	reset_all(t_visualizar *v)
+{
+	v->first_time = get_cycle();
+	v->turn = 0;
+}
+
+void	position_reset(t_visualizar *v)
+{
+	v->display_ratio = 100;
+	v->world_x = 200;
+	v->world_y = 200;
+}
+
+void	flow_ants_start(t_visualizar *v)
+{
+	reset_all(v);
+	if (v->is_flow == 1)
+		v->is_flow = 0;
+	else
+		v->is_flow = 1;
+}
+
 int		ft_key_pressed(int key, t_visualizar *v)
 {
-	if (VISUAL_PRINTF)
+	//if (VISUAL_PRINTF)
 		printf("pressed [%d]\n", key);
 	if (key == KEY_ESC)
 		visualizar_exit(v);
@@ -245,7 +274,12 @@ int		ft_key_pressed(int key, t_visualizar *v)
 		update_turn(v, 1);
 	if (key == KEY_B)
 		update_turn(v, -1);
-
+	if (key == KEY_R)
+		reset_all(v);
+	if (key == KEY_P)
+		position_reset(v);
+	if (key == KEY_M)
+		flow_ants_start(v);
 
 	ft_key_reflect(v);
 
@@ -257,9 +291,9 @@ int		ft_mouse_pressed(int button, int x,int y, t_visualizar *v)
 	if (VISUAL_PRINTF)
 		printf("button press: %d x: %d y: %d\n", button, x, y);
 	if (button == 4) //scroll up
-		update_display_ratio(4, v);
+		update_display_ratio(ZOOM_STEP, v);
 	if (button == 5) //scroll down
-		update_display_ratio(-4, v);
+		update_display_ratio(-ZOOM_STEP, v);
 	if (button == 1)
 		v->mouse_button1_pressed = 1;
 	ft_key_reflect(v);
@@ -332,7 +366,9 @@ void	visualize_lem_in_init(t_visualizar *v, t_map *map, t_solve *s, t_ek_graph *
 	v->mouse_button1_pressed = 0;
 
 	v->first_time = get_cycle();
+	v->move_frame = 0;
 	v->turn = 0;
+	v->is_flow = 0;
 }
 
 void	visualize_mlx_init(t_visualizar *v)
