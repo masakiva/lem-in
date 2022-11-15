@@ -216,12 +216,13 @@ void	put_info(t_visualizar *v)
 	put_s_e_ants_num(v, 150);
 	
 	put_string(v, "N: next step", 210);//N: next
-	put_string(v, "B: previous step", 240);//B: prev
-	put_string(v, "R: reset step", 270);//B: prev
-	put_string(v, "P: reset coordinate", 300);//B: prev
-	put_string(v, "M: movement of ants on/off", 330);//B: prev
-	put_string(v, "I: inclese the num of ants", 360);//B: prev
-	put_string(v, "U: declese the num of ants", 390);//B: prev
+	put_string(v, "P: previous step", 240);//B: prev
+	put_string(v, "B: back to first step", 270);//B: prev
+	put_string(v, "0: reset zoom", 300);//B: prev
+	put_string(v, "F: ants flow on/off", 330);//B: prev
+	put_string(v, "I: increase the num of ants", 360);//B: prev
+	put_string(v, "U: decrease the num of ants", 390);//B: prev
+	put_string(v, "R: reset the num of ants", 420);
 }
 
 void	put_buffer(t_visualizar *v, int x, int y)
