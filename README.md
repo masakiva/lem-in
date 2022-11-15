@@ -1,5 +1,7 @@
 # lem-in
 
+***runs on macOS only***
+
 ## compile
 `make`
 
