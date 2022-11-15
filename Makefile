@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/14 12:54:16 by tkodai           ###   ########.fr        #
+#    Updated: 2022/11/15 15:14:40 by tkodai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,6 @@ HDRS		+= error.h
 HDRS		+= parse.h
 HDRS		+= solve.h
 HDRS		+= ft_queue.h
-HDRS		+= ft_vector_int.h
 HDRS		+= visualizar.h
 
 vpath %.h $(HDRS_PATH)

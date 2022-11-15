@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visualizar.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/15 15:11:13 by tkodai            #+#    #+#             */
+/*   Updated: 2022/11/15 15:20:50 by mvidal-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "parse.h"
 #include "../headers/ft_queue.h"
@@ -164,17 +176,17 @@ int	ft_key_reflect(t_visualizar *v)
 	vis_put_ants_name(v);
 	put_nodes_name(v);
 
-	if (VISUAL_PRINTF)
-		printf("turn [%d]\n", v->turn);
-	if (VISUAL_PRINTF)
-		printf("time [%f]\n", get_time(v->first_time));
+//	if (VISUAL_PRINTF)
+//		printf("turn [%d]\n", v->turn);
+//	if (VISUAL_PRINTF)
+//		printf("time [%f]\n", get_time(v->first_time));
 	return (0);
 }
 
 int		visualizar_exit(t_visualizar *v)
 {
-	if (VISUAL_PRINTF)
-		printf("pressed [x]\n");
+	//if (VISUAL_PRINTF)
+	//	printf("pressed [x]\n");
 	exit(0);
 	(void)v;
 }
@@ -256,8 +268,8 @@ void	flow_ants_start(t_visualizar *v)
 
 int		ft_key_pressed(int key, t_visualizar *v)
 {
-	if (VISUAL_PRINTF)
-		printf("pressed [%d]\n", key);
+	//if (VISUAL_PRINTF)
+	//	printf("pressed [%d]\n", key);
 	if (key == KEY_ESC)
 		visualizar_exit(v);
 	if (key == KEY_UP)
@@ -290,8 +302,10 @@ int		ft_key_pressed(int key, t_visualizar *v)
 
 int		ft_mouse_pressed(int button, int x,int y, t_visualizar *v)
 {
-	if (VISUAL_PRINTF)
-		printf("button press: %d x: %d y: %d\n", button, x, y);
+	//if (VISUAL_PRINTF)
+	//	printf("button press: %d x: %d y: %d\n", button, x, y);
+	(void)x;
+	(void)y;
 	if (button == 4) //scroll up
 		update_display_ratio(ZOOM_STEP, v);
 	if (button == 5) //scroll down
@@ -304,8 +318,10 @@ int		ft_mouse_pressed(int button, int x,int y, t_visualizar *v)
 
 int		ft_mouse_released(int button, int x,int y, t_visualizar *v)
 {
-	if (VISUAL_PRINTF)
-		printf("button released: %d x: %d y: %d\n", button, x, y);
+	//if (VISUAL_PRINTF)
+	//	printf("button released: %d x: %d y: %d\n", button, x, y);
+	(void)x;
+	(void)y;
 	if (button == 1)
 		v->mouse_button1_pressed = 0;
 	ft_key_reflect(v);
@@ -315,8 +331,8 @@ int		ft_mouse_released(int button, int x,int y, t_visualizar *v)
 
 int		ft_mouse_moved(int x,int y, t_visualizar *v)
 {
-	if (VISUAL_PRINTF)
-		printf("move x: %d y: %d\n", x, y);
+	//if (VISUAL_PRINTF)
+	//	printf("move x: %d y: %d\n", x, y);
 	
 	if (v->mouse_button1_pressed == 1)
 	{
