@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:11:13 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/15 15:19:18 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:20:50 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,8 @@ int		ft_mouse_pressed(int button, int x,int y, t_visualizar *v)
 {
 	//if (VISUAL_PRINTF)
 	//	printf("button press: %d x: %d y: %d\n", button, x, y);
+	(void)x;
+	(void)y;
 	if (button == 4) //scroll up
 		update_display_ratio(ZOOM_STEP, v);
 	if (button == 5) //scroll down
@@ -318,6 +320,8 @@ int		ft_mouse_released(int button, int x,int y, t_visualizar *v)
 {
 	//if (VISUAL_PRINTF)
 	//	printf("button released: %d x: %d y: %d\n", button, x, y);
+	(void)x;
+	(void)y;
 	if (button == 1)
 		v->mouse_button1_pressed = 0;
 	ft_key_reflect(v);
