@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:25:16 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/13 20:25:57 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:32:52 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "libft.h"
 
-
-# define HELP_MSG	"[lem-in] usage:\nprovide data describing the ant "\
+# define HELP_MSG	"[lem-in] usage example:\n\n"\
+	"./lem-in [--visual] < maps/subject/subject3.map\n\n"\
+	"provide data describing the ant "\
 	"farm in standard input in the following format:\n"\
 	"\tnumber_of_ants\n"\
 	"\tthe_rooms\n"\
