@@ -22,6 +22,7 @@
 
 # define KEY_U		32
 # define KEY_M		46
+# define KEY_0		29
 # define KEY_1		18
 # define KEY_2		19
 # define KEY_3		20
