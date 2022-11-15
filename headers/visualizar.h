@@ -153,4 +153,5 @@ void	vis_put_ants_name(t_visualizar *v);
 
 //re
 void	ant_num_change(t_visualizar *v, int num);
+void	ant_num_reset(t_visualizar *v);
 #endif
