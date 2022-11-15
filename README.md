@@ -1,12 +1,13 @@
 # lem-in
 
-make
+## compile
+`make`
 
 ## launch program
-./lem-in < maps/subject/subject3.map
+`./lem-in < maps/subject/subject3.map`
 
 ## visualize ant farm
-./lem-in -v < maps/subject/subject3.map
+`./lem-in -v < maps/subject/subject3.map`
 
 ## help
-./lem-in -h
+`./lem-in -h`
