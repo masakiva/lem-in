@@ -22,6 +22,7 @@
 
 # define KEY_U		32
 # define KEY_M		46
+# define KEY_0		29
 # define KEY_1		18
 # define KEY_2		19
 # define KEY_3		20
@@ -152,4 +153,5 @@ void	vis_put_ants_name(t_visualizar *v);
 
 //re
 void	ant_num_change(t_visualizar *v, int num);
+void	ant_num_reset(t_visualizar *v);
 #endif

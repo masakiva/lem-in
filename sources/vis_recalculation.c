@@ -88,3 +88,14 @@ void	ant_num_change(t_visualizar *v, int num)
 	ft_putstr_fd("\n\n", 1);
 	reset_simulation(v);
 }
+
+void	ant_num_reset(t_visualizar *v)
+{
+	v->s->ant_size = v->s->origin_ants_num;
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("number_of_ants => ", 1);
+	ft_putnbr_fd(v->s->ant_size, 1);
+	ft_putstr_fd("\n\n", 1);
+	reset_simulation(v);
+}
+

@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:35:31 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/14 15:10:48 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/15 14:46:41 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct	s_solve
 	int				ant_size;
 	int				start_id;
 	int				end_id;
+	int				origin_ants_num;
 
 }				t_solve;
 
