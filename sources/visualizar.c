@@ -284,6 +284,8 @@ int		ft_key_pressed(int key, t_visualizar *v)
 		ant_num_change(v, 1);
 	if (key == KEY_U)
 		ant_num_change(v, -1);
+	if (key == KEY_R)
+		ant_num_reset(v);
 
 	ft_key_reflect(v);
 
