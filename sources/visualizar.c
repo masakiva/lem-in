@@ -18,10 +18,6 @@ void	put_nodes(t_visualizar *v)
 	}
 }
 
-//typedef long long ll;
-
-//const ll CYCLE_PER_SEC = 2700000000;
-
 unsigned long long int get_cycle() {
   unsigned int low, high;
   __asm__ volatile ("rdtsc" : "=a" (low), "=d" (high));

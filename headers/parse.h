@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/13 20:25:39 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:58:38 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 # define VISUAL_OPTION	0x02
 # define LONG_HELP_OPTION	"help"
 # define LONG_VISUAL_OPTION	"visual"
-
-typedef t_byte	t_bool;
 
 typedef struct	s_room
 {
