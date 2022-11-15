@@ -272,18 +272,20 @@ int		ft_key_pressed(int key, t_visualizar *v)
 		update_world_cordinate(v, key);
 	if (key == KEY_N)
 		update_turn(v, 1);
-	if (key == KEY_B)
-		update_turn(v, -1);
-	if (key == KEY_R)
-		reset_all(v);
 	if (key == KEY_P)
+		update_turn(v, -1);
+	if (key == KEY_B)
+		reset_all(v);
+	if (key == KEY_0)
 		position_reset(v);
-	if (key == KEY_M)
+	if (key == KEY_F)
 		flow_ants_start(v);
 	if (key == KEY_I)
 		ant_num_change(v, 1);
 	if (key == KEY_U)
 		ant_num_change(v, -1);
+	if (key == KEY_R)
+		ant_num_reset(v);
 
 	ft_key_reflect(v);
 
