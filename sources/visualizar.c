@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:11:13 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/16 13:56:31 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/16 14:02:44 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	put_nodes(t_visualizar *v)
 
 	while (i < v->nodes_size)
 	{
-		drawCircle(30, v->nodes[i].v_x * v->display_ratio,
+		draw_circle(30, v->nodes[i].v_x * v->display_ratio,
 				v->nodes[i].v_y * v->display_ratio, v, LIME);
-		drawCircle(28, v->nodes[i].v_x * v->display_ratio,
+		draw_circle(28, v->nodes[i].v_x * v->display_ratio,
 				v->nodes[i].v_y * v->display_ratio, v, BLACK);
 		i++;
 	}
@@ -70,7 +70,7 @@ void	put_line_variable_width(int x1, int y1, int x2, int y2,
 		x = 0;
 		while (x < width)
 		{
-			drawLineTwoPixels2(x1 + x, y1 + y, x2 + x, y2 + y, v, color, x1, y1);
+			draw_line_two_pixels2(x1 + x, y1 + y, x2 + x, y2 + y, v, color, x1, y1);
 			x++;
 		}
 		y++;
@@ -90,7 +90,7 @@ void	put_node_link2(t_visualizar *v, t_solve_room *node, int id)
 		opponent_id = node->links[i];	
 		x = v->s->rooms[opponent_id].x * v->display_ratio;
 		y = v->s->rooms[opponent_id].y * v->display_ratio;
-		drawLineTwoPixels(x, y, node->x * v->display_ratio, node->y * v->display_ratio, v, LIME);
+		draw_line_two_pixels(x, y, node->x * v->display_ratio, node->y * v->display_ratio, v, LIME);
 		//put_line_variable_width(x, y, node->x * v->display_ratio,
 		//		node->y * v->display_ratio, v, LIME, 1);
 
@@ -176,7 +176,6 @@ int	ft_key_reflect(t_visualizar *v)
 	put_buffer(v, v->mouse_x, v->mouse_y);
 	put_buffer(v, 30, 30);
 
-	//tmp TODO delete 
 	vis_put_ants_name(v);
 	put_nodes_name(v);
 

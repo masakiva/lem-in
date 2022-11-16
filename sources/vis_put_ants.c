@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:13:04 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/15 15:13:08 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/16 14:01:39 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	draw_ants(t_visualizar *v, t_ant *ant, int pos_index, int is_end)
 
 	if (is_end || v->is_flow == 0)
 	{
-		drawCircle(8, 
+		draw_circle(8, 
 			x * v->display_ratio,
 			y * v->display_ratio,
 			v, LIME);
-		drawCircle(7, 
+		draw_circle(7, 
 			x * v->display_ratio,
 			y * v->display_ratio,
 			v, WHITE);
@@ -51,9 +51,9 @@ void	draw_ants(t_visualizar *v, t_ant *ant, int pos_index, int is_end)
 	x = x + length * v->move_frame / FRAME_RATIO * cos(rad);
 	y = y + length * v->move_frame / FRAME_RATIO * sin(rad);
 	
-	drawCircle(8, x, y, 
+	draw_circle(8, x, y, 
 			v, LIME);
-	drawCircle(7, x, y, 
+	draw_circle(7, x, y, 
 			v, WHITE);
 
 	ant->visualize_x = x;
