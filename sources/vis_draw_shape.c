@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:12:49 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/15 15:12:53 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/16 14:04:12 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../headers/solve.h"
 #include "../headers/visualizar.h"
 
-void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color)
+void draw_circle(int radius, int x1, int y1, t_visualizar *v, int color)
 {
 	int x, y;
 	int dx, dy;
@@ -36,10 +36,13 @@ void drawCircle(int radius, int x1, int y1, t_visualizar *v, int color)
 	}
 }
 
-void drawLineTwoPixels2(int xs, int ys, int xe, int ye, t_visualizar *v, int color, int ox, int oy)
+void draw_line_two_pixels2(int xs, int ys, int xe, int ye, t_visualizar *v, int color, int ox, int oy)
 {
-	int x, y, z;
-	int dx, dy;
+	int x;
+	int y;
+	int z;
+	int dx;
+	int dy;
 	double rad;
 	int length;
 	int l;
@@ -66,10 +69,12 @@ void drawLineTwoPixels2(int xs, int ys, int xe, int ye, t_visualizar *v, int col
     }
 }
 
-void drawLineTwoPixels(int xs, int ys, int xe, int ye, t_visualizar *v, int color)
+void draw_line_two_pixels(int xs, int ys, int xe, int ye, t_visualizar *v, int color)
 {
-	int x, y;
-	int dx, dy;
+	int x;
+	int y;
+	int dx;
+	int dy;
 	double rad;
 	int length;
 	int l;
