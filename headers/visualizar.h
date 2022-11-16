@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:14:51 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/16 14:04:15 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/16 14:20:40 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # define KEY_F		3
 # define KEY_M		46
 # define KEY_I		34
+# define KEY_L		37
 
 # define BLACK		0x000000
 # define LIME		0x00FF00
@@ -124,6 +125,7 @@ typedef struct	s_visualizar
 	int			end_ants;
 	int			start_ants;
 	int			is_flow;
+	int			low_mode;
 	
 	//tmp_buffer
 	char		str_buffer[STR_BUFFER_SIZE + 1];
@@ -162,6 +164,15 @@ double get_time(unsigned long long int b);
 //ant
 void	vis_put_ants(t_visualizar *v);
 void	vis_put_ants_name(t_visualizar *v);
+
+//node
+void	put_nodes(t_visualizar *v);
+void	put_nodes_name(t_visualizar *v);
+void	put_line_variable_width(int x1, int y1, int x2, int y2, t_visualizar *v, int c, int w);
+void	put_node_link2(t_visualizar *v, t_solve_room *n, int id);
+void	put_node_link(t_visualizar *v);
+void	put_use_link2(t_visualizar *v, t_path *p);
+void	put_use_link(t_visualizar *v);
 
 //re
 void	ant_num_change(t_visualizar *v, int num);
