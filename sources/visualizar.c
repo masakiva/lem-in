@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:11:13 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/15 15:20:50 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:56:31 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,18 @@ void	put_nodes(t_visualizar *v)
 	}
 }
 
-unsigned long long int get_cycle() {
-  unsigned int low, high;
-  __asm__ volatile ("rdtsc" : "=a" (low), "=d" (high));
-  return ((unsigned long long int) low) | ((unsigned long long int) high << 32);
+unsigned long long int get_cycle()
+{
+	unsigned int eax;
+	unsigned int edx;
+
+	__asm__ volatile ("rdtsc" : "=a" (eax), "=d" (edx));
+	return ((unsigned long long int) eax) | ((unsigned long long int) edx << 32);
 }
 
-double get_time(unsigned long long int begin_cycle) {
-  return (double) (get_cycle() - begin_cycle) / CYCLE_PER_SEC;
+double get_time(unsigned long long int begin_cycle)
+{
+	return (double) (get_cycle() - begin_cycle) / CYCLE_PER_SEC;
 }
 
 void	put_nodes_name(t_visualizar *v)
@@ -416,5 +420,6 @@ void	lem_in_visualizar(t_map *map, t_solve *s, t_ek_graph *graph)
 	visualize_lem_in_init(v, map, s, graph);
 
 	v_loop(v);
+	exit(0);
 }
 
