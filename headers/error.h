@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:25:16 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/15 16:32:52 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:09:58 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "libft.h"
 
-# define HELP_MSG	"[lem-in] usage example:\n\n"\
+# ifdef BONUS
+#  define HELP_MSG	"[lem-in] usage example:\n\n"\
 	"./lem-in [--visual] < maps/subject/subject3.map\n\n"\
 	"provide data describing the ant "\
 	"farm in standard input in the following format:\n"\
@@ -31,6 +32,24 @@
 	"\t2 9 0\n"\
 	"\t0-1\n"\
 	"\t1-2\n"
+# else // BONUS
+#  define HELP_MSG	"[lem-in] usage example:\n\n"\
+	"./lem-in < maps/subject/subject3.map\n\n"\
+	"provide data describing the ant "\
+	"farm in standard input in the following format:\n"\
+	"\tnumber_of_ants\n"\
+	"\tthe_rooms\n"\
+	"\tthe_links\n"\
+	"for example:\n"\
+	"\t3\n"\
+	"\t##start\n"\
+	"\t0 1 0\n"\
+	"\t1 5 0\n"\
+	"\t##end\n"\
+	"\t2 9 0\n"\
+	"\t0-1\n"\
+	"\t1-2\n"
+# endif // BONUS
 
 enum		e_errcode
 {
