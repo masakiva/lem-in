@@ -8,6 +8,7 @@ objects
 *.out
 a.out*
 lem-in
+lem-in_bonus
 
 # macos garbage
 .DS_Store

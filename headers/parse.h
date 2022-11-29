@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/15 14:58:38 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:57:21 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 
 # define ARG_OPTIONS	"hv"
 # define HELP_OPTION	0x01
-# define VISUAL_OPTION	0x02
 # define LONG_HELP_OPTION	"help"
-# define LONG_VISUAL_OPTION	"visual"
+# ifdef BONUS
+#  define VISUAL_OPTION	0x02
+#  define LONG_VISUAL_OPTION	"visual"
+# endif // BONUS
 
 typedef struct	s_room
 {
@@ -46,8 +48,12 @@ typedef struct	s_map
 	int		nb_ants;
 	t_bool	start_flag;
 	t_bool	end_flag;
+#ifdef BONUS
 	t_bool	visual;
 	t_byte	pad[1];
+#else
+	t_byte	pad[2];
+#endif // BONUS
 }				t_map;
 
 enum	e_state

@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:11:27 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/16 13:39:25 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/29 14:59:23 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,8 +243,10 @@ void	find_max_flow(t_map *map, t_solve *s, t_ek_graph *graph)
 
 	max_flow_init(graph);
 	ant_num = 1;
+#ifdef BONUS
 	if (map->visual == 1)
 		limit = 10000000;
+#endif // BONUS
 	while (ant_num <= limit)
 	{
 		ant_num++;

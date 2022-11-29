@@ -6,10 +6,11 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:13:04 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/16 14:01:39 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/29 15:01:10 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifdef BONUS
 #include "libft.h"
 #include "parse.h"
 #include "../headers/ft_queue.h"
@@ -150,3 +151,4 @@ void	vis_put_ants(t_visualizar *v)
 	}
 	(void)v;
 }
+#endif // BONUS

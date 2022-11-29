@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:11:43 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/15 15:11:45 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/29 14:58:00 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,9 @@ void	flow_ants(t_map *map, t_solve *s, t_ek_graph *graph)
 	flow_ant_init(s, &(graph->path_manager));
 	flow_ants_execute(s, graph);
 
+#ifdef BONUS
 	if (map->visual == 1)
 		lem_in_visualizar(map, s, graph);
+#endif // BONUS
 	exit(0);
 }
