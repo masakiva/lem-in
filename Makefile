@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/11/17 15:13:28 by mvidal-a         ###   ########.fr        #
+#    Updated: 2022/11/29 15:12:16 by mvidal-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,9 @@ CC = clang
 #-----------------------------------------------#
 ################### PATHS #######################
 #-----------------------------------------------#
-HDRS_PATH		+= ./headers/
-SRCS_PATH		+= ./sources/
-OBJS_PATH		+= ./objects/
-OBJS_BONUS_PATH	+= ./objects/
+HDRS_PATH		+= headers/
+SRCS_PATH		+= sources/
+OBJS_PATH		+= objects/
 
 #-----------------------------------------------#
 ################## SOURCES ######################
@@ -85,20 +84,30 @@ CPPFLAGS	+= -I $(HDRS_PATH)
 #-----------------------------------------------#
 ################# LIBRARIES #####################
 #-----------------------------------------------#
-LIBFT_PATH	+= ./libft/
-MLX_PATH	+= ./minilibx_mms_20200219/
+LIBFT_PATH	+= libft/
 
 LIBFT_NAME	+= libft.a
-MLX_NAME	+= libmlx.dylib
 
 CPPFLAGS		+= -I $(LIBFT_PATH)
-CPPFLAGS_BONUS	+= -I $(MLX_PATH)
-CPPFLAGS_BONUS	+= -D BONUS
 
 LDFLAGS			+= -L $(LIBFT_PATH)
-LDFLAGS_BONUS	+= -L $(MLX_PATH)
 
 LDLIBS			+= -lft
+
+#-----------------------------------------------#
+################# LIBRARIES #####################
+#-----------------------------------------------#
+NAME_BONUS		+= lem-in_bonus
+
+OBJS_BONUS_PATH	+= objects_bonus/
+OBJS_BONUS		+= $(addprefix $(OBJS_BONUS_PATH), $(SRCS:.c=.o))
+
+CPPFLAGS_BONUS	+= -D BONUS
+
+MLX_PATH		+= minilibx_mms_20200219/
+MLX_NAME		+= libmlx.dylib
+CPPFLAGS_BONUS	+= -I $(MLX_PATH)
+LDFLAGS_BONUS	+= -L $(MLX_PATH)
 LDLIBS_BONUS	+= -lmlx
 
 #-----------------------------------------------#
@@ -120,10 +129,11 @@ all:				$(NAME)
 $(NAME):			$(LIBFT_PATH)$(LIBFT_NAME) $(OBJS)
 					$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
 
-bonus:				$(LIBFT_PATH)$(LIBFT_NAME) $(MLX_PATH)$(MLX_NAME) $(OBJS) $(OBJS_BONUS)
-					$(CC) $(LDFLAGS) $(LDFLAGS_BONUS) $(OBJS) $(LDLIBS) $(LDLIBS_BONUS) -o $(NAME)
-					install_name_tool -change libmlx.dylib `pwd`/minilibx_mms_20200219/libmlx.dylib lem-in
-					touch bonus
+$(NAME_BONUS):		$(LIBFT_PATH)$(LIBFT_NAME) $(MLX_PATH)$(MLX_NAME) $(OBJS_BONUS)
+					$(CC) $(LDFLAGS) $(LDFLAGS_BONUS) $(OBJS_BONUS) $(LDLIBS) $(LDLIBS_BONUS) -o $(NAME_BONUS)
+					install_name_tool -change $(MLX_NAME) `pwd`/$(MLX_PATH)$(MLX_NAME) $(NAME_BONUS)
+
+bonus:				$(NAME_BONUS)
 
 $(OBJS_PATH)%.o:	%.c
 					$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@

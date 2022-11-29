@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:27:14 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/10 16:34:33 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:59:00 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ static t_byte	check_arg_for_options(char *arg, char *op_chars)
 		{
 			if (ft_strcmp(arg + 2, LONG_HELP_OPTION) == 0)
 				options |= HELP_OPTION;
+#ifdef BONUS
 			if (ft_strcmp(arg + 2, LONG_VISUAL_OPTION) == 0)
 				options |= VISUAL_OPTION;
+#endif // BONUS
 		}
 		else
 		{

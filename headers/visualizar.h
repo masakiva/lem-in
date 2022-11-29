@@ -6,10 +6,11 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:14:51 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/16 14:20:40 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/29 14:58:34 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifdef BONUS
 #ifndef VISUALIZAR_H
 #define VISUALIZAR_H
 
@@ -177,4 +178,5 @@ void	put_use_link(t_visualizar *v);
 //re
 void	ant_num_change(t_visualizar *v, int num);
 void	ant_num_reset(t_visualizar *v);
-#endif
+#endif // VISUALIZAR_H
+#endif // BONUS

@@ -6,10 +6,11 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:11:13 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/16 14:16:49 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/29 14:59:50 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifdef BONUS
 #include "libft.h"
 #include "parse.h"
 #include "../headers/ft_queue.h"
@@ -303,4 +304,4 @@ void	lem_in_visualizar(t_map *map, t_solve *s, t_ek_graph *graph)
 	v_loop(v);
 	exit(0);
 }
-
+#endif // BONUS

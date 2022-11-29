@@ -6,10 +6,11 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:12:49 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/16 14:04:12 by tkodai           ###   ########.fr       */
+/*   Updated: 2022/11/29 15:00:15 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifdef BONUS
 #include "libft.h"
 #include "parse.h"
 #include "../headers/ft_queue.h"
@@ -93,3 +94,4 @@ void draw_line_two_pixels(int xs, int ys, int xe, int ye, t_visualizar *v, int c
 		protected_pixel_put(v, x, y, color);
     }
 }
+#endif // BONUS
