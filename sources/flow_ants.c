@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:11:43 by tkodai            #+#    #+#             */
-/*   Updated: 2022/11/29 14:58:00 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/12/03 11:25:31 by tkodai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void	put_ants(t_ant *ant, t_solve *s)
 		error_exit(WRITE_ERR);
 	if (ft_putstr_fd(s->rooms[ant->path->root[ant->path_position]].name_ptr,
 				STDOUT_FILENO) != SUCCESS)
-		error_exit(WRITE_ERR);
-	if (ft_putchar_fd(' ', STDOUT_FILENO) != SUCCESS)
 		error_exit(WRITE_ERR);
 }
 
