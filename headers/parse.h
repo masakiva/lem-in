@@ -6,24 +6,15 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:22:54 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/29 14:57:21 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/12/10 19:36:35 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-# include "libft.h"
 # include "error.h"
 # include "ft_queue.h"
-
-# define ARG_OPTIONS	"hv"
-# define HELP_OPTION	0x01
-# define LONG_HELP_OPTION	"help"
-# ifdef BONUS
-#  define VISUAL_OPTION	0x02
-#  define LONG_VISUAL_OPTION	"visual"
-# endif // BONUS
 
 typedef struct	s_room
 {
@@ -50,9 +41,9 @@ typedef struct	s_map
 	t_bool	end_flag;
 #ifdef BONUS
 	t_bool	visual;
-	t_byte	pad[1];
+	t_byte	_pad[1];
 #else
-	t_byte	pad[2];
+	t_byte	_pad[2];
 #endif // BONUS
 }				t_map;
 
@@ -72,13 +63,11 @@ typedef struct	s_state_machine
 {
 	t_map*			map;
 	enum e_state	state;
-	t_byte			pad[4];
+	t_byte			_pad[4];
 }				t_state_machine;
 
 typedef char*	(*t_parse)(t_state_machine *, char *);
 
-
-t_byte	retrieve_options(int argc, char **argv, char *op_chars);
 
 int		parse_line(t_map* map);
 

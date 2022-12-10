@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:25:16 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/29 17:09:58 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/12/10 19:38:02 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 
 # include "libft.h"
 
+# define ARG_OPTIONS	"hv"
+# define HELP_OPTION	0x01
+# define LONG_HELP_OPTION	"help"
 # ifdef BONUS
+#  define VISUAL_OPTION	0x02
+#  define LONG_VISUAL_OPTION	"visual"
 #  define HELP_MSG	"[lem-in] usage example:\n\n"\
 	"./lem-in [--visual] < maps/subject/subject3.map\n\n"\
 	"provide data describing the ant "\
@@ -78,6 +83,8 @@ enum		e_errcode
 	LINKS_MISSING,
 	UNSOLVABLE,
 };
+
+t_byte	retrieve_options(int argc, char **argv, char *op_chars);
 
 int		error_exit(enum e_errcode errcode);
 
