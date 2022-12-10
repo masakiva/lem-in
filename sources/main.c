@@ -6,7 +6,7 @@
 /*   By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:46:12 by mvidal-a          #+#    #+#             */
-/*   Updated: 2022/11/29 14:55:07 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:13:46 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -16,9 +16,9 @@
 
 int		main(int argc, char** argv)
 {
-	t_byte	options;
 	t_map	map;
 	int		ret;
+	t_byte	options;
 
 	ft_bzero(&map, sizeof(t_map));
 
