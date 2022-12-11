@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/12/11 16:23:42 by mvidal-a         ###   ########.fr        #
+#    Updated: 2022/12/11 16:41:33 by mvidal-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,14 +85,12 @@ CPPFLAGS	+= -I $(HDRS_PATH)
 ################# LIBRARIES #####################
 #-----------------------------------------------#
 LIBFT_PATH	+= libft/
-
 LIBFT_NAME	+= libft.a
+CPPFLAGS	+= -I $(LIBFT_PATH)
+LDFLAGS		+= -L $(LIBFT_PATH)
+LDLIBS		+= -lft
 
-CPPFLAGS		+= -I $(LIBFT_PATH)
-
-LDFLAGS			+= -L $(LIBFT_PATH)
-
-LDLIBS			+= -lft
+LDLIBS		+= -lm
 
 #-----------------------------------------------#
 ################### BONUS #######################

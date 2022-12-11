@@ -6,7 +6,7 @@
 /*   By: tkodai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:14:58 by tkodai            #+#    #+#             */
-/*   Updated: 2022/12/10 19:36:47 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/12/11 16:41:05 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct	s_queue
 	t_q_node	*head;
 	t_q_node	*tail;
 	int			size;
-	uint8_t		_pad[4];
 }				t_queue;
 
 t_q_node	*ft_q_node_new(void *content);
