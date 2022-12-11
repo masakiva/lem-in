@@ -6,7 +6,7 @@
 #    By: mvidal-a <mvidal-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 10:22:25 by mvidal-a          #+#    #+#              #
-#    Updated: 2022/12/10 17:16:29 by mvidal-a         ###   ########.fr        #
+#    Updated: 2022/12/11 16:23:42 by mvidal-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,8 +104,17 @@ OBJS_BONUS		+= $(addprefix $(OBJS_BONUS_PATH), $(SRCS:.c=.o))
 
 CPPFLAGS_BONUS	+= -D BONUS
 
-MLX_PATH		+= minilibx_mms_20200219/
-MLX_NAME		+= libmlx.dylib
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	MLX_PATH	+= minilibx_mms_20200219/
+	MLX_NAME	+= libmlx.dylib
+else
+	MLX_PATH		+= minilibx-linux/
+	MLX_NAME		+= libmlx.a
+	LDLIBS_BONUS	+= -lXext
+	LDLIBS_BONUS	+= -lX11
+endif
+
 CPPFLAGS_BONUS	+= -I $(MLX_PATH)
 LDFLAGS_BONUS	+= -L $(MLX_PATH)
 LDLIBS_BONUS	+= -lmlx
@@ -131,7 +140,9 @@ $(NAME):			$(LIBFT_PATH)$(LIBFT_NAME) $(OBJS)
 
 $(NAME_BONUS):		$(LIBFT_PATH)$(LIBFT_NAME) $(MLX_PATH)$(MLX_NAME) $(OBJS_BONUS)
 					$(CC) $(LDFLAGS) $(LDFLAGS_BONUS) $(OBJS_BONUS) $(LDLIBS) $(LDLIBS_BONUS) -o $(NAME_BONUS)
+ifeq ($(UNAME_S),Darwin)
 					install_name_tool -change $(MLX_NAME) `pwd`/$(MLX_PATH)$(MLX_NAME) $(NAME_BONUS)
+endif
 
 bonus:				$(NAME_BONUS)
 
