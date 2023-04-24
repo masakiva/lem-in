@@ -2,6 +2,8 @@
 
 ***runs on macOS only***
 
+![visualizer gif](https://nextcloud.42l.fr/s/Y8G82ddsBJsZN3H/download/ezgif-5-3b145d556f.gif)
+
 ## compile
 `make`
 
